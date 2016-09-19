@@ -19,8 +19,8 @@ class Main extends CI_Controller {
 		$data['month'] = date('F');
 
 		//Get Data
-		$data['gold']		= $this->budget_model->getMonthlyLimit('gold', date('F'))->limit_transaction;
-		$data['diamond']	= $this->budget_model->getMonthlyLimit('diamond', date('F'))->limit_transaction;
+		$data['gold']		= (!$this->budget_model->getMonthlyLimit('gold', date('F')))? 1 : $this->budget_model->getMonthlyLimit('gold', date('F'))->limit_transaction;
+		$data['diamond']	= (!$this->budget_model->getMonthlyLimit('diamond', date('F')))? 1 : $this->budget_model->getMonthlyLimit('diamond', date('F'))->limit_transaction;
 
 		$data['trans_gold']		= (!$this->budget_model->getTotalTrans('gold', date('F')))? 0 : $this->budget_model->getTotalTrans('gold', date('F'));
 		$data['trans_diamond']	= (!$this->budget_model->getTotalTrans('diamond', date('F')))? 0 : $this->budget_model->getTotalTrans('diamond', date('F'));
@@ -33,15 +33,19 @@ class Main extends CI_Controller {
 
 	public function month($month)
 	{
+		//Get Month Number and Year For future use
+		$month = explode ('-', $month);
+		$month = date('F', mktime(0, 0, 0, $month[0], 1, $month[1]));
+
 		$data['title'] = $month . "'s Budget";
 		$data['month'] = $month;
 
 		//Get Data
-		$data['gold']		= $this->budget_model->getMonthlyLimit('gold', $month)->limit_transaction;
-		$data['diamond']	= $this->budget_model->getMonthlyLimit('diamond', $month)->limit_transaction;
+		$data['gold']		= (!$this->budget_model->getMonthlyLimit('gold', $month))? 1 : $this->budget_model->getMonthlyLimit('gold', $month)->limit_transaction;
+		$data['diamond']	= (!$this->budget_model->getMonthlyLimit('diamond', $month))? 1 : $this->budget_model->getMonthlyLimit('diamond', $month)->limit_transaction;
 
-		$data['trans_gold']		= $this->budget_model->getTotalTrans('gold', $month);
-		$data['trans_diamond']	= $this->budget_model->getTotalTrans('diamond', $month);
+		$data['trans_gold']		= (!$this->budget_model->getTotalTrans('gold', $month))? 0 : $this->budget_model->getTotalTrans('gold', $month);
+		$data['trans_diamond']	= (!$this->budget_model->getTotalTrans('diamond', $month))? 0 : $this->budget_model->getTotalTrans('diamond', $month);
 
 		$data['ratio_gold'] 	= $data['trans_gold']/$data['gold'];
 		$data['ratio_diamond'] 	= $data['trans_diamond']/$data['diamond'];

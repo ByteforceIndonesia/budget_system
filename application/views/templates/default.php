@@ -15,10 +15,13 @@
     <!-- CSS and Javascript -->
     <link rel="stylesheet" href="<?php echo base_url() ?>css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/datepicker.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/style.css">
     <script src="<?php echo base_url() ?>js/sweetalert.min.js"></script>
     <script src="<?php echo base_url() ?>js/progressbar.min.js"></script>
     <script src="<?php echo base_url() ?>js/chart.bundle.min.js"></script>
+    <script src="<?php echo base_url() ?>js/moment.js"></script>
+    <script src="<?php echo base_url() ?>js/bootstrap-datepicker.js"></script>
     <script src="<?php echo base_url() ?>js/script.js"></script>
 
   </head>

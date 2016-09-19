@@ -4,9 +4,19 @@
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-			<h1><?php echo $month ?>'s Budget</h1>
-			<br><br>
 				<!-- Content -->
+				<div class="month-picker row">
+					<div class="col-md-8">
+						<h1><?php echo $month ?>'s Budget</h1>
+					</div>
+					<div class="col-md-4 month-pick">
+						<div class="input-group date pull-right" id="datepicker" data-date="<?php echo date('m-Y') ?>" data-date-format="mm-yyyy">
+							 <input type="text" name="date" id="datepick" class="form-control" readonly="readonly" placeholder="Select Month">	  
+							 <span class="input-group-addon add-on"><span class="glyphicon glyphicon-th"></span></span>	  
+					    </div>
+					</div>
+				</div>
+				<br><br>
 				<!-- Loading Bars -->
 				<section class="bar">
 					<div id="gold">
@@ -24,6 +34,26 @@
 		</div>
 	</div>
 </section>
+
+<script>
+$(document).ready(function(){
+	$('#datepicker').on("changeDate", function(){
+		window.setTimeout(function(){
+			window.location.replace("<?php echo base_url('main/month') ?>/"+$('#datepick').val());
+		}, 50 );
+	});
+});
+</script>
+
+<script type="text/javascript">
+    $("#datepicker").datepicker({
+    		format: "mm-yyyy",
+		    viewMode: "months", 
+		    minViewMode: "months",
+		    autoClose: true
+		});
+</script>
+
 <script>
 $( document ).ready(function() {
 

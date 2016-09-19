@@ -144,25 +144,31 @@ class Budget_model extends CI_Model {
 
 	public function getTotalTrans ($type, $month)
 	{
-		if($this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->row()->transaction_id != NULL)
+		if($this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->num_rows() > 0)
 		{
-			$all = explode('#', $this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->row()->transaction_id);
-			$total = 0;
-			$count = 0;
-			
-			foreach($all as $transaction)
-			{	
-				if($count == 0)
-				{
+			if($this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->row()->transaction_id != NULL)
+			{
+				$all = explode('#', $this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->row()->transaction_id);
+				$total = 0;
+				$count = 0;
+				
+				foreach($all as $transaction)
+				{	
+					if($count == 0)
+					{
+						$count++;
+						continue;
+					}
+
+					$total += $this->db->get_where('transactions', array('id' => $transaction))->row()->amount;
 					$count++;
-					continue;
 				}
 
-				$total += $this->db->get_where('transactions', array('id' => $transaction))->row()->amount;
-				$count++;
+				return $total;
+			}else
+			{
+				return false;
 			}
-
-			return $total;
 		}else
 		{
 			return false;
