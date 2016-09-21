@@ -1,4 +1,21 @@
 /* CSS Document */
+@media screen and (max-width: 767px){
+    .progressbar-text{
+    	font-size: 24px !important;
+    }
+    svg{
+    	height: 70px !important;
+    }
+    #gold .progressbar-text{
+		left: 17% !important;
+		top: 45% !important;
+    }
+    #diamond .progressbar-text{
+    	left:27% !important;
+    	top:50% !important;
+    }
+}
+
 
 /* Globals */
 body
@@ -84,17 +101,22 @@ body
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+
 }
 
 .sidenav .menu-active {
 	left:250px;
 }
 
+.sidenav i{
+	margin-right: 10px !important;
+}
+
 /* The navigation menu links */
 .sidenav a {
-    padding: 8px 8px 8px 32px;
+    padding: 12px 8px 12px 28px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 15px !important;
     color: #ecf0f1;
     display: block;
     transition: 0.3s
@@ -102,6 +124,7 @@ body
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover, .offcanvas a:focus{
+	background-color: rgba(236, 240, 241,0.5);
     color: #f1f1f1;
 }
 
@@ -157,7 +180,8 @@ body
 
 .progressbar-text
 {
-	font-size: 100px;
+	font-size: 50px;
+
 }
 
 .buttons

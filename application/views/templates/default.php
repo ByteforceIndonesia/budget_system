@@ -30,12 +30,12 @@
     <!-- Header and Navs -->
     <section id="header">
       <div id="mySidenav" class="sidenav">
-        <a href="<?php echo base_url() ?>">&nbsp<i class="fa fa-home" aria-hidden="true"></i>&nbspHome</a>
-        <a href="<?php echo base_url('new_budget/monthly') ?>">&nbsp<i class="fa fa-plus" aria-hidden="true"></i>&nbspNew Monthly Limit</a>
-        <a href="<?php echo base_url('new_budget/transaction') ?>">&nbsp<i class="fa fa-plus" aria-hidden="true"></i>&nbspNew Transaction</a>
-        <a href="<?php echo base_url('main/all_transactions/') ?>">&nbsp<i class="fa fa-plus" aria-hidden="true"></i>&nbspAll Transactions This Month</a> 
-        <a href="<?php echo base_url('main/year_overview') ?>">&nbsp<i class="fa fa-plus" aria-hidden="true"></i>&nbspSee Year Overview</a>
-        <a href="<?php echo base_url('accounts/logout') ?>">Logout</a>
+        <a href="<?php echo base_url() ?>"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;Home</a>
+        <a href="<?php echo base_url('new_budget/monthly') ?>"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;New Monthly Limit</a>
+        <a href="<?php echo base_url('new_budget/transaction') ?>"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;New Transaction</a>
+        <a href="<?php echo base_url('main/all_transactions/') ?>"><i class="fa fa-dollar" aria-hidden="true"></i>&nbsp;&nbsp;All Transactions This Month</a> 
+        <a href="<?php echo base_url('main/year_overview') ?>"><i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;See Yearly Overview</a>
+        <a href="<?php echo base_url('accounts/logout') ?>"><i class="fa fa-power-off" aria-hidden="true"></i>&nbsp;&nbsp;Logout</a>
       </div>
       
 

@@ -11,8 +11,9 @@
 					</div>
 					<div class="col-md-4 month-pick">
 						<div class="input-group date pull-right" id="datepicker" data-date="<?php echo date('m-Y') ?>" data-date-format="mm-yyyy">
+							 <span class="input-group-addon add-on"><span class="glyphicon glyphicon-th"></span></span>	
 							 <input type="text" name="date" id="datepick" class="form-control" readonly="readonly" placeholder="Select Month">	  
-							 <span class="input-group-addon add-on"><span class="glyphicon glyphicon-th"></span></span>	  
+							   
 					    </div>
 					</div>
 				</div>
@@ -23,7 +24,7 @@
 						<!-- Gold -->
 						<h2>Gold</h2>
 					</div>
-					<br><br><br><br>
+					
 					<div id="diamond">
 						<!-- Diamond -->
 						<h2>Diamond</h2>
@@ -66,14 +67,15 @@ $( document ).ready(function() {
 	  trailWidth: 1,
 	  svgStyle: {width: '100%', height: '150px'},
 	  text: {
-        value: <?php echo $trans_gold; ?>+ ' of $' +<?php echo $gold; ?>, 
+        value: <?php echo $trans_gold; ?>+ ' of ' +<?php echo $gold; ?>+' gr', 
         autoStyleContainer: true,
         alignToBottom: true,
         style: {
             color: '#fff',
             position: 'absolute',
-            left: '25%',
-            top: '25%'
+            left: '27%',
+            top: '40%',
+
           },
     	}
 	});
@@ -87,14 +89,14 @@ $( document ).ready(function() {
 	  trailWidth: 1,
 	  svgStyle: {width: '100%', height: '150px'},
 	  text: {
-        value: <?php echo $trans_diamond; ?>+ ' of ' +<?php echo $diamond; ?>+' gr', 
+        value: <?php echo $trans_diamond; ?>+ ' of $' +<?php echo $diamond; ?>, 
         autoStyleContainer: true,
         alignToBottom: true,
         style: {
             color: '#fff',
             position: 'absolute',
-            left: '15%',
-            top: '25%'
+            left: '35%',
+            top: '45%'
           },
     	}
 	});
