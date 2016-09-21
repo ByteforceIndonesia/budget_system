@@ -26,23 +26,25 @@
 
   </head>
   <body>
-
+  <div class="container-fluid">
     <!-- Header and Navs -->
     <section id="header">
       <div id="mySidenav" class="sidenav">
-        <a href="<?php echo base_url() ?>"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;Home</a>
-        <a href="<?php echo base_url('new_budget/monthly') ?>"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;New Monthly Limit</a>
-        <a href="<?php echo base_url('new_budget/transaction') ?>"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;New Transaction</a>
-        <a href="<?php echo base_url('main/all_transactions/') ?>"><i class="fa fa-dollar" aria-hidden="true"></i>&nbsp;&nbsp;All Transactions This Month</a> 
-        <a href="<?php echo base_url('main/year_overview') ?>"><i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;See Yearly Overview</a>
-        <a href="<?php echo base_url('accounts/logout') ?>"><i class="fa fa-power-off" aria-hidden="true"></i>&nbsp;&nbsp;Logout</a>
+        <a href="javascript:void(0)" class="closebtn" onclick="triggerMenu()" style="border-bottom: none;font-size:25px!important;">&times;</a>
+        
+        <a href="<?php echo base_url() ?>"><div class="icon-navbar"><i class="fa fa-home" aria-hidden="true"></i></div><span class="menu-text">Home</span></a>
+        <a href="<?php echo base_url('new_budget/monthly') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">New Monthly Limit</span></a>
+        <a href="<?php echo base_url('new_budget/transaction') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">New Transaction</span></a>
+        <a href="<?php echo base_url('main/all_transactions/') ?>"><div class="icon-navbar"><i class="fa fa-dollar" aria-hidden="true"></i></div><span class="menu-text">All Transactions This Month</span></a> 
+        <a href="<?php echo base_url('main/year_overview') ?>"><div class="icon-navbar"><i class="fa fa-bar-chart" aria-hidden="true"></i></div><span class="menu-text">See Yearly Overview</span></a>
+        <a href="<?php echo base_url('accounts/logout') ?>"><div class="icon-navbar"><i class="fa fa-power-off" aria-hidden="true"></i></div><span class="menu-text">Logout</span></a>
       </div>
       
 
     <div class="container">
       <div class="row">
         <div id="openMenu">
-          <a onclick="triggerMenu()"><i class="fa fa-bars fa-3x" aria-hidden="true"></i></a>
+          <a onclick="triggerMenu()"><i class="fa fa-bars fa-3x" aria-hidden="true" id="menu-button"></i></a>
         </div>
       </div>
     </div>
@@ -52,7 +54,7 @@
 
     <!-- Footer -->
     
-
+  </div>
   </body>
 
   <!-- Swals -->

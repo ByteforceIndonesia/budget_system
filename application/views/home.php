@@ -7,7 +7,7 @@
 				<!-- Content -->
 				<div class="month-picker row">
 					<div class="col-md-8">
-						<h1><?php echo $month ?>'s Budget</h1>
+						<h1>Budget Bulan <?php echo $month ?></h1>
 					</div>
 					<div class="col-md-4 month-pick">
 						<div class="input-group date pull-right" id="datepicker" data-date="<?php echo date('m-Y') ?>" data-date-format="mm-yyyy">
@@ -17,7 +17,6 @@
 					    </div>
 					</div>
 				</div>
-				<br><br>
 				<!-- Loading Bars -->
 				<section class="bar">
 					<div id="gold">

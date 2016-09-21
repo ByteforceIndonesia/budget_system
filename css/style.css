@@ -17,7 +17,7 @@
 }
 
 
-/* Globals */
+/* Globals */	
 body
 {
 	padding:0;
@@ -28,7 +28,7 @@ body
 
 #content
 {
-	margin-top:7em;
+	margin-top:3em;
 }
 
 .btn-primary
@@ -93,7 +93,7 @@ body
     height: 100%; /* 100% Full-height */
     width: 250px; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
+    z-index: 30; /* Stay on top */
     top: 0;
     opacity:0;
     left: -250px;
@@ -108,13 +108,15 @@ body
 	left:250px;
 }
 
-.sidenav i{
-	margin-right: 10px !important;
+.sidenav .icon-navbar{
+    display: inline-block;
+    width: 30px;
+
 }
 
 /* The navigation menu links */
 .sidenav a {
-    padding: 12px 8px 12px 28px;
+    padding: 12px 8px 12px 22px;
     text-decoration: none;
     font-size: 15px !important;
     color: #ecf0f1;
@@ -132,11 +134,14 @@ body
 .sidenav .closebtn {
     position: absolute;
     top: 0;
-    right: 25px;
+    right: 10px;
     font-size: 36px;
-    margin-left: 50px;
+    margin-left: 100px;
 }
-
+.sidenav .closebtn:hover{
+	background-color: transparent;
+	color: #bdc3c7;
+}
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
     transition: margin-left .5s;
