@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<style type="text/css">
+  body{
+    background-image: url("<?php echo base_url().'img/background.jpg' ?>");
+    background-size: cover;
+  }
+</style>
 <html lang="en">
   <head>
     <meta charset="utf-8">

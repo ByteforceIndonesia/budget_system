@@ -46,6 +46,9 @@
         <div id="openMenu">
           <a onclick="triggerMenu()"><i class="fa fa-bars fa-3x" aria-hidden="true" id="menu-button"></i></a>
         </div>
+        <div class="text-center" style="padding-top:10px;padding-bottom:10px;">
+          <img src="<?php echo base_url().'img/logo.png' ?>">
+        </div>        
       </div>
     </div>
     </section>

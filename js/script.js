@@ -7,6 +7,8 @@ function triggerMenu() {
         document.getElementById("mySidenav").style.left = "-250px";
     	document.getElementById("mySidenav").style.opacity = "0";
 	    document.getElementById("openMenu").style.left = "0";
+        
+          
 	    $('#mySidenav').removeClass('menu-active');
     }
     else

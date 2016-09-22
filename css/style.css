@@ -28,7 +28,7 @@ body
 
 #content
 {
-	margin-top:3em;
+	margin-top:2em;
 }
 
 .btn-primary
@@ -46,6 +46,10 @@ body
 .title h1
 {
 	margin-top:-100px;
+}
+
+.month-picker{
+    margin-bottom: 40px !important;
 }
 
 .month-pick
@@ -126,7 +130,7 @@ body
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover, .offcanvas a:focus{
-	background-color: rgba(236, 240, 241,0.5);
+	background-color: rgba(0, 0, 0,0.5);
     color: #f1f1f1;
 }
 
@@ -159,17 +163,23 @@ body
 .loginForm
 {
 	position:relative;
-	top:50%;
+	margin-top: 25%;
+    background-color: rgba(255,255,255,0.8);
+    padding:20px;
 }
-
-.loginForm table tr th
-{
-	padding:1em;
+.btn-primary{
+    background-color: rgba(149, 165, 166,0.8);
+    text-transform: uppercase;
+    border-color: #fff;
+    border-radius: 0px;
+    color: #fff;
 }
-
-.loginForm table tr td
-{
-	padding:1em;
+.input-group-addon,.input-group input{
+    border-radius: 0px !important;
+    border:none;
+}
+.input-group-addon{
+    background-color: rgba(255,255,255,0.6);
 }
 
 /* Dashboard */
