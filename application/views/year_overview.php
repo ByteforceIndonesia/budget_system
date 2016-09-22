@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-			<h1 class="title" align="center">Year Overview</h1>
+			<h1 class="title" align="center">Laporan Limit Tahunan</h1>
 			<h2>Gold</h2>
         		<canvas id="canvas_gold"></canvas>
         	<br><br>
@@ -17,18 +17,18 @@
 
 	    <script>
 	        var barChartDataGold = {
-	            labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+	            labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
 	            datasets: [{
-	                label: 'Monthly Limit',
+	                label: 'Limit Bulanan',
 	                backgroundColor: "rgba(241, 196, 15,0.5)",
 	                data: [<?php echo $gold ?>]
 	            }]
 	        };
 
 	        var barChartDataDiamond = {
-	            labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+	            labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
 	            datasets: [{
-	                label: 'Monthly Limit',
+	                label: 'Limit Bulanan',
 	                backgroundColor: "rgba(52, 152, 219,0.5)",
 	                data: [<?php echo $diamond ?>]
 	            }]
@@ -55,7 +55,7 @@
 	                    },
 	                    title: {
 	                        display: true,
-	                        text: 'Yearly Limit for Gold'
+	                        text: 'Limit Tahunan untuk Emas'
 	                    }
 	                }
 	            });
@@ -80,7 +80,7 @@
 	                    },
 	                    title: {
 	                        display: true,
-	                        text: 'Yearly Limit for Diamond'
+	                        text: 'Limit Tahunan untuk Berlian'
 	                    }
 	                }
 	            });

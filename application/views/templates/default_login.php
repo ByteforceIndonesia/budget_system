@@ -4,6 +4,18 @@
     background-image: url("<?php echo base_url().'img/background.jpg' ?>");
     background-size: cover;
   }
+  #icon{
+    background-color: rgba(12, 12, 12,0.5);
+    background-image: url("<?php echo base_url().'img/icon.png' ?>");
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    float: left;
+  }
+  #signin{
+    font-size: 35px;
+  }
 </style>
 <html lang="en">
   <head>

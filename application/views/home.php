@@ -62,7 +62,7 @@ $( document ).ready(function() {
 	  easing: 'easeInOut',
 	  duration: 1400,
 	  color: '#FFEA82',
-	  trailColor: '#eee',
+	  trailColor: '#bdc3c7',
 	  trailWidth: 1,
 	  svgStyle: {width: '100%', height: '150px'},
 	  text: {
@@ -84,7 +84,7 @@ $( document ).ready(function() {
 	  easing: 'easeInOut',
 	  duration: 1400,
 	  color: '#3498db',
-	  trailColor: '#eee',
+	  trailColor: '#bdc3c7',
 	  trailWidth: 1,
 	  svgStyle: {width: '100%', height: '150px'},
 	  text: {

@@ -30,7 +30,7 @@ $(document).ready( function () {
 						 	<td>Cicilan Perbulan</td>
 						 	<td>Mulai Pembayaran Cicilan</td>
 						 	<td>Amount</td>
-						 	<td>Type Transaksi</td>
+						 	<td>Tipe Transaksi</td>
 						 	<td>Action</td>
 						 </tr>
 					</thead>
