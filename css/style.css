@@ -43,7 +43,10 @@ body
 	border-color:#2c3e50;
 }
 
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    line-height: 30px;
 
+}
 
 
 .month-picker{
@@ -99,13 +102,16 @@ body
     top: 0;
     opacity:0;
     left: -250px;
-    background-color: #34495e; /* Black*/
+    background-color: #948a6a; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 
 }
 
+#menu-button{
+    color: #948a6a !important;
+}
 .sidenav .menu-active {
 	left:250px;
 }
@@ -172,12 +178,20 @@ body
     border-radius: 0px;
     color: #fff;
 }
+.btn-default{
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #948a6a;
+    color: #fff;
+}
 .input-group-addon,.input-group input{
     border-radius: 0px !important;
     border:none;
 }
 .input-group-addon{
     background-color: rgba(255,255,255,0.6);
+    padding-left: 0px;
 }
 
 /* Dashboard */

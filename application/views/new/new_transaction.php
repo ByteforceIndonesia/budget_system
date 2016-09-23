@@ -7,12 +7,25 @@
 				<h1 class="title" align="center">Transaksi Baru</h1>
 				<?php echo form_open('new_budget/transaction') ?>
 					<table class="table">
+						<tr>
+							<td><span class="form-label">Jumlah Cicilan</span></td>
+							<td>
+								<div class="form-group">
+								  <div class="input-group">
+								      <div class="input-group-addon" id="amount">Gr.</div>
+								      <input type="text" class="form-control" id="exampleInputAmount" name="amount" placeholder="Nominal" required>
+								      <div class="input-group-addon">.00</div>
+								  </div>
+								</div>
+							</td>
+						</tr>
 						<tr class="form-group">
 							<td><span class="form-label">Mulai Cicilan</span></td>
 							<td>
 								<input type="date" name="start_payment" placeholder="Start Payment" class="form-control" required>
 							</td>
 						</tr>
+						
 						<tr class="form-group">
 							<td><span class="form-label">Durasi Cicilan (dalam bulan)</span></td>
 							<td>
@@ -32,21 +45,10 @@
 								</select>
 							</td>
 						</tr>
-						<tr>
-							<td><span class="form-label">Jumlah Transaksi</span></td>
-							<td>
-								<div class="form-group">
-								  <div class="input-group">
-								      <div class="input-group-addon" id="amount">Gr.</div>
-								      <input type="text" class="form-control" id="exampleInputAmount" name="amount" placeholder="Nominal" required>
-								      <div class="input-group-addon">.00</div>
-								  </div>
-								</div>
-							</td>
-						</tr>
+						
 						<tr>
 							<td colspan="2">
-								<input type="submit" class="btn btn-primary pull-right" value="Submit">
+								<input type="submit" class="btn btn-default pull-right" value="Submit">
 							</td>
 						</tr>
 					</table>

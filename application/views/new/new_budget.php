@@ -59,7 +59,7 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<input type="submit" class="btn btn-primary pull-right" value="Submit">
+								<input type="submit" class="btn btn-default pull-right" value="Submit">
 							</td>
 						</tr>
 					</table>
