@@ -2,7 +2,9 @@
 function triggerMenu() {
 	if($('#mySidenav').hasClass('menu-active'))
 	{
-    	document.getElementById("mySidenav").style.left = "-250px";
+    	$('#menu-button').show();
+        $('.menu-text').hide();
+        document.getElementById("mySidenav").style.left = "-250px";
     	document.getElementById("mySidenav").style.opacity = "0";
 	    document.getElementById("openMenu").style.left = "0";
         document.getElementById("body").style.opacity = "1";
@@ -10,7 +12,9 @@ function triggerMenu() {
 	    $('#mySidenav').removeClass('menu-active');
     }
     else
-    {
+    {   
+        $('.menu-text').show();
+        $('#menu-button').hide();
     	document.getElementById("mySidenav").style.left = "0px";
     	document.getElementById("mySidenav").style.opacity = "1";
     	document.getElementById("openMenu").style.left = "250px";

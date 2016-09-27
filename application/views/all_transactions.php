@@ -30,7 +30,7 @@ $(document).ready( function () {
 						 	<td>Cicilan Perbulan</td>
 						 	<td>Mulai Pembayaran Cicilan</td>
 						 	<td>Amount</td>
-						 	<td>Type Transaksi</td>
+						 	<td>Tipe Transaksi</td>
 						 	<td>Action</td>
 						 </tr>
 					</thead>
@@ -76,9 +76,9 @@ $(document).ready( function () {
 							<tr>
 								<td><?php echo $i ?></td>
 								<td><?php echo $one['spanning_month'] ?></td>
-								<td><?php echo $one['amount']/$one['spanning_month'] ?></td>
+								<td>$&nbsp;<?php echo $one['amount']/$one['spanning_month'] ?></td>
 								<td><?php echo $one['start_payment'] ?></td>
-								<td><?php echo $one['amount'] ?></td>
+								<td>$&nbsp;<?php echo $one['amount'] ?></td>
 								<td><?php echo $one['type'] ?></td>
 						 		<td>
 						 			<a href="<?php echo base_url('main/delete/' . $one['id']) ?>">Delete</a>

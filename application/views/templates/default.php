@@ -26,25 +26,32 @@
 
   </head>
   <body>
-
+  <div class="container-fluid">
     <!-- Header and Navs -->
     <section id="header">
       <div id="mySidenav" class="sidenav">
-        <a href="<?php echo base_url() ?>">&nbsp<i class="fa fa-home" aria-hidden="true"></i>&nbspHome</a>
-        <a href="<?php echo base_url('new_budget/monthly') ?>">&nbsp<i class="fa fa-plus" aria-hidden="true"></i>&nbspNew Monthly Limit</a>
-        <a href="<?php echo base_url('new_budget/monthly_cicilan') ?>">&nbsp<i class="fa fa-plus" aria-hidden="true"></i>&nbspNew Monthly Cicilan Limit</a>
-        <a href="<?php echo base_url('new_budget/transaction') ?>">&nbsp<i class="fa fa-plus" aria-hidden="true"></i>&nbspNew Transaction</a>
-        <a href="<?php echo base_url('main/all_transactions/') ?>">&nbsp<i class="fa fa-plus" aria-hidden="true"></i>&nbspAll Transactions This Month</a> 
-        <a href="<?php echo base_url('main/year_overview') ?>">&nbsp<i class="fa fa-plus" aria-hidden="true"></i>&nbspSee Year Overview</a>
-        <a href="<?php echo base_url('accounts/logout') ?>">Logout</a>
+
+        <a href="javascript:void(0)" class="closebtn" onclick="triggerMenu()" style="border-bottom: none;font-size:25px!important;">&times;</a>
+        
+        <a href="<?php echo base_url() ?>"><div class="icon-navbar"><i class="fa fa-home" aria-hidden="true"></i></div><span class="menu-text">Halaman Utama</span></a>
+        <a href="<?php echo base_url('new_budget/monthly') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">Buat Limit Budget Bulanan Baru</span></a>
+        <a href="<?php echo base_url('new_budget/monthly_cicilan') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">Buat Limit Budget Cicilan Bulanan Baru</span></a>
+        <a href="<?php echo base_url('new_budget/transaction') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">Buat Transaksi Baru</span></a>
+        <a href="<?php echo base_url('main/all_transactions/') ?>"><div class="icon-navbar"><i class="fa fa-dollar" aria-hidden="true"></i></div><span class="menu-text">Detail Transaksi Bulan Ini</span></a> 
+        <a href="<?php echo base_url('main/year_overview') ?>"><div class="icon-navbar"><i class="fa fa-bar-chart" aria-hidden="true"></i></div><span class="menu-text">Laporan Limit Tahunan</span></a>
+        <a href="<?php echo base_url('accounts/logout') ?>"><div class="icon-navbar"><i class="fa fa-power-off" aria-hidden="true"></i></div><span class="menu-text">Logout</span></a>
+        
       </div>
       
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div id="openMenu">
-          <a onclick="triggerMenu()"><i class="fa fa-bars fa-3x" aria-hidden="true"></i></a>
+          <a onclick="triggerMenu()"><i class="fa fa-bars fa-3x" aria-hidden="true" id="menu-button"></i></a>
         </div>
+        <div class="text-center" style="padding-top:10px;padding-bottom:10px;">
+          <img src="<?php echo base_url().'img/logo.png' ?>">
+        </div>        
       </div>
     </div>
     </section>
@@ -55,7 +62,7 @@
 
     <!-- Footer -->
     
-
+  </div>
   </body>
 
   <!-- Swals -->

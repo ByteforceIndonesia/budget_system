@@ -1,6 +1,23 @@
 /* CSS Document */
+@media screen and (max-width: 767px){
+    .progressbar-text{
+    	font-size: 24px !important;
+    }
+    svg{
+    	height: 70px !important;
+    }
+    #gold .progressbar-text{
+		left: 17% !important;
+		top: 45% !important;
+    }
+    #diamond .progressbar-text{
+    	left:27% !important;
+    	top:50% !important;
+    }
+}
 
-/* Globals */
+
+/* Globals */	
 body
 {
 	padding:0;
@@ -12,7 +29,7 @@ body
 
 #content
 {
-	margin-top:7em;
+	margin-top:2em;
 }
 
 .btn-primary
@@ -27,9 +44,14 @@ body
 	border-color:#2c3e50;
 }
 
-.title h1
-{
-	margin-top:-100px;
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    line-height: 30px;
+
+}
+
+
+.month-picker{
+    margin-bottom: 40px !important;
 }
 
 .month-pick
@@ -77,25 +99,35 @@ body
     height: 100%; /* 100% Full-height */
     width: 250px; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
+    z-index: 30; /* Stay on top */
     top: 0;
     opacity:0;
     left: -250px;
-    background-color: #34495e; /* Black*/
+    background-color: #948a6a; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+
 }
 
+#menu-button{
+    color: #948a6a !important;
+}
 .sidenav .menu-active {
 	left:250px;
 }
 
+.sidenav .icon-navbar{
+    display: inline-block;
+    width: 30px;
+
+}
+
 /* The navigation menu links */
 .sidenav a {
-    padding: 8px 8px 8px 32px;
+    padding: 12px 8px 12px 22px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 15px !important;
     color: #ecf0f1;
     display: block;
     transition: 0.3s
@@ -103,6 +135,7 @@ body
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover, .offcanvas a:focus{
+	background-color: rgba(0, 0, 0,0.5);
     color: #f1f1f1;
 }
 
@@ -110,11 +143,14 @@ body
 .sidenav .closebtn {
     position: absolute;
     top: 0;
-    right: 25px;
+    right: 10px;
     font-size: 36px;
-    margin-left: 50px;
+    margin-left: 100px;
 }
-
+.sidenav .closebtn:hover{
+	background-color: transparent;
+	color: #bdc3c7;
+}
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
     transition: margin-left .5s;
@@ -132,17 +168,31 @@ body
 .loginForm
 {
 	position:relative;
-	top:50%;
+	margin-top: 25%;
+    background-color: rgba(255,255,255,0.8);
+    padding:20px;
 }
-
-.loginForm table tr th
-{
-	padding:1em;
+.btn-primary{
+    background-color: rgba(149, 165, 166,0.8);
+    text-transform: uppercase;
+    border-color: #fff;
+    border-radius: 0px;
+    color: #fff;
 }
-
-.loginForm table tr td
-{
-	padding:1em;
+.btn-default{
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #948a6a;
+    color: #fff;
+}
+.input-group-addon,.input-group input{
+    border-radius: 0px !important;
+    border:none;
+}
+.input-group-addon{
+    background-color: rgba(255,255,255,0.6);
+    padding-left: 0px;
 }
 
 /* Dashboard */
@@ -158,7 +208,9 @@ body
 
 .progressbar-text
 {
-	font-size: 100px;
+	font-size: 50px;
+    color: 
+
 }
 
 .buttons
