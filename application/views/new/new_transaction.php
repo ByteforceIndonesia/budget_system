@@ -43,6 +43,18 @@
 								</div>
 							</td>
 						</tr>
+						<tr id="gold">
+							<td><span class="form-label">Gold Price as of Today</span></td>
+							<td>
+								<div class="form-group">
+								  <div class="input-group">
+								  	<div class="input-group-addon" id="amount">$</div>
+								  	<input type="text" class="form-control" name="gold" placeholder="Gold Price" required>
+								  	<div class="input-group-addon">.00</div>
+								  </div>
+								</div>
+							</td>
+						</tr>
 						<tr>
 							<td colspan="2">
 								<input type="submit" class="btn btn-primary pull-right" value="Submit">
@@ -63,7 +75,7 @@
 		{
 			$('#amount').empty();
 			$('#amount').append('Gr.');
-			$('#gold').append('<td><span class="form-label">Gold Price as of Today</span></td><td><div class="form-group"><div class="input-group"><div class="input-group-addon" id="amount">$</div><input type="text" class="form-control" name="gold" placeholder="Gold Price" required><div class="input-group-addon">.00</div></div></div></td>');
+			$('#gold').append('<td><span class="form-label">Gold Price as of Today per Gram</span></td><td><div class="form-group"><div class="input-group"><div class="input-group-addon" id="amount">$</div><input type="text" class="form-control" name="gold" placeholder="Gold Price" required><div class="input-group-addon">.00</div></div></div></td>');
 		}else
 		{
 			$('#amount').empty();
