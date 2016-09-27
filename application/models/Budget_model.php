@@ -14,13 +14,25 @@ class Budget_model extends CI_Model {
 		}
 	}
 
-	public function insert ($month, $year, $type, $budget)
+	public function checkMonthCicilan ($month, $year)
+	{
+		if($this->db->get_where('monthly_limit_cicilan', array('month' => $month, 'year' => $year))->num_rows() > 0)
+		{
+			return false;
+		}else
+		{
+			return true;
+		}
+	}
+
+	public function insert ($month, $year, $type, $budget, $gold)
 	{
 		$data = array(
 
 			'month'					=> $month,
 			'year'					=> $year,
 			'type'					=> $type,
+			'gold_price'			=> $gold,
 			'limit_transaction'		=> $budget
 
 			);
@@ -34,11 +46,31 @@ class Budget_model extends CI_Model {
 		}
 	}
 
-	public function update ($month, $year, $type, $budget)
+	public function insert_cicilan ($month, $year, $budget)
+	{
+		$data = array(
+
+			'month'					=> $month,
+			'year'					=> $year,
+			'amount'				=> $budget
+
+			);
+
+		if($this->db->insert('monthly_limit_cicilan', $data))
+		{
+			return true;
+		}else
+		{
+			return false;
+		}
+	}
+
+	public function update ($month, $year, $type, $budget, $gold)
 	{
 		$data = array(
 
 			'type'					=> $type,
+			'gold_price'			=> $gold,
 			'limit_transaction'		=> $budget
 
 			);
@@ -55,11 +87,42 @@ class Budget_model extends CI_Model {
 		}
 	}
 
+	public function update_cicilan ($month, $year, $budget)
+	{
+		$data = array(
+
+			'amount'		=> $budget
+
+			);
+
+		$this->db->where(array('month' => $month, 'year' => $year));
+		$this->db->set($data);
+
+		if($this->db->update('monthly_limit_cicilan'))
+		{
+			return true;
+		}else
+		{
+			return false;
+		}
+	}
+
 	public function getMonthlyLimit ($type, $month)
 	{
 		if($this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->num_rows() > 0)
 		{
 			return $this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->row();
+		}else
+		{
+			return false;
+		}
+	}
+
+	public function getMonthlyLimitCicilan ($month)
+	{
+		if($this->db->get_where('monthly_limit_cicilan', array('month' => $month, 'year' => date('Y')))->num_rows() > 0)
+		{
+			return $this->db->get_where('monthly_limit_cicilan', array('month' => $month, 'year' => date('Y')))->row();
 		}else
 		{
 			return false;
@@ -161,6 +224,41 @@ class Budget_model extends CI_Model {
 					}
 
 					$total += $this->db->get_where('transactions', array('id' => $transaction))->row()->amount;
+					$count++;
+				}
+
+				return $total;
+			}else
+			{
+				return false;
+			}
+		}else
+		{
+			return false;
+		}
+	}
+
+	public function getTotalTransCicilan ($type, $month)
+	{
+		if($this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->num_rows() > 0)
+		{
+			if($this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->row()->transaction_id != NULL)
+			{
+				$all = explode('#', $this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->row()->transaction_id);
+				$total = 0;
+				$count = 0;
+				
+				foreach($all as $transaction)
+				{	
+					if($count == 0)
+					{
+						$count++;
+						continue;
+					}
+
+					$data = $this->db->get_where('transactions', array('id' => $transaction))->row();
+
+					$total +=  $data->amount/$data->spanning_month;
 					$count++;
 				}
 

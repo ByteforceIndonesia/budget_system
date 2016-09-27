@@ -32,6 +32,7 @@
       <div id="mySidenav" class="sidenav">
         <a href="<?php echo base_url() ?>">&nbsp<i class="fa fa-home" aria-hidden="true"></i>&nbspHome</a>
         <a href="<?php echo base_url('new_budget/monthly') ?>">&nbsp<i class="fa fa-plus" aria-hidden="true"></i>&nbspNew Monthly Limit</a>
+        <a href="<?php echo base_url('new_budget/monthly_cicilan') ?>">&nbsp<i class="fa fa-plus" aria-hidden="true"></i>&nbspNew Monthly Cicilan Limit</a>
         <a href="<?php echo base_url('new_budget/transaction') ?>">&nbsp<i class="fa fa-plus" aria-hidden="true"></i>&nbspNew Transaction</a>
         <a href="<?php echo base_url('main/all_transactions/') ?>">&nbsp<i class="fa fa-plus" aria-hidden="true"></i>&nbspAll Transactions This Month</a> 
         <a href="<?php echo base_url('main/year_overview') ?>">&nbsp<i class="fa fa-plus" aria-hidden="true"></i>&nbspSee Year Overview</a>
@@ -47,8 +48,10 @@
       </div>
     </div>
     </section>
-
-    <?php echo $body ?>
+  
+    <section id="body">
+      <?php echo $body ?>
+    </section>
 
     <!-- Footer -->
     
