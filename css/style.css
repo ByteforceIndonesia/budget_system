@@ -192,7 +192,7 @@ body
 }
 .input-group-addon{
     background-color: rgba(255,255,255,0.6);
-    padding-left: 0px;
+    padding-left: 10px;
 }
 
 /* Dashboard */
