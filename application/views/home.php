@@ -135,9 +135,9 @@ $( document ).ready(function() {
     	}
 	});
 
-	bar_cicilan.animate(<?php echo $ratio_diamond ?>)
+	bar_cicilan.animate(<?php echo $ratio_cicilan ?>)
 	bar_gold.animate(<?php echo $ratio_gold; ?>);
-	bar_diamond.animate(<?php echo $ratio_cicilan; ?>);
+	bar_diamond.animate(<?php echo $ratio_diamond; ?>);
 
 });
 </script>
