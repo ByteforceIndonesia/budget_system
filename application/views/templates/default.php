@@ -35,7 +35,7 @@
         
         <a href="<?php echo base_url() ?>"><div class="icon-navbar"><i class="fa fa-home" aria-hidden="true"></i></div><span class="menu-text">Halaman Utama</span></a>
         <a href="<?php echo base_url('new_budget/monthly') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">Buat Limit Budget Bulanan Baru</span></a>
-        <a href="<?php echo base_url('new_budget/monthly_cicilan') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">Buat Limit Budget Cicilan Bulanan Baru</span></a>
+        <a href="<?php echo base_url('new_budget/monthly_cicilan') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">Buat Limit Cicilan Bulanan Baru</span></a>
         <a href="<?php echo base_url('new_budget/transaction') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">Buat Transaksi Baru</span></a>
         <a href="<?php echo base_url('main/all_transactions/') ?>"><div class="icon-navbar"><i class="fa fa-dollar" aria-hidden="true"></i></div><span class="menu-text">Detail Transaksi Bulan Ini</span></a> 
         <a href="<?php echo base_url('main/year_overview') ?>"><div class="icon-navbar"><i class="fa fa-bar-chart" aria-hidden="true"></i></div><span class="menu-text">Laporan Limit Tahunan</span></a>

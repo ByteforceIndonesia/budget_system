@@ -9,26 +9,26 @@
 				<?php echo form_open('new_budget/monthly_cicilan') ?>
 					<table class="table">
 						<tr class="form-group">
-							<td><span class="form-label">Month</span></td>
+							<td><span class="form-label">Bulan</span></td>
 							<td>
 								<select name="month" class="form-control">
-									<option value="january">January</option>
-									<option value="february">February</option>
-									<option value="march">March</option>
+									<option value="january">Januari</option>
+									<option value="february">Februari</option>
+									<option value="march">Maret</option>
 									<option value="april">April</option>
-									<option value="may">May</option>
-									<option value="june">June</option>
-									<option value="july">July</option>
-									<option value="august">August</option>
+									<option value="may">Mei</option>
+									<option value="june">Juni</option>
+									<option value="july">Juli</option>
+									<option value="august">Agustus</option>
 									<option value="september">September</option>
-									<option value="october">October</option>
+									<option value="october">Oktober</option>
 									<option value="november">November</option>
-									<option value="december">December</option>
+									<option value="december">Desember</option>
 								</select>
 							</td>
 						</tr>
 						<tr>
-							<td>Year</td>
+							<td>Tahun</td>
 							<td>
 								<select name='year' class="form-control">
 								<?php for($i=date('Y'); $i<date('Y')+10; $i++): ?>
