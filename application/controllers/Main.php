@@ -25,6 +25,10 @@ class Main extends CI_Controller {
 		$data['trans_gold']		= (!$this->budget_model->getTotalTrans('gold', date('F')))? 0 : $this->budget_model->getTotalTrans('gold', date('F'));
 		$data['trans_diamond']	= (!$this->budget_model->getTotalTrans('diamond', date('F')))? 0 : $this->budget_model->getTotalTrans('diamond', date('F'));
 
+		$data['trans_cicilan'] = (!$this->budget_model->getTotalTransCicilan('diamond', date('F')))? 0 : $this->budget_model->getTotalTransCicilan('diamond', date('F'));
+		$data['cicilan'] = $this->budget_model->getMonthlyLimitCicilan(date('F'))->amount;
+		$data['ratio_cicilan'] = $data['trans_cicilan']/$data['cicilan'];
+
 		$data['ratio_gold'] 	= $data['trans_gold']/$data['gold'];
 		$data['ratio_diamond'] 	= $data['trans_diamond']/$data['diamond'];
 
@@ -34,8 +38,8 @@ class Main extends CI_Controller {
 	public function month($month)
 	{
 		//Get Month Number and Year For future use
-		$month = explode ('-', $month);
-		$month = date('F', mktime(0, 0, 0, $month[0], 1, $month[1]));
+		$date = explode ('-', $month);
+		$month = date('F', mktime(0, 0, 0, $date[0], 1, $date[1]));
 
 		$data['title'] = $month . "'s Budget";
 		$data['month'] = $month;
@@ -46,6 +50,10 @@ class Main extends CI_Controller {
 
 		$data['trans_gold']		= (!$this->budget_model->getTotalTrans('gold', $month))? 0 : $this->budget_model->getTotalTrans('gold', $month);
 		$data['trans_diamond']	= (!$this->budget_model->getTotalTrans('diamond', $month))? 0 : $this->budget_model->getTotalTrans('diamond', $month);
+		$data['trans_cicilan'] = (!$this->budget_model->getTotalTransCicilan('diamond', date('F',strtotime($date[1].'-'.$date[0]))))? 0 : $this->budget_model->getTotalTransCicilan('diamond', date('F',strtotime($date[1].'-'.$date[0])));
+			
+		$data['cicilan'] = (!$this->budget_model->getMonthlyLimitCicilan(date('F',strtotime($date[1].'-'.$date[0]))))? 1 : $this->budget_model->getMonthlyLimitCicilan(date('F',strtotime($date[1].'-'.$date[0])))->amount;
+		$data['ratio_cicilan'] = $data['trans_cicilan']/$data['cicilan'];
 
 		$data['ratio_gold'] 	= $data['trans_gold']/$data['gold'];
 		$data['ratio_diamond'] 	= $data['trans_diamond']/$data['diamond'];

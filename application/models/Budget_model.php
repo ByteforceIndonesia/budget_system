@@ -32,7 +32,7 @@ class Budget_model extends CI_Model {
 			'month'					=> $month,
 			'year'					=> $year,
 			'type'					=> $type,
-			'gold_price'			=> $gold,
+			// 'gold_price'			=> $gold,
 			'limit_transaction'		=> $budget
 
 			);
@@ -129,7 +129,7 @@ class Budget_model extends CI_Model {
 		}
 	}
 
-	public function insert_transaction ($type, $amount, $spanning, $start)
+	public function insert_transaction ($type, $amount, $spanning, $start, $gold_price, $gold_weight)
 	{
 		$data = array(
 
@@ -138,7 +138,9 @@ class Budget_model extends CI_Model {
 			'spanning_month'		=> $spanning,
 			'type'					=> $type,
 			'amount'				=> $amount,
-			'start_payment'			=> $start
+			'start_payment'			=> $start,
+			'gold_price' 			=> $gold_price,
+			'weight'				=> $gold_weight
 
 			);
 

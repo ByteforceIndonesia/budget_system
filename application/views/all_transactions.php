@@ -26,11 +26,9 @@ $(document).ready( function () {
 					<thead>
 						 <tr>
 						 	<td>No</td>
-						 	<td>Panjang Cicilan</td>
-						 	<td>Cicilan Perbulan</td>
-						 	<td>Mulai Pembayaran Cicilan</td>
-						 	<td>Amount</td>
-						 	<td>Tipe Transaksi</td>
+						 	<td>Jumlah Emas (gr)</td>
+						 	<td>Harga Emas / gr</td>
+						 	<td>Total Yang Dibayarkan</td>
 						 	<td>Action</td>
 						 </tr>
 					</thead>
@@ -39,11 +37,9 @@ $(document).ready( function () {
 						<?php $i = 1; foreach($gold as $one): ?>
 							<tr>
 								<td><?php echo $i ?></td>
-								<td><?php echo $one['spanning_month'] ?></td>
-								<td><?php echo $one['amount']/$one['spanning_month'] ?></td>
-								<td><?php echo $one['start_payment'] ?></td>
+								<td><?php echo $one['weight'] ?></td>
+								<td><?php echo $one['gold_price']?></td>
 								<td><?php echo $one['amount'] ?></td>
-								<td><?php echo $one['type'] ?></td>
 						 		<td>
 						 			<a href="<?php echo base_url('main/delete/' . $one['id']) ?>">Delete</a>
 						 		</td>
@@ -66,7 +62,6 @@ $(document).ready( function () {
 						 	<td>Cicilan Perbulan</td>
 						 	<td>Mulai Pembayaran Cicilan</td>
 						 	<td>Amount</td>
-						 	<td>Type Transaksi</td>
 						 	<td>Action</td>
 						 </tr>
 					</thead>
@@ -79,7 +74,6 @@ $(document).ready( function () {
 								<td>$&nbsp;<?php echo $one['amount']/$one['spanning_month'] ?></td>
 								<td><?php echo $one['start_payment'] ?></td>
 								<td>$&nbsp;<?php echo $one['amount'] ?></td>
-								<td><?php echo $one['type'] ?></td>
 						 		<td>
 						 			<a href="<?php echo base_url('main/delete/' . $one['id']) ?>">Delete</a>
 						 		</td>

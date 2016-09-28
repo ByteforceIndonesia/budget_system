@@ -83,11 +83,14 @@ class New_budget extends CI_Controller {
 			$type 		= $this->input->post('type');
 			$gold 		= $this->input->post('gold');
 			$budget 	= $this->input->post('amount');
+			$trans_gold	= $this->budget_model->getTotalTrans($type, $month);
 
-			if($this->budget_model->update($month, $year, $type, $budget, $gold))
+			if($budget >= $trans_gold)
 			{
-				$this->session->set_flashdata('success', 'Edit ' . $type . ' Budget For ' . $month . ' ' . $year . ' Have Been Succeded!');
-				redirect('main');
+				if($this->budget_model->update($month, $year, $type, $budget, $gold)){
+					$this->session->set_flashdata('success', 'Edit ' . $type . ' Budget For ' . $month . ' ' . $year . ' Have Been Succeded!');
+					redirect('main');
+				}
 			}else
 			{
 				$this->session->set_flashdata('failed', 'Edit ' . $type . ' Budget For ' . $month . ' ' . $year . ' Have Been Failed!');
@@ -147,7 +150,8 @@ class New_budget extends CI_Controller {
 			$spanning 	= $this->input->post('spanning');
 			$start	 	= $this->input->post('start_payment');
 			$gold_price = (!$this->input->post('gold'))? 0 : $this->input->post('gold');
-			$totalGold	= $gold_price * $amount;
+			// $totalGold	= $gold_price * $amount;
+			$gold_weight = $this->input->post('weight');
 
 			$gold		= $this->budget_model->getMonthlyLimit('gold', date('F'))->limit_transaction;
 			$diamond	= $this->budget_model->getMonthlyLimit('diamond', date('F'))->limit_transaction;
@@ -181,6 +185,7 @@ class New_budget extends CI_Controller {
 
 				case 'diamond':
 				{
+					
 					if($amount+$trans_diamond > $diamond)
 					{
 						$this->session->set_flashdata('failed', 'Failed Creating ' . $type . ' Transaction For ' . $month . ' ' . date('Y') . ', You Have Execced Your Monthly Limit!');
@@ -193,7 +198,7 @@ class New_budget extends CI_Controller {
 				}break;
 			}
 
-			if($this->budget_model->insert_transaction($type, $amount, $spanning, $start))
+			if($this->budget_model->insert_transaction($type, $amount, $spanning, $start, $gold_price, $gold_weight))
 			{
 				$this->session->set_flashdata('success', 'New ' . $type . ' Transaction For ' . $month . ' ' . date('Y') . ' Have Been Created!');
 				redirect('main');

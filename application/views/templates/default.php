@@ -73,7 +73,7 @@
          text: "<?php echo $this->session->flashdata('failed') ?>",   
          type: "error",
          showConfirmButton: false,
-         timer:2000
+         timer:1000
       });
     </script>
   <?php elseif($this->session->flashdata('success')): ?>
@@ -83,7 +83,7 @@
          text: "<?php echo $this->session->flashdata('success') ?>",   
          type: "success",
          showConfirmButton: false,
-         timer:2000
+         timer:1000
       });
     </script>
   <?php endif; ?>

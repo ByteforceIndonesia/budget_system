@@ -7,26 +7,23 @@
 				<h1 class="title" align="center">Transaksi Baru</h1>
 				<?php echo form_open('new_budget/transaction') ?>
 					<table class="table">
-						<tr>
-							<td><span class="form-label">Jumlah Cicilan</span></td>
+
+						<tr class="form-group">
+							<td><span class="form-label">Tipe Barang</span></td>
 							<td>
-								<div class="form-group">
-								  <div class="input-group">
-								      <div class="input-group-addon" id="amount">Gr.</div>
-								      <input type="text" class="form-control" id="exampleInputAmount" name="amount" placeholder="Nominal" required>
-								      <div class="input-group-addon">.00</div>
-								  </div>
-								</div>
+								<select name="type" class="form-control" id="type" onchange="ganti()">
+									<option value="diamond">Diamond</option>
+									<option value="gold">Gold</option>
+								</select>
 							</td>
 						</tr>
-						<tr class="form-group">
+						<tr class="form-group" id="mulaiCicilan">
 							<td><span class="form-label">Mulai Cicilan</span></td>
 							<td>
-								<input type="date" name="start_payment" placeholder="Start Payment" class="form-control" required>
+								<input type="date" name="start_payment" id="start_payment" placeholder="Start Payment" class="form-control" required>
 							</td>
 						</tr>
-						
-						<tr class="form-group">
+						<tr class="form-group" id="durasiCicilan">
 							<td><span class="form-label">Durasi Cicilan (dalam bulan)</span></td>
 							<td>
 								<select name="spanning" class="form-control">
@@ -36,35 +33,20 @@
 								</select>
 							</td>
 						</tr>
-						<tr class="form-group">
-							<td><span class="form-label">Tipe Barang</span></td>
-							<td>
-								<select name="type" class="form-control" id="type" onchange="ganti()">
-									<option value="gold">Gold</option>
-									<option value="diamond">Diamond</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td><span class="form-label">Transaction Amount</span></td>
-							<td>
-								<div class="form-group">
-								  <div class="input-group">
-								      <div class="input-group-addon" id="amount">Gr.</div>
-								      <input type="text" class="form-control" id="exampleInputAmount" name="amount" placeholder="Amount" required>
-								      <div class="input-group-addon">.00</div>
-								  </div>
-								</div>
-							</td>
+						<tr id="weight">
+							
 						</tr>
 						<tr id="gold">
-							<td><span class="form-label">Gold Price as of Today</span></td>
+							
+						</tr>
+						<tr>
+							<td><span class="form-label">Total Yang Dibayarkan</span></td>
 							<td>
 								<div class="form-group">
 								  <div class="input-group">
-								  	<div class="input-group-addon" id="amount">$</div>
-								  	<input type="text" class="form-control" name="gold" placeholder="Gold Price" required>
-								  	<div class="input-group-addon">.00</div>
+								      <div class="input-group-addon" id="amount">$</div>
+								      <input type="text" class="form-control" id="exampleInputAmount" name="amount" placeholder="Nominal" required>
+								      <div class="input-group-addon">.00</div>
 								  </div>
 								</div>
 							</td>
@@ -87,14 +69,18 @@
 	{
 		if($('#type').val() == "gold")
 		{
-			$('#amount').empty();
-			$('#amount').append('Gr.');
+			$('#mulaiCicilan').hide();
+			$('#start_payment').removeAttr('required');
+			$('#durasiCicilan').hide();
 			$('#gold').append('<td><span class="form-label">Gold Price as of Today per Gram</span></td><td><div class="form-group"><div class="input-group"><div class="input-group-addon" id="amount">$</div><input type="text" class="form-control" name="gold" placeholder="Gold Price" required><div class="input-group-addon">.00</div></div></div></td>');
+			$('#weight').append('<td><span class="form-label">Jumlah Emas (gr)</span></td><td><div class="form-group"><div class="input-group"><div class="input-group-addon" id="amount">$</div><input type="text" class="form-control" name="weight" placeholder="" required><div class="input-group-addon">.00</div></div></div></td>');
 		}else
 		{
-			$('#amount').empty();
-			$('#amount').append('$');
+			$('#weight').empty();
+			$('#mulaiCicilan').show();
+			$('#durasiCicilan').show();
 			$('#gold').empty();
+			$('#start_payment').attr('required','required');
 		}
 	}
 </script>
