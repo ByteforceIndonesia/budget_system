@@ -110,7 +110,7 @@ class Main extends CI_Controller {
 
 		$data['title'] = "Detail Cicilan";
 
-		$this->db->select('installments.*,transactions.month,transactions.year,transactions.created');
+		$this->db->select('installments.*,transactions.month,transactions.year,transactions.created,transactions.description');
 		$this->db->from('transactions');
 		$this->db->join('installments','installments.transaction_id = transactions.id');
 		$this->db->where("installments.due LIKE '$month%'");

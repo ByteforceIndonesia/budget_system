@@ -9,6 +9,9 @@
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>css/footable.core.css" type="text/css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>css/footable.metro.min.css" type="text/css" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
 
@@ -17,13 +20,39 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/sweetalert.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/datepicker.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/style.css">
+
+    <script src="<?php echo base_url() ?>js/footable.js"></script>
+    <script src="<?php echo base_url() ?>js/footable.filter.js"></script>
+    <script src="<?php echo base_url() ?>js/footable.paginate.js"></script>
     <script src="<?php echo base_url() ?>js/sweetalert.min.js"></script>
     <script src="<?php echo base_url() ?>js/progressbar.min.js"></script>
     <script src="<?php echo base_url() ?>js/chart.bundle.min.js"></script>
     <script src="<?php echo base_url() ?>js/moment.js"></script>
     <script src="<?php echo base_url() ?>js/bootstrap-datepicker.js"></script>
     <script src="<?php echo base_url() ?>js/script.js"></script>
+  
+    <style>
+      /* footable */
+    .footable{
+      background :white !important;
+      border : 2px solid #f5d76e !important;
+      width: 100% !important;
+    }
 
+    .footable>thead>tr>th, .footable>thead>tr>td { 
+      
+      background-color : #f5d76e !important;
+      border : 1px solid #f5d76e !important
+
+    }
+
+    .footable>tfoot>tr>th, .footable>tfoot>tr>td { 
+      
+      background-color : #948A6A !important;
+      border : 1px solid #948A6A !important
+
+    }
+    </style>
   </head>
   <body>
   <div class="container-fluid">
@@ -37,7 +66,7 @@
         <a href="<?php echo base_url('new_budget/monthly') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">Buat Limit Budget Bulanan Baru</span></a>
         <a href="<?php echo base_url('new_budget/transaction') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">Buat Transaksi Baru</span></a>
         <a href="<?php echo base_url('main/detail_cicilan/') ?>"><div class="icon-navbar"><i class="fa fa-dollar" aria-hidden="true"></i></div><span class="menu-text">Lihat Detail Cicilan Bulanan</span></a>
-        <a href="<?php echo base_url('main/all_transactions/') ?>"><div class="icon-navbar"><i class="fa fa-dollar" aria-hidden="true"></i></div><span class="menu-text">Detail Transaksi Bulan Ini</span></a> 
+        <a href="<?php echo base_url('main/all_transactions/') ?>"><div class="icon-navbar"><i class="fa fa-dollar" aria-hidden="true"></i></div><span class="menu-text">Detail Transaksi Bulanan</span></a> 
         <a href="<?php echo base_url('main/year_overview') ?>"><div class="icon-navbar"><i class="fa fa-bar-chart" aria-hidden="true"></i></div><span class="menu-text">Laporan Limit Tahunan</span></a>
         <a href="<?php echo base_url('accounts/logout') ?>"><div class="icon-navbar"><i class="fa fa-power-off" aria-hidden="true"></i></div><span class="menu-text">Logout</span></a>
         
