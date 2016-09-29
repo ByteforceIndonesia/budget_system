@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/sweetalert.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/datepicker.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
     <script src="<?php echo base_url() ?>js/sweetalert.min.js"></script>
     <script src="<?php echo base_url() ?>js/progressbar.min.js"></script>
     <script src="<?php echo base_url() ?>js/chart.bundle.min.js"></script>
