@@ -4,8 +4,6 @@
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-
-			<?php echo date('Y-m',strtotime('2016-1')) ?>
 				<!-- Content -->
 				<div class="month-picker row">
 					<div class="col-md-8">
