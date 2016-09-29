@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2016 at 04:12 PM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 7.0.9
+-- Generation Time: Sep 29, 2016 at 01:57 AM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `jewelery`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `installments`
+--
+
+CREATE TABLE `installments` (
+  `id` int(11) NOT NULL,
+  `transaction_id` int(11) NOT NULL,
+  `due` date NOT NULL,
+  `amount` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `installments`
+--
+
+INSERT INTO `installments` (`id`, `transaction_id`, `due`, `amount`) VALUES
+(26, 66, '2016-11-22', 2000),
+(27, 66, '2016-12-22', 2000),
+(28, 66, '2017-01-22', 2000),
+(29, 66, '2017-02-22', 2000),
+(30, 66, '2017-03-22', 2000);
 
 -- --------------------------------------------------------
 
@@ -41,8 +65,8 @@ CREATE TABLE `monthly_limit` (
 --
 
 INSERT INTO `monthly_limit` (`id`, `month`, `year`, `limit_transaction`, `transaction_id`, `type`, `created`) VALUES
-(1, 'september', '2016', 10000, '#57', 'gold', '2016-09-13 13:55:57'),
-(2, 'september', '2016', 200000, '#50#52#53#54#55#56#58', 'diamond', '2016-09-13 13:58:08'),
+(1, 'september', '2016', 10000, '', 'gold', '2016-09-13 13:55:57'),
+(2, 'september', '2016', 999999, '#66', 'diamond', '2016-09-13 13:58:08'),
 (4, 'october', '2016', 100000, NULL, 'diamond', '2016-09-14 03:57:14'),
 (5, 'october', '2016', 100000, NULL, 'gold', '2016-09-14 04:00:00'),
 (6, 'february', '2016', 150000, NULL, 'gold', '2016-09-14 14:48:54'),
@@ -76,7 +100,8 @@ INSERT INTO `monthly_limit_cicilan` (`id`, `month`, `year`, `amount`) VALUES
 (2, 'september', 2016, 100000),
 (3, 'october', 2016, 999999),
 (4, 'january', 2017, 2000000),
-(5, 'april', 2016, 123);
+(5, 'april', 2016, 123),
+(6, 'november', 2016, 50000);
 
 -- --------------------------------------------------------
 
@@ -102,14 +127,7 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`id`, `month`, `year`, `spanning_month`, `start_payment`, `amount`, `gold_price`, `weight`, `type`, `created`) VALUES
-(50, 'september', '2016', 7, '2016-09-17', 100000, NULL, NULL, 'diamond', '2016-09-15 04:13:41'),
-(52, 'september', '2016', 1, '2017-01-01', 20000, 0, NULL, 'diamond', '2016-09-28 04:12:45'),
-(53, 'september', '2016', 2, '2017-01-01', 50000, 0, NULL, 'diamond', '2016-09-28 04:18:10'),
-(54, 'september', '2016', 1, '2017-01-01', 5, 0, NULL, 'diamond', '2016-09-28 04:46:49'),
-(55, 'september', '2016', 1, '2017-01-01', 10, 0, NULL, 'diamond', '2016-09-28 04:47:49'),
-(56, 'september', '2016', 1, '2020-01-01', 1, 0, NULL, 'diamond', '2016-09-28 05:49:30'),
-(57, 'september', '2016', 1, '0000-00-00', 13, 13, 123, 'gold', '2016-09-28 05:55:19'),
-(58, 'september', '2016', 10, '2017-01-01', 20000, 0, NULL, 'diamond', '2016-09-28 07:55:01');
+(66, 'september', '2016', 5, '2016-11-22', 10000, 0, NULL, 'diamond', '2016-09-29 01:55:35');
 
 -- --------------------------------------------------------
 
@@ -134,6 +152,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `fullname`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `installments`
+--
+ALTER TABLE `installments`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `monthly_limit`
@@ -164,6 +188,11 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `installments`
+--
+ALTER TABLE `installments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+--
 -- AUTO_INCREMENT for table `monthly_limit`
 --
 ALTER TABLE `monthly_limit`
@@ -172,12 +201,12 @@ ALTER TABLE `monthly_limit`
 -- AUTO_INCREMENT for table `monthly_limit_cicilan`
 --
 ALTER TABLE `monthly_limit_cicilan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 --
 -- AUTO_INCREMENT for table `users`
 --
