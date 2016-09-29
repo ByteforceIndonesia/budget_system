@@ -40,15 +40,15 @@
       /* footable */
     .footable{
       background :white !important;
-      border : 2px solid #f5d76e !important;
+      border : 2px solid #948A6A !important;
       width: 100% !important;
     }
 
     .footable>thead>tr>th, .footable>thead>tr>td { 
       
-      background-color : #f5d76e !important;
-      border : 1px solid #f5d76e !important;
-      color: black !important;
+      background-color : #948A6A !important;
+      border : 1px solid #948A6A !important;
+      color: white !important;
 
     }
 
@@ -78,6 +78,7 @@
         <a href="<?php echo base_url('main/detail_cicilan/') ?>"><div class="icon-navbar"><i class="fa fa-dollar" aria-hidden="true"></i></div><span class="menu-text">Lihat Detail Cicilan Bulanan</span></a>
         <a href="<?php echo base_url('main/all_transactions/') ?>"><div class="icon-navbar"><i class="fa fa-dollar" aria-hidden="true"></i></div><span class="menu-text">Detail Transaksi Bulanan</span></a> 
         <a href="<?php echo base_url('main/year_overview') ?>"><div class="icon-navbar"><i class="fa fa-bar-chart" aria-hidden="true"></i></div><span class="menu-text">Laporan Limit Tahunan</span></a>
+        <a href="<?php echo base_url('accounts/change_password') ?>"><div class="icon-navbar"><i class="fa fa-cogs" aria-hidden="true"></i></div><span class="menu-text">Ubah Password</span></a>
         <a href="<?php echo base_url('accounts/logout') ?>"><div class="icon-navbar"><i class="fa fa-power-off" aria-hidden="true"></i></div><span class="menu-text">Logout</span></a>
         
       </div>

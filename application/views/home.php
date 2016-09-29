@@ -28,8 +28,6 @@
 					    </div>
 					</div>
 				</div>
-
-
 				<div class="alert alert-warning"><h4><i class="fa fa-exclamation-circle"></i>&nbsp;Jumlah Cicilan Bulan <?php echo $month ?>&nbsp;:&nbsp;<?php echo NZD($trans_cicilan,2,'.',''); ?></h4></div>
 						
 

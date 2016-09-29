@@ -18,7 +18,7 @@ class Accounts extends CI_Controller
 		if($this->input->post())
 		{
 			$username = $this->input->post('username');
-			$password = $this->input->post('password');
+			$password = hash_password($this->input->post('password'));
 
 			//Check for username and password validness
 			if($userdata = $this->db->get_where('users', array('username' => $username, 'password' => $password))->row())
@@ -62,6 +62,23 @@ class Accounts extends CI_Controller
 	{
 		$this->session->sess_destroy();
 		redirect('main');
+	}
+
+	public function change_password(){
+		$id = $this->session->userdata('user_id');
+
+		if($this->input->post()){
+			$password = hash_password($this->input->post('password'));
+
+			$this->db->update('users',array('password' => $password), array('id' => $id));
+			$this->session->set_flashdata('success','Password berhasil diubah !');
+			redirect('main');
+		}else{
+			$data['title'] = 'Ubah Password';
+
+			$this->template->load('default' , 'change_password',$data);
+		}
+		
 	}
 }
 
