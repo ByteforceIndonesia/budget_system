@@ -77,6 +77,7 @@ class New_budget extends CI_Controller {
 	{
 		if($this->input->post())
 		{
+
 			
 			//Put Post Variables
 			$month 		= $this->input->post('month');
@@ -160,25 +161,32 @@ class New_budget extends CI_Controller {
 		{
 			//Put Post Variables
 			$type 		= $this->input->post('type');
-			$amount 	= $this->input->post('amount');
+
+			
 			$spanning 	= $this->input->post('spanning');
 			$start	 	= $this->input->post('start_payment');
 			$gold_price = (!$this->input->post('gold'))? 0 : $this->input->post('gold');
 			// $totalGold	= $gold_price * $amount;
 			$gold_weight = $this->input->post('weight');
 
+			if($type == 'gold'){
+				$amount = $gold_price * $gold_weight;
+			}else{
+				$amount = $this->input->post('amount');
+			}
+			$description = $this->input->post('description');
 			$gold		= $this->budget_model->getMonthlyLimit('gold', date('F'))->limit_transaction;
 			$diamond	= $this->budget_model->getMonthlyLimit('diamond', date('F'))->limit_transaction;
 
-			$trans_gold = $this->budget_model->getTotalTrans('gold',date('F'));
-			$trans_diamond = $this->budget_model->getTotalTrans('diamond' , date('F'));
+			$trans_gold = $this->budget_model->getTotalTrans('gold',date('F'),date('Y'));
+			$trans_diamond = $this->budget_model->getTotalTrans('diamond' , date('F'),date('Y'));
 			
 
 			switch($type)
 			{
 				case 'gold':
 				{
-					if($amount+$trans_gold > $gold)
+					if($gold_weight+$trans_gold > $gold)
 					{
 						$this->session->set_flashdata('failed', 'Failed Creating ' . $type . ' Transaction For ' . $month . ' ' . date('Y') . ', You Have Execced Your Monthly Limit!');
 						redirect('main');
@@ -196,7 +204,7 @@ class New_budget extends CI_Controller {
 				}break;
 			}
 
-			if($this->budget_model->insert_transaction($type, $amount, $spanning, $start, $gold_price, $gold_weight))
+			if($this->budget_model->insert_transaction($type, $amount, $spanning, $start, $gold_price, $gold_weight, $description))
 			{
 				
 

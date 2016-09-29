@@ -22,8 +22,8 @@ class Main extends CI_Controller {
 		$data['gold']		= (!$this->budget_model->getMonthlyLimit('gold', date('F')))? 1 : $this->budget_model->getMonthlyLimit('gold', date('F'))->limit_transaction;
 		$data['diamond']	= (!$this->budget_model->getMonthlyLimit('diamond', date('F')))? 1 : $this->budget_model->getMonthlyLimit('diamond', date('F'))->limit_transaction;
 
-		$data['trans_gold']		= (!$this->budget_model->getTotalTrans('gold', date('F')))? 0 : $this->budget_model->getTotalTrans('gold', date('F'));
-		$data['trans_diamond']	= (!$this->budget_model->getTotalTrans('diamond', date('F')))? 0 : $this->budget_model->getTotalTrans('diamond', date('F'));
+		$data['trans_gold']		= (!$this->budget_model->getTotalTrans('gold', date('F'),date('Y')))? 0 : $this->budget_model->getTotalTrans('gold', date('F'),date('Y'));
+		$data['trans_diamond']	= (!$this->budget_model->getTotalTrans('diamond', date('F'),date('Y')))? 0 : $this->budget_model->getTotalTrans('diamond', date('F'),date('Y'));
 
 		$data['trans_cicilan'] = (!$this->budget_model->getTotalTransCicilan('diamond', date('Y-m')))? 0 : $this->budget_model->getTotalTransCicilan('diamond', date('Y-m'));
 
@@ -46,8 +46,8 @@ class Main extends CI_Controller {
 		$data['gold']		= (!$this->budget_model->getMonthlyLimit('gold', $month))? 1 : $this->budget_model->getMonthlyLimit('gold', $month)->limit_transaction;
 		$data['diamond']	= (!$this->budget_model->getMonthlyLimit('diamond', $month))? 1 : $this->budget_model->getMonthlyLimit('diamond', $month)->limit_transaction;
 
-		$data['trans_gold']		= (!$this->budget_model->getTotalTrans('gold', $month))? 0 : $this->budget_model->getTotalTrans('gold', $month);
-		$data['trans_diamond']	= (!$this->budget_model->getTotalTrans('diamond', $month))? 0 : $this->budget_model->getTotalTrans('diamond', $month);
+		$data['trans_gold']		= (!$this->budget_model->getTotalTrans('gold', $month, $date[1]))? 0 : $this->budget_model->getTotalTrans('gold', $month,$date[1]);
+		$data['trans_diamond']	= (!$this->budget_model->getTotalTrans('diamond', $month, $date[1]))? 0 : $this->budget_model->getTotalTrans('diamond', $month,$date[1]);
 		$data['trans_cicilan'] = (!$this->budget_model->getTotalTransCicilan('diamond', date('Y-m',strtotime($date[1].'-'.$date[0]))))? 0 : $this->budget_model->getTotalTransCicilan('diamond', date('Y-m',strtotime($date[1].'-'.$date[0])));
 
 		$data['ratio_gold'] 	= $data['trans_gold']/$data['gold'];

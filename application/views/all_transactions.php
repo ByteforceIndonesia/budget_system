@@ -49,6 +49,7 @@ $(document).ready( function () {
 							 	<th data-hide="phone">Jumlah Emas (gr)</th>
 							 	<th data-hide="phone">Harga Emas / gr</th>
 							 	<th data-type="numeric">Total Yang Dibayarkan</th>
+							 	<th data-hide="phone">Tanggal Pembayaran</th>
 							 	<th data-hide="phone">Action</th>
 							 </tr>
 						</thead>
@@ -58,11 +59,12 @@ $(document).ready( function () {
 								<tr>
 									<td><?php echo $i ?></td>
 									<td><?php echo $one->description ?></td>
-									<td><?php echo $one['weight'] ?></td>
-									<td><?php echo rupiah($one['gold_price'])?></td>
-									<td><?php echo rupiah($one['amount']) ?></td>
+									<td><?php echo $one->weight ?></td>
+									<td><?php echo rupiah($one->gold_price)?></td>
+									<td><?php echo rupiah($one->amount) ?></td>
+									<td><?php echo date('d-M-Y',strtotime($one->start_payment)) ?></td>
 							 		<td>
-							 			<a href="<?php echo base_url('main/delete/' . $one['id']) ?>">Delete</a>
+							 			<a href="<?php echo base_url('main/delete/' . $one->id) ?>">Delete</a>
 							 		</td>
 								</tr>
 							<?php $i++; endforeach; ?>
@@ -102,7 +104,7 @@ $(document).ready( function () {
 								<td><?php echo $one->description ?></td>
 								<td><?php echo $one->spanning_month.' bulan' ?></td>
 								<td><?php echo NZD($one->amount/$one->spanning_month )?></td>
-								<td><?php echo $one->start_payment ?></td>
+								<td><?php echo date('d-M-Y',strtotime($one->start_payment)) ?></td>
 								<td><?php echo NZD($one->amount) ?></td>
 						 		<td>
 						 			<a href="<?php echo base_url('main/delete/' . $one->id) ?>">Delete</a>
@@ -150,5 +152,6 @@ $(document).ready(function(){
 <script>
 	$(document).ready(function() {
    	 $('#table_diamond').footable();
+   	 $('#table_gold').footable();
 	} );
 </script>

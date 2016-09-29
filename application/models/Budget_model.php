@@ -128,7 +128,7 @@ class Budget_model extends CI_Model {
 		}
 	}
 
-	public function insert_transaction ($type, $amount, $spanning, $start, $gold_price, $gold_weight)
+	public function insert_transaction ($type, $amount, $spanning, $start, $gold_price, $gold_weight,$description)
 	{
 		$data = array(
 
@@ -139,7 +139,8 @@ class Budget_model extends CI_Model {
 			'amount'				=> $amount,
 			'start_payment'			=> $start,
 			'gold_price' 			=> $gold_price,
-			'weight'				=> $gold_weight
+			'weight'				=> $gold_weight,
+			'description'			=> $description
 
 			);
 
@@ -201,37 +202,20 @@ class Budget_model extends CI_Model {
 		return $this->db->get_where('transactions',array('month' => $month,'year' => $year,'type' => $type))->result();
 	}
 
-	public function getTotalTrans ($type, $month)
+	public function getTotalTrans ($type, $month,$year)
 	{
-		if($this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->num_rows() > 0)
-		{
-			if($this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->row()->transaction_id != NULL)
-			{
-				$all = explode('#', $this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->row()->transaction_id);
-				$total = 0;
-				$count = 0;
-				
-				foreach($all as $transaction)
-				{	
-					if($count == 0)
-					{
-						$count++;
-						continue;
-					}
-
-					$total += $this->db->get_where('transactions', array('id' => $transaction))->row()->amount;
-					$count++;
-				}
-
-				return $total;
-			}else
-			{
-				return false;
-			}
-		}else
-		{
-			return false;
+		if($type == 'gold'){
+			$this->db->select_sum('weight');
+			$row = 'weight';
+		}elseif($type == 'diamond'){
+			$this->db->select_sum('amount');
+			$row = 'amount';
 		}
+		$this->db->from('transactions');
+		$this->db->where(array('type' => $type,'month' => $month,'year' => $year));
+		$result = $this->db->get()->row($row);
+
+		return $result;
 	}
 
 	public function getTotalTransCicilan ($type, $month)

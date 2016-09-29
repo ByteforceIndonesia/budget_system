@@ -17,8 +17,8 @@
 								</select>
 							</td>
 						</tr>
-						<tr class="form-group" id="mulaiCicilan">
-							<td><span class="form-label">Mulai Cicilan</span></td>
+						<tr class="form-group">
+							<td ><span class="form-label" id="mulaiCicilan">Mulai Cicilan</span></td>
 							<td>
 								<input type="date" name="start_payment" id="start_payment" placeholder="Start Payment" class="form-control" required>
 							</td>
@@ -39,7 +39,7 @@
 						<tr id="gold">
 							
 						</tr>
-						<tr>
+						<tr id="total">
 							<td><span class="form-label">Total Yang Dibayarkan</span></td>
 							<td>
 								<div class="form-group">
@@ -77,15 +77,19 @@
 	{
 		if($('#type').val() == "gold")
 		{
-			$('#mulaiCicilan').hide();
-			$('#start_payment').removeAttr('required');
+			
+			$('#mulaiCicilan').empty();
+			$('#mulaiCicilan').append('Tanggal Pembayaran');
 			$('#durasiCicilan').hide();
-			$('#gold').append('<td><span class="form-label">Gold Price as of Today per Gram</span></td><td><div class="form-group"><div class="input-group"><div class="input-group-addon" id="amount">$</div><input type="text" class="form-control" name="gold" placeholder="Gold Price" required><div class="input-group-addon">.00</div></div></div></td>');
-			$('#weight').append('<td><span class="form-label">Jumlah Emas (gr)</span></td><td><div class="form-group"><div class="input-group"><div class="input-group-addon" id="amount">$</div><input type="text" class="form-control" name="weight" placeholder="" required><div class="input-group-addon">.00</div></div></div></td>');
+			$('#total').hide();
+			$('#exampleInputAmount').removeAttr('required');
+			$('#gold').append('<td><span class="form-label">Gold Price as of Today per Gram</span></td><td><div class="form-group"><div class="input-group"><div class="input-group-addon" id="amount">Rp.</div><input type="text" class="form-control" name="gold" placeholder="Harga Emas" required><div class="input-group-addon">.00</div></div></div></td>');
+			$('#weight').append('<td><span class="form-label">Jumlah Emas (gr)</span></td><td><div class="form-group"><div class="input-group"><input type="text" class="form-control" name="weight" placeholder="" required><div class="input-group-addon">g</div></div></div></td>');
 		}else
 		{
 			$('#weight').empty();
-			$('#mulaiCicilan').show();
+			$('#mulaiCicilan').empty();
+			$('#mulaiCicilan').append('Mulai Cicilan');
 			$('#durasiCicilan').show();
 			$('#gold').empty();
 			$('#start_payment').attr('required','required');
