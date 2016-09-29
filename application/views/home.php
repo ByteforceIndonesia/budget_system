@@ -115,7 +115,6 @@ $( document ).ready(function() {
 	});
 
 
-
 	bar_gold.animate(<?php echo $ratio_gold; ?>);
 	bar_diamond.animate(<?php echo $ratio_diamond; ?>);
 
