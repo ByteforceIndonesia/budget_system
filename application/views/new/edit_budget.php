@@ -1,5 +1,4 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<?php echo $amount ?>
 <section id="content">
 	<div class="container">
 		<div class="row">

@@ -103,8 +103,8 @@
     
       <footer style="height: 40px; font-size: 12px; width: 100%" class="row">
         <div class="col-xs-12 text-center">
-          <p>Budget System by Hassee Developers</p>
-          <p>Copyright All Rights Reserved &copy; 2015</p>
+          <p>Budget System by Hassee Under LRM Corporation</p>
+          <p>Copyright All Rights Reserved &copy; 2016</p>
         </div>
         
       </footer>
