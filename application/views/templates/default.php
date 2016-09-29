@@ -21,10 +21,11 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/datepicker.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/style.css">
 
-
+    
     <script src="<?php echo base_url() ?>js/footable.js"></script>
     <script src="<?php echo base_url() ?>js/footable.filter.js"></script>
     <script src="<?php echo base_url() ?>js/footable.paginate.js"></script>
+    <script src="<?php echo base_url() ?>js/footable.sort.js" type="text/javascript"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
 
@@ -46,7 +47,8 @@
     .footable>thead>tr>th, .footable>thead>tr>td { 
       
       background-color : #f5d76e !important;
-      border : 1px solid #f5d76e !important
+      border : 1px solid #f5d76e !important;
+      color: black !important;
 
     }
 

@@ -28,12 +28,12 @@
 	        		<table class="table table-condensed" data-filter="#filter" data-page-size="10" id="table_diamond">
 						<thead>
 							 <tr>
-							 	<th>No</th>
+							 	<th data-type="numeric" data-sort-initial="true">No</th>
 							 	<th data-toggle="true">Pembelian Bulan</th>
 							 	<th data-hide="phone">Tanggal Pembelian</th>
 							 	<th data-hide="phone">Keterangan</th>
 							 	<th data-hide="phone">Jatuh Tempo Pembayaran</th>
-							 	<th>Jumlah Pembayaran</th>
+							 	<th data-type="numeric">Jumlah Pembayaran</th>
 							 </tr>
 						</thead>
 						<tbody>
