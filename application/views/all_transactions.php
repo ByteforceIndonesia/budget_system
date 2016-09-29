@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <!-- Data Tables -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jqc-1.12.3/dt-1.10.12/af-2.1.2/b-1.2.2/b-print-1.2.2/cr-1.3.2/kt-2.1.3/r-2.1.0/datatables.min.css"/>
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jqc-1.12.3/dt-1.10.12/af-2.1.2/b-1.2.2/b-print-1.2.2/cr-1.3.2/kt-2.1.3/r-2.1.0/datatables.min.css"/>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jqc-1.12.3/dt-1.10.12/af-2.1.2/b-1.2.2/b-print-1.2.2/cr-1.3.2/kt-2.1.3/r-2.1.0/datatables.min.js"></script>
 <script>
 
@@ -14,12 +14,26 @@ $(document).ready( function () {
 } );
 
 </script>
+ -->
+
 
 <section id="content">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
+				<div class="month-picker row">
+					<div class="col-md-8">
+						
+					</div>
+					<div class="col-md-4 month-pick">
+						<div class="input-group date pull-right" id="datepicker" data-date="<?php echo date('m-Y') ?>" data-date-format="mm-yyyy">
+							 <span class="input-group-addon add-on"><span class="glyphicon glyphicon-th"></span></span>	
+							 <input type="text" name="date" id="datepick" class="form-control" readonly="readonly" placeholder="Select Month">	  
+					    </div>
+					</div>
+				</div>
+
 				<h1 class="title" align="center">Seluruh Transaksi Bulan Ini</h1>
 				<h1>Gold</h1><br>
         		<table class="table table-hover" id="table_gold">
@@ -91,3 +105,22 @@ $(document).ready( function () {
 		</div>
 	</div>
 </section>
+
+<script>
+$(document).ready(function(){
+	$('#datepicker').on("changeDate", function(){
+		window.setTimeout(function(){
+			window.location.replace("<?php echo base_url('main/month') ?>/"+$('#datepick').val());
+		}, 50 );
+	});
+});
+</script>
+
+<script type="text/javascript">
+    $("#datepicker").datepicker({
+    		format: "mm-yyyy",
+		    viewMode: "months", 
+		    minViewMode: "months",
+		    autoClose: true
+		});
+</script>

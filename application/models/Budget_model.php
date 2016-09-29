@@ -264,35 +264,14 @@ class Budget_model extends CI_Model {
 
 	public function getTotalTransCicilan ($type, $month)
 	{
-		if($this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->num_rows() > 0)
-		{
-			if($this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->row()->transaction_id != NULL)
-			{
-				$all = explode('#', $this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->row()->transaction_id);
-				$total = 0;
-				$count = 0;
-				
-				foreach($all as $transaction)
-				{	
-					if($count == 0)
-					{
-						$count++;
-						continue;
-					}
-
-					$data = $this->db->get_where('transactions', array('id' => $transaction))->row();
-
-					$total +=  $data->amount/$data->spanning_month;
-					$count++;
-				}
-
-				return $total;
-			}else
-			{
-				return false;
-			}
-		}else
-		{
+		$this->db->select_sum('amount');
+		$this->db->from('installments');
+		$this->db->where("due LIKE '$month%'");
+		$total = $this->db->get()->row('amount');
+		
+		if($total){
+			return $total;
+		}else{
 			return false;
 		}
 	}
