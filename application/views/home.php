@@ -8,6 +8,7 @@
 				<div class="month-picker row">
 					<div class="col-md-8">
 						<h1>Budget Bulan <?php echo $month ?></h1>
+
 					</div>
 					<div class="col-md-4 month-pick">
 						<div class="input-group date pull-right" id="datepicker" data-date="<?php echo date('m-Y') ?>" data-date-format="mm-yyyy">
@@ -16,33 +17,36 @@
 					    </div>
 					</div>
 				</div>
+
+
+				<div class="alert alert-warning"><h4><i class="fa fa-exclamation-circle"></i>&nbsp;Jumlah Cicilan Bulan <?php echo $month ?>&nbsp;:&nbsp;<?php echo NZD($trans_cicilan,2,'.',''); ?></h4></div>
+						
+
+					
+				<div class="row">
 				<!-- Loading Bars -->
 				<section class="bar">
-					<div id="gold">
-						<!-- Gold -->
-						<h2>Gold</h2>
-						Pembelian:&nbsp;<?php echo $trans_gold; ?>&nbsp;gr&nbsp;/&nbsp;<?php echo $gold; ?>&nbsp;gr 
+					<div class="col-md-6">
+						<div id="gold">
+							<!-- Gold -->
+							<h2>Gold</h2>
+							Pembelian:&nbsp;<?php echo $trans_gold; ?>&nbsp;gr&nbsp;/&nbsp;<?php echo $gold; ?>&nbsp;gr 
+						</div>
 					</div>
-					
-					<div id="diamond">
-						<!-- Diamond -->
-						<h2>Diamond</h2>
-						Pembelian:&nbsp;<?php echo NZD($trans_diamond); ?>&nbsp;/&nbsp;<?php echo NZD($diamond); ?> 
+					<div class="col-md-6">
+						<div id="diamond">
+							<!-- Diamond -->
+							<h2>Diamond</h2>
+							Pembelian:&nbsp;<?php echo NZD($trans_diamond); ?>&nbsp;/&nbsp;<?php echo NZD($diamond); ?> 
+						</div>
 					</div>
 				</section>
+				</div>
+
 			</div>	
 			<div class="col-md-1"></div>
 		</div>
-		<div class="row">
-			<div class="col-md-1"></div>
-			<div class="col-md-10">
 
-				<h2>Jumlah Cicilan Bulan <?php echo $month ?></h2>
-				<?php echo NZD($trans_cicilan,2,'.',''); ?>
-
-			</div>
-			<div class="col-md-1"></div>
-		</div>
 	</div>
 </section>
 <script>
@@ -74,7 +78,7 @@ $( document ).ready(function() {
 	  color: '#FFEA82',
 	  trailColor: '#bdc3c7',
 	  trailWidth: 1,
-	  svgStyle: {width: '100%', height: '100px'},
+	  svgStyle: {width: '100%', height: '80px'},
 	  text: {
         autoStyleContainer: true,
         alignToBottom: true,
@@ -82,7 +86,7 @@ $( document ).ready(function() {
             color: '#fff',
             position: 'absolute',
             left: '42%',
-            top: '45%',
+            top: '48%',
 
           },
     	},
@@ -98,7 +102,7 @@ $( document ).ready(function() {
 	  color: '#3498db',
 	  trailColor: '#bdc3c7',
 	  trailWidth: 1,
-	  svgStyle: {width: '100%', height: '100px'},
+	  svgStyle: {width: '100%', height: '80px'},
 	  text: {
         autoStyleContainer: true,
         alignToBottom: true,
@@ -106,7 +110,7 @@ $( document ).ready(function() {
             color: '#fff',
             position: 'absolute',
             left: '42%',
-            top: '45%'
+            top: '48%'
           },
     	},
 	  step: (state, bar) => {
