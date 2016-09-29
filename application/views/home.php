@@ -114,30 +114,9 @@ $( document ).ready(function() {
 		}
 	});
 
-<<<<<<< HEAD
-	var bar_cicilan = new ProgressBar.Line(cicilan, {
-	  strokeWidth: 1,
-	  easing: 'easeInOut',
-	  duration: 1400,
-	  color: '#e67e22',
-	  trailColor: '#bdc3c7',
-	  trailWidth: 1,
-	  svgStyle: {width: '100%', height: '100px'},
-	  text: {
-        autoStyleContainer: true,
-        alignToBottom: true,
-        style: {
-            color: '#fff',
-            position: 'absolute',
-            left: '42%',
-            top: '45%'
-          }
-    	},
-    	step: (state, bar) => {
-		  bar.setText(Math.round(bar.value() * 100) + ' %');
-		}
-	});
-=======
+
+	
+
 	// var bar_cicilan = new ProgressBar.Line(cicilan, {
 	//   strokeWidth: 1,
 	//   easing: 'easeInOut',
@@ -158,7 +137,7 @@ $( document ).ready(function() {
  //          },
  //    	}
 	// });
->>>>>>> origin/master
+
 
 	// bar_cicilan.animate(<?php echo $ratio_cicilan ?>);
 	bar_gold.animate(<?php echo $ratio_gold; ?>);
