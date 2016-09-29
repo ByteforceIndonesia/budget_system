@@ -38,8 +38,8 @@ $(document).ready( function () {
 							<tr>
 								<td><?php echo $i ?></td>
 								<td><?php echo $one['weight'] ?></td>
-								<td><?php echo $one['gold_price']?></td>
-								<td><?php echo $one['amount'] ?></td>
+								<td><?php echo rupiah($one['gold_price'])?></td>
+								<td><?php echo rupiah($one['amount']) ?></td>
 						 		<td>
 						 			<a href="<?php echo base_url('main/delete/' . $one['id']) ?>">Delete</a>
 						 		</td>
@@ -70,10 +70,10 @@ $(document).ready( function () {
 						<?php $i = 1; foreach($diamond as $one): ?>
 							<tr>
 								<td><?php echo $i ?></td>
-								<td><?php echo $one['spanning_month'] ?></td>
-								<td>$&nbsp;<?php echo $one['amount']/$one['spanning_month'] ?></td>
+								<td><?php echo $one['spanning_month'].' bulan' ?></td>
+								<td><?php echo NZD($one['amount']/$one['spanning_month'] )?></td>
 								<td><?php echo $one['start_payment'] ?></td>
-								<td>$&nbsp;<?php echo $one['amount'] ?></td>
+								<td><?php echo NZD($one['amount']) ?></td>
 						 		<td>
 						 			<a href="<?php echo base_url('main/delete/' . $one['id']) ?>">Delete</a>
 						 		</td>

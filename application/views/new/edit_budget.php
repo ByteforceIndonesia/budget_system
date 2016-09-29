@@ -34,7 +34,7 @@
 							<td>
 								<div class="form-group">
 								  <div class="input-group">
-								      <div class="input-group-addon" id="amount">Gr.</div>
+								      <div class="input-group-addon" id="amount"><?php echo ($type == 'diamond') ? '$' : 'Gr.' ?></div>
 								      <input type="text" class="form-control" id="exampleInputAmount" placeholder="<?php echo $amount ?>" value="<?php echo $amount ?>" required disabled>
 										<input type="hidden" name="amount" value="<?php echo $amount ?>">
 								      <div class="input-group-addon">.00</div>

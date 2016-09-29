@@ -73,7 +73,7 @@ class New_budget extends CI_Controller {
 		}
 	}
 
-	public function edit($month = '', $year = '', $type = '', $budget = '', $gold = '')
+	public function edit($month = '', $year = '', $type = '', $budget = '')
 	{
 		if($this->input->post())
 		{
@@ -81,13 +81,12 @@ class New_budget extends CI_Controller {
 			$month 		= $this->input->post('month');
 			$year 		= $this->input->post('year');
 			$type 		= $this->input->post('type');
-			$gold 		= $this->input->post('gold');
 			$budget 	= $this->input->post('amount');
 			$trans_gold	= $this->budget_model->getTotalTrans($type, $month);
 
 			if($budget >= $trans_gold)
 			{
-				if($this->budget_model->update($month, $year, $type, $budget, $gold)){
+				if($this->budget_model->update($month, $year, $type, $budget)){
 					$this->session->set_flashdata('success', 'Edit ' . $type . ' Budget For ' . $month . ' ' . $year . ' Have Been Succeded!');
 					redirect('main');
 				}
@@ -102,7 +101,6 @@ class New_budget extends CI_Controller {
 
 			$data['type']    = $type;
 			$data['month']   = $month;
-			$data['gold']	 = $gold;
 			$data['year']    = $year;
 			$data['amount']  = $budget;
 
@@ -156,17 +154,9 @@ class New_budget extends CI_Controller {
 			$gold		= $this->budget_model->getMonthlyLimit('gold', date('F'))->limit_transaction;
 			$diamond	= $this->budget_model->getMonthlyLimit('diamond', date('F'))->limit_transaction;
 
-			if(!$limit_cicilan = $this->budget_model->getMonthlyLimitCicilan(date('F'))->amount)
-			{
-				$this->session->set_flashdata('failed', "Please set this month's credit limit!");
-				redirect('main');
-			}
-
-			$trans_gold		= $this->budget_model->getTotalTrans('gold', date('F'));
-			$trans_diamond	= $this->budget_model->getTotalTrans('diamond', date('F'));
-
-			$cicilan 		= $this->budget_model->getTotalTransCicilan('gold', date('F'));
-			$cicilan 		+= $this->budget_model->getTotalTransCicilan('diamond', date('F'));
+			$trans_gold = $this->budget_model->getTotalTrans('gold',date('F'));
+			$trans_diamond = $this->budget_model->getTotalTrans('diamond' , date('F'));
+			
 
 			switch($type)
 			{
@@ -176,10 +166,6 @@ class New_budget extends CI_Controller {
 					{
 						$this->session->set_flashdata('failed', 'Failed Creating ' . $type . ' Transaction For ' . $month . ' ' . date('Y') . ', You Have Execced Your Monthly Limit!');
 						redirect('main');
-					}else if(($totalGold/$spanning)+$cicilan > $limit_cicilan)
-					{
-						$this->session->set_flashdata('failed', 'Failed Creating ' . $type . ' Transaction For ' . $month . ' ' . date('Y') . ', You Have Execced Your Monthly Credit Limit!');
-						redirect('main');
 					}
 				}break;
 
@@ -188,11 +174,7 @@ class New_budget extends CI_Controller {
 					
 					if($amount+$trans_diamond > $diamond)
 					{
-						$this->session->set_flashdata('failed', 'Failed Creating ' . $type . ' Transaction For ' . $month . ' ' . date('Y') . ', You Have Execced Your Monthly Limit!');
-						redirect('main');
-					}else if(($amount/$spanning)+$cicilan > $limit_cicilan)
-					{
-						$this->session->set_flashdata('failed', 'Failed Creating ' . $type . ' Transaction For ' . $month . ' ' . date('Y') . ', You Have Execced Your Monthly Credit Limit!');
+						$this->session->set_flashdata('failed', 'Limit anda tidak mencukupi untuk melakukan transaksi');
 						redirect('main');
 					}
 				}break;
@@ -200,6 +182,8 @@ class New_budget extends CI_Controller {
 
 			if($this->budget_model->insert_transaction($type, $amount, $spanning, $start, $gold_price, $gold_weight))
 			{
+				
+
 				$this->session->set_flashdata('success', 'New ' . $type . ' Transaction For ' . $month . ' ' . date('Y') . ' Have Been Created!');
 				redirect('main');
 			}else
