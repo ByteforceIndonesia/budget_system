@@ -5,7 +5,6 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 			<h1 class="title" align="center">Edit Budget</h1>
-			<br><br><br>
 				<?php echo form_open('new_budget/edit') ?>
 					<table class="table">
 						<tr class="form-group">
@@ -44,7 +43,7 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<input type="submit" class="btn btn-primary pull-right" value="Finalize">
+								<input type="submit" class="btn btn-default pull-right" value="Finalize">
 							</td>
 						</tr>
 					</table>
