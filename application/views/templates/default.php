@@ -58,6 +58,10 @@
       border : 1px solid #948A6A !important
 
     }
+    #body{
+      min-height: 450px;
+      padding-bottom: 30px;
+    }
     </style>
   </head>
   <body>
@@ -96,10 +100,15 @@
     </section>
 
     <!-- Footer -->
-    <footer style="height: 40px; font-size: 12px; bottom: 0" class="text-center">
-      <p>Budget System by Hassee Developers</p>
-      <p>Copyright All Rights Reserved &copy; 2015</p>
-    </footer>
+    
+      <footer style="height: 40px; font-size: 12px; width: 100%" class="row">
+        <div class="col-xs-12 text-center">
+          <p>Budget System by Hassee Developers</p>
+          <p>Copyright All Rights Reserved &copy; 2015</p>
+        </div>
+        
+      </footer>
+  
   </div>
   </body>
 

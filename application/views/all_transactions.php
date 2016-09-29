@@ -35,38 +35,46 @@ $(document).ready( function () {
 				</div>
 
 				<h1 class="title" align="center">Seluruh Transaksi Bulan <?php echo $month ?></h1>
-				<h1>Gold</h1><br>
-        		<table class="table table-hover" id="table_gold">
-					<thead>
-						 <tr>
-						 	<td>No</td>
-						 	<td>Jumlah Emas (gr)</td>
-						 	<td>Harga Emas / gr</td>
-						 	<td>Total Yang Dibayarkan</td>
-						 	<td>Action</td>
-						 </tr>
-					</thead>
-					<tbody>
-					<?php if($gold != NULL): ?>
-						<?php $i = 1; foreach($gold as $one): ?>
+				<h1>Gold</h1>
+				<div class="form-group" style="margin-bottom: 20px">
+					<label for="">Search :</label>
+					<input type="text" class="form-control" id="filter_gold" style="width: 25%">
+				</div>
+				<div class="table-responsive toggle-circle-filled">
+	        		<table  class="table table-condensed" data-filter="#filter_gold" data-page-size="10" id="table_gold">
+						<thead>
+							 <tr>
+							 	<th data-type="numeric" data-sort-initial="true">No</th>
+							 	<th data-toggle="true">Keterangan</th>
+							 	<th data-hide="phone">Jumlah Emas (gr)</th>
+							 	<th data-hide="phone">Harga Emas / gr</th>
+							 	<th data-type="numeric">Total Yang Dibayarkan</th>
+							 	<th data-hide="phone">Action</th>
+							 </tr>
+						</thead>
+						<tbody>
+						<?php if($gold != NULL): ?>
+							<?php $i = 1; foreach($gold as $one): ?>
+								<tr>
+									<td><?php echo $i ?></td>
+									<td><?php echo $one->description ?></td>
+									<td><?php echo $one['weight'] ?></td>
+									<td><?php echo rupiah($one['gold_price'])?></td>
+									<td><?php echo rupiah($one['amount']) ?></td>
+							 		<td>
+							 			<a href="<?php echo base_url('main/delete/' . $one['id']) ?>">Delete</a>
+							 		</td>
+								</tr>
+							<?php $i++; endforeach; ?>
+						<?php else: ?>
 							<tr>
-								<td><?php echo $i ?></td>
-								<td><?php echo $one['weight'] ?></td>
-								<td><?php echo rupiah($one['gold_price'])?></td>
-								<td><?php echo rupiah($one['amount']) ?></td>
-						 		<td>
-						 			<a href="<?php echo base_url('main/delete/' . $one['id']) ?>">Delete</a>
-						 		</td>
+								<td colspan="7"><h2 align="center">Tidak Ada Transaksi Bulan Ini</h2></td>
 							</tr>
-						<?php $i++; endforeach; ?>
-					<?php else: ?>
-						<tr>
-							<td colspan="7"><h2 align="center">Tidak Ada Transaksi Bulan Ini</h2></td>
-						</tr>
-					<?php endif; ?>
-					</tbody>
-        		</table>
-        		<br><br><br>
+						<?php endif; ?>
+						</tbody>
+	        		</table>
+        		</div>
+
         		<h1>Diamond</h1>
 				<div class="form-group" style="margin-bottom: 20px">
 					<label for="">Search :</label>
@@ -77,12 +85,13 @@ $(document).ready( function () {
 	        		<table class="table table-condensed" data-filter="#filter" data-page-size="10" id="table_diamond">
 					<thead>
 						 <tr>
-						 	<td data-toggle="true" data-type="numeric" data-sort-initial="true">No</td>
-						 	<td>Panjang Cicilan</td>
-						 	<td>Cicilan Perbulan</td>
-						 	<td>Mulai Pembayaran Cicilan</td>
-						 	<td>Amount</td>
-						 	<td>Action</td>
+						 	<th data-type="numeric" data-sort-initial="true">No</th>
+						 	<th data-toggle="true">Keterangan</th>
+						 	<th data-hide="phone">Panjang Cicilan</th>
+						 	<th data-hide="phone">Cicilan Perbulan</th>
+						 	<th data-hide="phone">Mulai Pembayaran Cicilan</th>
+						 	<th data-type="numeric">Total</th>
+						 	<th data-hide="phone">Action</th>
 						 </tr>
 					</thead>
 					<tbody>
@@ -90,6 +99,7 @@ $(document).ready( function () {
 						<?php $i = 1; foreach($diamond as $one): ?>
 							<tr>
 								<td><?php echo $i ?></td>
+								<td><?php echo $one->description ?></td>
 								<td><?php echo $one->spanning_month.' bulan' ?></td>
 								<td><?php echo NZD($one->amount/$one->spanning_month )?></td>
 								<td><?php echo $one->start_payment ?></td>
@@ -105,6 +115,12 @@ $(document).ready( function () {
 						</tr>
 					<?php endif; ?>
 					</tbody>
+					<tfoot class="hide-if-no-paging">
+						<td colspan="7">
+							<div class="pagination"></div>
+						</td>
+						
+					</tfoot>
         		</table>
         	</div>
 			<div class="col-md-1"></div>
@@ -129,4 +145,10 @@ $(document).ready(function(){
 		    minViewMode: "months",
 		    autoClose: true
 		});
+</script>
+
+<script>
+	$(document).ready(function() {
+   	 $('#table_diamond').footable();
+	} );
 </script>

@@ -56,7 +56,7 @@
 						<?php endif; ?>
 						</tbody>
 						<tfoot class="hide-if-no-paging">
-							<td colspan="5">
+							<td colspan="6">
 								<div class="pagination"></div>
 							</td>
 							

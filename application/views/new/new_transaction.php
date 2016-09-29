@@ -52,6 +52,14 @@
 							</td>
 						</tr>
 						<tr>
+							<td>
+								<span class="form-label">Keterangan</span>
+							</td>
+							<td>
+								<input type="text" name="description" placeholder="Keterangan (optional)" class="form-control">
+							</td>
+						</tr>
+						<tr>
 							<td colspan="2">
 								<input type="submit" class="btn btn-default pull-right" value="Submit">
 							</td>
