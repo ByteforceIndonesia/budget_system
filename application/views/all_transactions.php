@@ -67,11 +67,17 @@ $(document).ready( function () {
 					</tbody>
         		</table>
         		<br><br><br>
-				<h1>Diamond</h1><br>
-        		<table class="table table-hover" id="table_diamond">
+        		<h1>Diamond</h1>
+				<div class="form-group" style="margin-bottom: 20px">
+					<label for="">Search :</label>
+					<input type="text" class="form-control" id="filter" style="width: 25%">
+				</div>
+				
+				<div class="table-responsive toggle-circle-filled">
+	        		<table class="table table-condensed" data-filter="#filter" data-page-size="10" id="table_diamond">
 					<thead>
 						 <tr>
-						 	<td>No</td>
+						 	<td data-toggle="true" data-type="numeric" data-sort-initial="true">No</td>
 						 	<td>Panjang Cicilan</td>
 						 	<td>Cicilan Perbulan</td>
 						 	<td>Mulai Pembayaran Cicilan</td>
@@ -84,12 +90,12 @@ $(document).ready( function () {
 						<?php $i = 1; foreach($diamond as $one): ?>
 							<tr>
 								<td><?php echo $i ?></td>
-								<td><?php echo $one['spanning_month'].' bulan' ?></td>
-								<td><?php echo NZD($one['amount']/$one['spanning_month'] )?></td>
-								<td><?php echo $one['start_payment'] ?></td>
-								<td><?php echo NZD($one['amount']) ?></td>
+								<td><?php echo $one->spanning_month.' bulan' ?></td>
+								<td><?php echo NZD($one->amount/$one->spanning_month )?></td>
+								<td><?php echo $one->start_payment ?></td>
+								<td><?php echo NZD($one->amount) ?></td>
 						 		<td>
-						 			<a href="<?php echo base_url('main/delete/' . $one['id']) ?>">Delete</a>
+						 			<a href="<?php echo base_url('main/delete/' . $one->id) ?>">Delete</a>
 						 		</td>
 							</tr>
 						<?php $i++; endforeach; ?>

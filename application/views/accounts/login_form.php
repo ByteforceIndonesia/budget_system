@@ -32,7 +32,7 @@
 
 				</form>
 
-				<a class="pull-right" href="">Forgot password?</a>
+				
 			</div>
 		</div>
 	</div>

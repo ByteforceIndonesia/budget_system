@@ -1,4 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php echo $amount ?>
 <section id="content">
 	<div class="container">
 		<div class="row">
@@ -34,8 +35,8 @@
 								<div class="form-group">
 								  <div class="input-group">
 								      <div class="input-group-addon" id="amount"><?php echo ($type == 'diamond') ? '$' : 'Gr.' ?></div>
-								      <input type="text" class="form-control" id="exampleInputAmount" placeholder="<?php echo $amount ?>" value="<?php echo $amount ?>" required disabled>
-										<input type="hidden" name="amount" value="<?php echo $amount ?>">
+								      <input type="text" class="form-control" name="amount" id="exampleInputAmount" value="<?php echo $amount ?>" required >
+										
 								      <div class="input-group-addon">.00</div>
 								  </div>
 								</div>

@@ -196,37 +196,9 @@ class Budget_model extends CI_Model {
 		}
 	}
 
-	public function getTransMonth ($month, $type)
+	public function getTransMonth ($month,$year, $type)
 	{
-		if($this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->row()->transaction_id !=  NULL)
-		{
-			$transactions = $this->db->get_where('monthly_limit', array('month' => $month, 'year' => date('Y'), 'type' => $type))->row()->transaction_id;
-			$transactions = explode('#', $transactions);
-			$count = 0;
-
-			$transaction_all = array();
-
-			foreach($transactions as $transaction)
-			{	
-				if($count == 0)
-				{
-					$count++;
-					continue;
-				}
-
-				$one = $this->db->get_where('transactions', array('id' => $transaction))->row_array();
-
-				array_push($transaction_all, $one);
-
-				$count++;
-			}
-
-			return $transaction_all;
-
-		}else
-		{
-			return false;
-		}
+		return $this->db->get_where('transactions',array('month' => $month,'year' => $year,'type' => $type))->result();
 	}
 
 	public function getTotalTrans ($type, $month)

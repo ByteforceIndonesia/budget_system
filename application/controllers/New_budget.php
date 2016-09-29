@@ -77,6 +77,7 @@ class New_budget extends CI_Controller {
 	{
 		if($this->input->post())
 		{
+			
 			//Put Post Variables
 			$month 		= $this->input->post('month');
 			$year 		= $this->input->post('year');
@@ -85,9 +86,24 @@ class New_budget extends CI_Controller {
 			$trans_gold	= $this->budget_model->getTotalTrans($type, $month);
 
 			if($budget >= $trans_gold)
-			{
-				if($this->budget_model->update($month, $year, $type, $budget)){
-					$this->session->set_flashdata('success', 'Edit ' . $type . ' Budget For ' . $month . ' ' . $year . ' Have Been Succeded!');
+			{	
+
+
+				if($this->db->get_where('monthly_limit',array('month' => $month,'year' => $year, 'type' => $type))->num_rows() > 0){
+					$this->budget_model->update($month, $year, $type, $budget);
+					$this->session->set_flashdata('success', 'Berhasil Mengubah Limit Bulan '.$month);
+					redirect('main');
+				}else{
+					$data_insert = array(
+							'month' => $month,
+							'year' => $year,
+							'limit_transaction' => $budget,
+							'type' => $type,
+							'created' => date('Y-m-d H:i:s')
+						);
+
+					$this->db->insert('monthly_limit',$data_insert);
+					$this->session->set_flashdata('success', 'Berhasil Mengubah Limit Bulan '.$month);
 					redirect('main');
 				}
 			}else
@@ -102,7 +118,7 @@ class New_budget extends CI_Controller {
 			$data['type']    = $type;
 			$data['month']   = $month;
 			$data['year']    = $year;
-			$data['amount']  = $budget;
+			$data['amount']  = $this->db->get_where('monthly_limit',array('month' => $month,'year' => $year, 'type' => $type))->row('limit_transaction');
 
 			$this->template->load('default', 'new/edit_budget', $data);
 		}

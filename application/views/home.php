@@ -1,4 +1,15 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php if($this->uri->segment(2) == '') {
+
+		$month = date('F');
+		$year = date('Y');
+		}else{
+
+			$date = explode('-',$this->uri->segment(3));
+			$year = $date[1];
+			$month = date('F',strtotime($date[1].'-'.$date[0]));
+
+		}?>
 <section id="content">
 	<div class="container">
 		<div class="row">
@@ -32,6 +43,7 @@
 							<h2>Gold</h2>
 							Pembelian:&nbsp;<?php echo $trans_gold; ?>&nbsp;gr&nbsp;/&nbsp;<?php echo $gold; ?>&nbsp;gr 
 						</div>
+						<a href="<?php echo base_url('new_budget/edit/'.$month.'/'.$year.'/gold/') ?>" class="btn btn-default">Edit Budget Gold</a>
 					</div>
 					<div class="col-md-6">
 						<div id="diamond">
@@ -39,10 +51,11 @@
 							<h2>Diamond</h2>
 							Pembelian:&nbsp;<?php echo NZD($trans_diamond); ?>&nbsp;/&nbsp;<?php echo NZD($diamond); ?> 
 						</div>
+						<a href="<?php echo base_url('new_budget/edit/'.$month.'/'.$year.'/diamond/') ?>" class="btn btn-default">Edit Budget Diamond</a>
 					</div>
 				</section>
 				</div>
-
+				
 			</div>	
 			<div class="col-md-1"></div>
 		</div>

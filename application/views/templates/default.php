@@ -84,8 +84,8 @@
         <div id="openMenu">
           <a onclick="triggerMenu()"><i class="fa fa-bars fa-3x" aria-hidden="true" id="menu-button"></i></a>
         </div>
-        <div class="text-center" style="padding-top:10px;padding-bottom:10px;">
-          <img src="<?php echo base_url().'img/logo.png' ?>">
+        <div style="padding-top:10px;padding-bottom:10px;">
+          <img src="<?php echo base_url().'img/logo.png' ?>" alt="Saerah Logo" class="img img-responsive" style="display: block;margin:auto">
         </div>        
       </div>
     </div>
@@ -96,7 +96,10 @@
     </section>
 
     <!-- Footer -->
-    
+    <footer style="height: 40px; font-size: 12px; bottom: 0" class="text-center">
+      <p>Budget System by Hassee Developers</p>
+      <p>Copyright All Rights Reserved &copy; 2015</p>
+    </footer>
   </div>
   </body>
 

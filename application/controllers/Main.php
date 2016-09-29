@@ -68,18 +68,25 @@ class Main extends CI_Controller {
 
 	public function all_transactions ($month = '')
 	{
+
 		if($month == ''){
-			$month = date('Y-m');
+			$month = date('F');
+			$year = date('Y');
 			$data['month'] = date('F');
 		}else{			
-			$data['month'] = date('F',strtotime($month));
+			$date = explode('-', $month);
+			$month = date('F',strtotime($date['1'].'-'.$date[0]));
+			$year = $date[1];
+			$data['month'] = date('F',strtotime($date['1'].'-'.$date[0]));
 		}
+		
 		$data['title'] = "Transactions";
 
-		$data['gold'] 	 = $this->budget_model->getTransMonth(date('F'), 'gold');
-		$data['diamond'] = $this->budget_model->getTransMonth(date('F'), 'diamond');
+		$data['gold'] 	 = $this->budget_model->getTransMonth($month,$year, 'gold');
+		$data['diamond'] = $this->budget_model->getTransMonth($month,$year, 'diamond');
 
 		$this->template->load('default', 'all_transactions', $data);
+	
 	}
 
 	public function delete ($id)
