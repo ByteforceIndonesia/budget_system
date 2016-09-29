@@ -68,6 +68,12 @@ class Main extends CI_Controller {
 
 	public function all_transactions ($month = '')
 	{
+		if($month == ''){
+			$month = date('Y-m');
+			$data['month'] = date('F');
+		}else{			
+			$data['month'] = date('F',strtotime($month));
+		}
 		$data['title'] = "Transactions";
 
 		$data['gold'] 	 = $this->budget_model->getTransMonth(date('F'), 'gold');

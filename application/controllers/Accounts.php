@@ -35,14 +35,14 @@ class Accounts extends CI_Controller
 						);
 
 				$this->session->set_userdata($session);
-				$this->session->set_flashdata('success', "You have successfully logged in!");
+				$this->session->set_flashdata('success', "Anda berhasil log in!");
 				redirect('main');
 				}
 			}
 			//Username Is not found
 			else
 			{
-				$this->session->set_flashdata('failed', "Username or Password doesn't match!");
+				$this->session->set_flashdata('failed', "Username atau password salah");
 				redirect('accounts/login');
 			}
 		}

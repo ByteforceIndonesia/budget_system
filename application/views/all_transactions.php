@@ -34,7 +34,7 @@ $(document).ready( function () {
 					</div>
 				</div>
 
-				<h1 class="title" align="center">Seluruh Transaksi Bulan Ini</h1>
+				<h1 class="title" align="center">Seluruh Transaksi Bulan <?php echo $month ?></h1>
 				<h1>Gold</h1><br>
         		<table class="table table-hover" id="table_gold">
 					<thead>
@@ -110,7 +110,7 @@ $(document).ready( function () {
 $(document).ready(function(){
 	$('#datepicker').on("changeDate", function(){
 		window.setTimeout(function(){
-			window.location.replace("<?php echo base_url('main/month') ?>/"+$('#datepick').val());
+			window.location.replace("<?php echo base_url('main/all_transactions') ?>/"+$('#datepick').val());
 		}, 50 );
 	});
 });
