@@ -83,6 +83,7 @@ class Main extends CI_Controller {
 
 	public function delete ($id)
 	{
+		$this->db->delete('installments',array('transaction_id' => $id));
 		//Get Data From Transactions
 		$data = $this->db->get_where('transactions', array('id' => $id))->row();
 

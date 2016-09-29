@@ -24,3 +24,7 @@ function NZD($number){
 		return '$ '.number_format($number,2);
 
 }
+
+function rupiah($number){
+	return 'Rp. '.number_format($number,2,'.',',');	
+}

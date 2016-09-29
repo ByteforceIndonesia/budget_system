@@ -65,12 +65,11 @@ class Budget_model extends CI_Model {
 		}
 	}
 
-	public function update ($month, $year, $type, $budget, $gold)
+	public function update ($month, $year, $type, $budget)
 	{
 		$data = array(
 
 			'type'					=> $type,
-			'gold_price'			=> $gold,
 			'limit_transaction'		=> $budget
 
 			);
@@ -146,11 +145,34 @@ class Budget_model extends CI_Model {
 
 		if($this->db->insert('transactions', $data))
 		{
-			$id 	= $this->db->query("SELECT id FROM transactions WHERE (created >= NOW() - INTERVAL 10 MINUTE AND amount = $amount AND type = '".$type."') ORDER BY id Desc")->row()->id;
+			$transaction_id = $this->db->insert_id();
+
+			$start = explode('-', $start);
+			$start_month = $start[1];
+			$start_year = $start[0];
+			$installment_amount = $amount/$spanning;
+			for($i = 0; $i < $spanning ; $i++){
+				$date = date('Y-m-d',strtotime($start_year.'-'.$start_month.'-'.$start[2]));
+
+				$data_installment = array(
+						'transaction_id' => $transaction_id,
+						'due'			 => $date,
+						'amount'		 => $installment_amount
+					);
+				$this->db->insert('installments',$data_installment);
+				if ($start_month == 12) {
+					$start_year++;
+					$start_month = 1;
+				}else{
+					$start_month++;
+				}
+				
+			}
+
 			$trans  = $this->db->get_where('monthly_limit', array('month' => date('F'), 'year' => date('Y'), 'type' => $type))->row()->transaction_id;
 
 			//Implode New Transaction
-			$new_trans	= implode('#',array($trans, $id));
+			$new_trans	= implode('#',array($trans, $transaction_id));
 
 			//Insert into monthly limit for backup
 			$data 	= array('transaction_id' => $new_trans);

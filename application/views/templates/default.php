@@ -69,21 +69,21 @@
   <?php if($this->session->flashdata('failed')): ?>
     <script>
       swal({
-         title: "Failed!",   
+         title: "Gagal!",   
          text: "<?php echo $this->session->flashdata('failed') ?>",   
          type: "error",
-         showConfirmButton: false,
-         timer:1000
+         showConfirmButton: true,
+         closeOnConfirm : true,
       });
     </script>
   <?php elseif($this->session->flashdata('success')): ?>
     <script>
       swal({
-         title: "Success!",   
+         title: "Berhasil!",   
          text: "<?php echo $this->session->flashdata('success') ?>",   
          type: "success",
-         showConfirmButton: false,
-         timer:1000
+         showConfirmButton: true,
+         closeOnConfirm : true,
       });
     </script>
   <?php endif; ?>

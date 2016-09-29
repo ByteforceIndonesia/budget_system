@@ -4,6 +4,8 @@
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
+
+			<?php echo date('Y-m',strtotime('2016-1')) ?>
 				<!-- Content -->
 				<div class="month-picker row">
 					<div class="col-md-8">
@@ -36,22 +38,15 @@
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-				
-				<!-- Loading Bars -->
-				<section class="bar">
-					<div id="cicilan">
-						<!-- Cicilan -->
-						<h2>Limit Cicilan Bulan <?php echo $month ?></h2>
-						Pembelian:&nbsp;<?php echo NZD($trans_gold); ?>&nbsp;/&nbsp;<?php echo NZD($gold); ?>
-					</div>
-				</section>
+
+				<h2>Jumlah Cicilan Bulan <?php echo $month ?></h2>
+				<?php echo NZD($trans_cicilan,2,'.',''); ?>
+
 			</div>
 			<div class="col-md-1"></div>
 		</div>
 	</div>
 </section>
-<?php $trans_cicilan = number_format($trans_cicilan,2,'.','');
-echo date('F',strtotime('2016-10')) ?>
 <script>
 $(document).ready(function(){
 	$('#datepicker').on("changeDate", function(){
@@ -121,6 +116,7 @@ $( document ).ready(function() {
 		}
 	});
 
+<<<<<<< HEAD
 	var bar_cicilan = new ProgressBar.Line(cicilan, {
 	  strokeWidth: 1,
 	  easing: 'easeInOut',
@@ -143,8 +139,30 @@ $( document ).ready(function() {
 		  bar.setText(Math.round(bar.value() * 100) + ' %');
 		}
 	});
+=======
+	// var bar_cicilan = new ProgressBar.Line(cicilan, {
+	//   strokeWidth: 1,
+	//   easing: 'easeInOut',
+	//   duration: 1400,
+	//   color: '#3498db',
+	//   trailColor: '#bdc3c7',
+	//   trailWidth: 1,
+	//   svgStyle: {width: '100%', height: '150px'},
+	//   text: {
+ //        value: <?php echo $trans_cicilan; ?>+ ' of $' +<?php echo $cicilan; ?>, 
+ //        autoStyleContainer: true,
+ //        alignToBottom: true,
+ //        style: {
+ //            color: '#fff',
+ //            position: 'absolute',
+ //            left: '35%',
+ //            top: '45%'
+ //          },
+ //    	}
+	// });
+>>>>>>> origin/master
 
-	bar_cicilan.animate(<?php echo $ratio_cicilan ?>)
+	// bar_cicilan.animate(<?php echo $ratio_cicilan ?>);
 	bar_gold.animate(<?php echo $ratio_gold; ?>);
 	bar_diamond.animate(<?php echo $ratio_diamond; ?>);
 
