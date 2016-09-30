@@ -224,7 +224,14 @@ EOD;
 			mail($to, $subject, $message, $headers);
 		}
 
+		echo $this->Dollar(5000);
+
+		
 
 	}
+
+	function Dollar($number){
+			return '$ '.number_format($number,2);
+		}
 
 }

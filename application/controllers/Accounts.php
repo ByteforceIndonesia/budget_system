@@ -69,16 +69,31 @@ class Accounts extends CI_Controller
 
 		if($this->input->post()){
 			$password = hash_password($this->input->post('password'));
-
 			$this->db->update('users',array('password' => $password), array('id' => $id));
 			$this->session->set_flashdata('success','Password berhasil diubah !');
 			redirect('main');
 		}else{
-			$data['title'] = 'Ubah Password';
+			$data['title'] = 'Pengaturan';
 
 			$this->template->load('default' , 'change_password',$data);
 		}
 		
+	}
+
+	public function change_email(){
+		$id = $this->session->userdata('user_id');
+
+		if($this->input->post()){
+			$email = $this->input->post('email');
+			$this->db->update('users',array('email' => $email), array('id' => $id));
+			$this->session->set_flashdata('success','Email berhasil diubah !');
+			redirect('main');
+		}else{
+			$data['title'] = 'Pengaturan';
+
+			$this->template->load('default' , 'change_password',$data);
+		}
+
 	}
 }
 
