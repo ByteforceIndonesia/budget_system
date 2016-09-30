@@ -132,4 +132,24 @@ class Main extends CI_Controller {
 		$this->template->load('default', 'detail_cicilan', $data);
 
 	}
+
+	public function setting_timer(){
+
+		if($this->input->post()){
+
+			$time1 = $this->input->post('day-1');
+
+			$this->db->update('configuration',array('day-1' => $time1));
+			$this->session->set_flashdata('success', 'Jam Berhasil Diubah');
+			redirect('main');
+
+		}else{
+
+			$data['title'] = "Atur Jam";
+			$this->template->load('default', 'setting_timer', $data);
+			
+		}
+
+		
+	}
 }
