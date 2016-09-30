@@ -132,4 +132,6 @@ class Main extends CI_Controller {
 		$this->template->load('default', 'detail_cicilan', $data);
 
 	}
+
+	
 }
