@@ -11,7 +11,7 @@
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>css/footable.core.css" type="text/css" rel="stylesheet">
     <link href="<?php echo base_url() ?>css/footable.metro.min.css" type="text/css" rel="stylesheet">
-
+    <link href="<?php echo base_url() ?>css/wickedpicker.css" type="text/css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
 
@@ -29,7 +29,7 @@
     <script src="<?php echo base_url() ?>js/footable.sort.js" type="text/javascript"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
-
+    <script src="<?php echo base_url() ?>js/wickedpicker.js"></script>
     <script src="<?php echo base_url() ?>js/sweetalert.min.js"></script>
     <script src="<?php echo base_url() ?>js/progressbar.min.js"></script>
     <script src="<?php echo base_url() ?>js/chart.bundle.min.js"></script>

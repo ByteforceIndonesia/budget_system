@@ -102,7 +102,7 @@
             this.setText(element);
             this.showHideMeridiemControl();
             if (this.getText(element) !== this.getTime()) {
-                var inputTime = this.getText(element).replace(/:/g, '').split(' ');
+                var inputTime = this.getText(element).replace(/:/g, '').split('');
                 var newTime = {};
                 newTime.hours = inputTime[0];
                 newTime.minutes = inputTime[2];
@@ -507,9 +507,9 @@
          * @return {string}
          */
         formatTime: function (hour, min, meridiem, seconds) {
-            var formattedTime = hour + ' : ' + min;
+            var formattedTime = hour + ':' + min;
             if (this.options.twentyFour) {
-                formattedTime = hour + ' : ' + min;
+                formattedTime = hour + ':' + min;
             }
             if (this.options.showSeconds) {
                 formattedTime += ' : ' + seconds;

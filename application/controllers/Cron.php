@@ -21,9 +21,14 @@ class Cron extends CI_Controller {
 		    die("connection failed : ".mysqli_conect_error());
 		  }
 
+		date_default_timezone_set("Asia/Jakarta");
+
 		$this_month = date('F');
 
 		$date = date('Y-m');
+
+		$config = mysqli_query($connection, "SELECT * FROM configuration");
+		$config = mysqli_fetch_array($config,MYSQLI_ASSOC);
 
 		$all_transaction = mysqli_query($connection,"SELECT SUM(amount) AS Total FROM transactions WHERE month = '$this_month'");
 
@@ -31,28 +36,100 @@ class Cron extends CI_Controller {
                         FROM monthly_limit WHERE month = '$this_month' ");
 
 		$transactions = mysqli_query($connection, "SELECT installments.*,transactions.description,transactions.created,transactions.spanning_month, transactions.amount AS total_amount FROM installments INNER JOIN transactions
-			ON installments.transaction_id=transactions.id WHERE installments.due LIKE '%'");
+			ON installments.transaction_id=transactions.id");
 		echo"<pre>";
 
+		$data = array();
+		$data_prabayar = array();
 		while($month = mysqli_fetch_array($transactions,MYSQLI_ASSOC)){
 
-			print_r($month);
-
-			echo date('Y-m-d',strtotime($month['due'] ." + 1 day")) ;
+			if(date('Y-m-d',strtotime("+ 1 day")) == date('Y-m-d',strtotime($month['due'])) ){
+				if(date('H:i') == date('H:i',strtotime($config['day-1']))){
+					//email reminder
+					array_push($data_prabayar,$month);
+				}
+			}
+			elseif(date('Y-m-d') == date('Y-m-d',strtotime($month['due'])) ){
+				if(date('H:i') == date('H:i',strtotime($config['day']))){
+					//email reminder
+					array_push($data,$month);
+					
+				}
+			}
+			
 		};
 
-		while($row = mysqli_fetch_array($all_transaction,MYSQLI_ASSOC)){
-			print_r($row);
-		}
+		print_r($data);
+		print_r($data_prabayar);
 
 		echo "</pre>";
 
-		// $total_transactions = mysql_query("SELECT SUM(weight)".
-		// 				"FROM transactions".
-		// 				"WHERE month = date('F') AND type = 'gold' ");
+		if(count($data) > 0){
+			$total = 0;
+			$subject = "Reminder Pembayaran Hari Ini";
+			$content = '<tr><td colspan="5"><h4>Detail Pembayaran</h4></td></tr>';
 
+			foreach($data as $row){
+				$content .= '<tr style="border: 1px solid black;">';
+				$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Pembelian Tanggal '.'</th>';
+				$content .= '<td colspan="2">'.date('d-m-Y',strtotime($row['created'])).'</td>';
+				$content .= '</tr><tr style="border-bottom: 1px solid black">';
+				$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Keterangan '.'</th>';
+				$content .= '<td  colspan="2">'.$row['description'].'</td>';
+				$content .= '</tr><tr style="border-bottom: 1px solid black">';
+				$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah yang harus dibayar bulan ini '.'</th>';
+				$content .= '<td  colspan="2">'.$row['amount'].'</td>';
+				$content .= '</tr><hr>';
+				$total+=$row['amount'];
+			}
+
+
+
+			$to = 'irpanwinata@gmail.com';
 		
-	
+			$linkcoy = base_url();
+			
+			$message = <<<EOD
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+			
+			<table class="table" style="width:100%; height:100%;">
+				<tr>
+					<td colspan="5" style="background:#34495e; padding:2em 1em 1em 1em;">
+						<p align="center"></p>
+					</td>
+				</tr>
+				
+				{$content}
+				
+				
+			</table>
+EOD;
+
+			$headers = 'Content-type: text/html; charset=utf-8' . "\r\n";
+			$headers .= 'From: ordering@ezpzdelivery.co.nz' . "\r\n" .
+						'Reply-To: contact@ezpzdelivery.co.nz' . "\r\n" .
+						'X-Mailer: PHP/' . phpversion();
+			// $total_transactions = mysql_query("SELECT SUM(weight)".
+			// 				"FROM transactions".
+			// 				"WHERE month = date('F') AND type = 'gold' ");
+
+			if(!mail($to, $subject, $message, $headers))
+			{
+				echo "failed";
+			}else
+			{
+				echo "sukses";
+			}
+		
+			}
+			echo $content;
+
+		if(count($data_prabayar) > 0){
+			$subject = "Reminder Pembayaran untuk Besok";
+		}
+
+
 	}
 
 }
