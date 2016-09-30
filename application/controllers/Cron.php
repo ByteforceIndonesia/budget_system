@@ -38,7 +38,7 @@ class Cron extends CI_Controller {
 
 			print_r($month);
 
-			echo date('d',strtotime($month['due']));
+			echo date('Y-m-d',strtotime($month['due'] ." + 1 day")) ;
 		};
 
 		while($row = mysqli_fetch_array($all_transaction,MYSQLI_ASSOC)){
