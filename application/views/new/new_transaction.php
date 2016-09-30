@@ -91,6 +91,7 @@
 			$('#mulaiCicilan').empty();
 			$('#mulaiCicilan').append('Mulai Cicilan');
 			$('#durasiCicilan').show();
+			$('#total').show();
 			$('#gold').empty();
 			$('#start_payment').attr('required','required');
 		}
