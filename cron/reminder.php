@@ -127,7 +127,7 @@ EOD;
 			$total = 0;
 			$content = '<tr><td colspan="5"><h4>Detail Pembayaran untuk tanggal '.date('d-M-Y',strtotime("+ 1 day")).'</h4></td></tr>';
 
-			foreach($data as $row){
+			foreach($data_prabayar as $row){
 				$content .= '<tr style="border: 1px solid black;">';
 				$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Pembelian Tanggal '.'</th>';
 				$content .= '<td colspan="2">'.date('d-m-Y',strtotime($row['created'])).'</td>';
