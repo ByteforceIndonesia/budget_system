@@ -7,8 +7,15 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
 				<div class="month-picker row">
-					<div class="col-md-8">
-						
+					
+
+				<h1 class="title" align="center">Seluruh Cicilan Bulan <?php echo $month ?> </h1>
+				
+				<div class="col-md-8">
+						<div class="form-group" style="margin-bottom: 20px">
+					<label for="">Search :</label>
+					<input type="text" class="form-control" id="filter" style="width: 50%">
+				</div>	
 					</div>
 					<div class="col-md-4 month-pick">
 						<div class="input-group date pull-right" id="datepicker" data-date="<?php echo date('Y-m') ?>" data-date-format="yyyy-mm">
@@ -17,13 +24,7 @@
 					    </div>
 					</div>
 				</div>
-
-				<h1 class="title" align="center">Seluruh Cicilan Bulan <?php echo $month ?> </h1>
-				<div class="form-group" style="margin-bottom: 20px">
-					<label for="">Search :</label>
-					<input type="text" class="form-control" id="filter" style="width: 25%">
-				</div>
-				<h1>Diamond</h1>
+				<h1 style="margin-top: 10px;">Diamond</h1>
 				<div class="table-responsive toggle-circle-filled">
 	        		<table class="table table-condensed" data-filter="#filter" data-page-size="10" id="table_diamond">
 						<thead>

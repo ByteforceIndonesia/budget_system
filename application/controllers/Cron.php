@@ -35,7 +35,7 @@ class Cron extends CI_Controller {
 		$monthly_limit = mysqli_query($connection,"SELECT *
                         FROM monthly_limit WHERE month = '$this_month' ");
 
-		$transactions = mysqli_query($connection, "SELECT installments.*,transactions.description,transactions.created,transactions.spanning_month, transactions.amount AS total_amount FROM installments INNER JOIN transactions
+		$transactions = mysqli_query($connection, "SELECT installments.*,transactions.description,transactions.weight,transactions.created,transactions.spanning_month,transactions.gold_price,transactions.type, transactions.amount AS total_amount FROM installments INNER JOIN transactions
 			ON installments.transaction_id=transactions.id");
 		echo"<pre>";
 
@@ -65,9 +65,10 @@ class Cron extends CI_Controller {
 		echo "</pre>";
 
 		if(count($data) > 0){
-			$total = 0;
+			$total_diamond = 0;
+			$total_gold =0;
 			$subject = "Reminder Pembayaran Hari Ini";
-			$content = '<tr><td colspan="5"><h4>Detail Pembayaran</h4></td></tr>';
+			$content = '<tr><td colspan="5"><h4>Detail Pembayaran untuk tanggal '.date('d-M-Y').'</h4></td></tr>';
 
 			foreach($data as $row){
 				$content .= '<tr style="border: 1px solid black;">';
@@ -76,13 +77,38 @@ class Cron extends CI_Controller {
 				$content .= '</tr><tr style="border-bottom: 1px solid black">';
 				$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Keterangan '.'</th>';
 				$content .= '<td  colspan="2">'.$row['description'].'</td>';
-				$content .= '</tr><tr style="border-bottom: 1px solid black">';
-				$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah yang harus dibayar bulan ini '.'</th>';
-				$content .= '<td  colspan="2">'.$row['amount'].'</td>';
-				$content .= '</tr><hr>';
-				$total+=$row['amount'];
-			}
+				$content .= '</tr><tr>';
+				if($row['type'] == 'diamond'){
 
+					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah yang harus dibayar bulan ini '.'</th>';
+					$content .= '<td  colspan="2">$ '.number_format($row['amount'],2).'</td>';
+					$total_diamond +=$row['amount'];
+				}else{
+
+					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah Emas(gr) '.'</th>';
+					$content .= '<td  colspan="2">'.$row['weight'].'gr</td>';
+
+					$content .= '</tr><tr>';
+					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Harga Emas / gr '.'</th>';
+					$content .= '<td  colspan="2">Rp. '.number_format($row['gold_price'],2,',','.').' / gr</td>';
+					$content .= '</tr><tr>';
+					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah yang harus dibayar bulan ini '.'</th>';
+					$content .= '<td  colspan="2">Rp. '.number_format($row['amount'],2,',','.').'</td>';
+					
+					$total_gold +=$row['amount'];
+				}
+				$content .= '</tr><tr><td colspan="5"><hr></td></tr>';
+			
+			}
+			$content .= '<tr>';
+			$content .= '<th colspan="5"><h3>Total Pembayaran Hari ini </h3></th>';
+			$content .= '</tr><tr>';
+			$content .= '<th colspan="3" style="text-align:left">Diamond</th>';
+			$content .= '<td  colspan="2">$ '.number_format($total_diamond,2).'</td>';
+			$content .= '</tr><tr>';
+			$content .= '<th colspan="3" style="text-align:left">Emas</th>';
+			$content .= '<td  colspan="2">Rp. '.number_format($total_gold,2,',','.').'</td>';
+			$content .= '</tr>';
 
 
 			$to = 'irpanwinata@gmail.com';
@@ -95,8 +121,8 @@ class Cron extends CI_Controller {
 			
 			<table class="table" style="width:100%; height:100%;">
 				<tr>
-					<td colspan="5" style="background:#34495e; padding:2em 1em 1em 1em;">
-						<p align="center"></p>
+					<td colspan="5" style="background:#34495e;color:white; padding:2em 1em 1em 1em;">
+						<p align="center">Grand Saerah Reminder</p>
 					</td>
 				</tr>
 				
@@ -114,19 +140,88 @@ EOD;
 			// 				"FROM transactions".
 			// 				"WHERE month = date('F') AND type = 'gold' ");
 
-			if(!mail($to, $subject, $message, $headers))
-			{
-				echo "failed";
-			}else
-			{
-				echo "sukses";
-			}
-		
-			}
-			echo $content;
+			mail($to, $subject, $message, $headers);
+			
+		}
+			
 
 		if(count($data_prabayar) > 0){
-			$subject = "Reminder Pembayaran untuk Besok";
+			$subject = "Reminder Pembayaran untuk Tanggal ".date('d-M-Y',strtotime("+ 1 day"));
+
+			$total = 0;
+			$content = '<tr><td colspan="5"><h4>Detail Pembayaran untuk tanggal '.date('d-M-Y',strtotime("+ 1 day")).'</h4></td></tr>';
+
+			foreach($data as $row){
+				$content .= '<tr style="border: 1px solid black;">';
+				$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Pembelian Tanggal '.'</th>';
+				$content .= '<td colspan="2">'.date('d-m-Y',strtotime($row['created'])).'</td>';
+				$content .= '</tr><tr style="border-bottom: 1px solid black">';
+				$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Keterangan '.'</th>';
+				$content .= '<td  colspan="2">'.$row['description'].'</td>';
+				$content .= '</tr><tr>';
+				if($row['type'] == 'diamond'){
+
+					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah yang harus dibayar bulan ini '.'</th>';
+					$content .= '<td  colspan="2">$ '.number_format($row['amount'],2).'</td>';
+					$total_diamond +=$row['amount'];
+				}else{
+
+					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah Emas(gr) '.'</th>';
+					$content .= '<td  colspan="2">'.$row['weight'].'gr</td>';
+
+					$content .= '</tr><tr>';
+					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Harga Emas / gr '.'</th>';
+					$content .= '<td  colspan="2">Rp. '.number_format($row['gold_price'],2,',','.').' / gr</td>';
+					$content .= '</tr><tr>';
+					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah yang harus dibayar bulan ini '.'</th>';
+					$content .= '<td  colspan="2">Rp. '.number_format($row['amount'],2,',','.').'</td>';
+					
+					$total_gold +=$row['amount'];
+				}
+				$content .= '</tr><tr><td colspan="5"><hr></td></tr>';
+			
+			}
+			$content .= '<tr>';
+			$content .= '<th colspan="5"><h3>Total Pembayaran Hari ini </h3></th>';
+			$content .= '</tr><tr>';
+			$content .= '<th colspan="3" style="text-align:left">Diamond</th>';
+			$content .= '<td  colspan="2">$ '.number_format($total_diamond,2).'</td>';
+			$content .= '</tr><tr>';
+			$content .= '<th colspan="3" style="text-align:left">Emas</th>';
+			$content .= '<td  colspan="2">Rp. '.number_format($total_gold,2,',','.').'</td>';
+			$content .= '</tr>';
+
+
+			$to = 'irpanwinata@gmail.com';
+		
+			$linkcoy = base_url();
+			
+			$message = <<<EOD
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+			
+			<table class="table" style="width:100%; height:100%;">
+				<tr>
+					<td colspan="5" style="background:#34495e;color:white; padding:2em 1em 1em 1em;">
+						<p align="center">Grand Saerah Reminder</p>
+					</td>
+				</tr>
+				
+				{$content}
+				
+				
+			</table>
+EOD;
+
+			$headers = 'Content-type: text/html; charset=utf-8' . "\r\n";
+			$headers .= 'From: ordering@ezpzdelivery.co.nz' . "\r\n" .
+						'Reply-To: contact@ezpzdelivery.co.nz' . "\r\n" .
+						'X-Mailer: PHP/' . phpversion();
+			// $total_transactions = mysql_query("SELECT SUM(weight)".
+			// 				"FROM transactions".
+			// 				"WHERE month = date('F') AND type = 'gold' ");
+
+			mail($to, $subject, $message, $headers);
 		}
 
 
