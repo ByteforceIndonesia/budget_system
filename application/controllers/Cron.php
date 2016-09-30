@@ -129,7 +129,14 @@ EOD;
 			$subject = "Reminder Pembayaran untuk Besok";
 		}
 
+		echo $this->Dollar(5000);
+
+		
 
 	}
+
+	function Dollar($number){
+			return '$ '.number_format($number,2);
+		}
 
 }

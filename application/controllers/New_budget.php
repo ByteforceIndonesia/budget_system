@@ -206,7 +206,6 @@ class New_budget extends CI_Controller {
 
 			if($this->budget_model->insert_transaction($type, $amount, $spanning, $start, $gold_price, $gold_weight, $description))
 			{
-				
 
 				$this->session->set_flashdata('success', 'New ' . $type . ' Transaction For ' . $month . ' ' . date('Y') . ' Have Been Created!');
 				redirect('main');

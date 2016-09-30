@@ -31,6 +31,27 @@
 						</tr>
 					</table>
 				<?php echo form_close() ?>
+
+
+				<h1 class="title" align="center">Ubah Email</h1>
+				<?php echo form_open('accounts/change_email') ?>
+					<table class="table">
+
+						<tr class="form-group">
+							<td style="width: 30%"><span class="form-label">Masukkan Email Baru</span></td>
+							<td >
+								<input type="email" name="email" id="email" onkeyup="check_email()" placeholder="Email Baru" class="form-control" required>
+								<span id="notif1"></span>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<input type="submit" id="change_email" class="btn btn-default pull-right" value="Ubah Email" disabled>
+							</td>
+						</tr>
+					</table>
+				<?php echo form_close() ?>
+
 			</div>
 			<div class="col-md-2"></div>
 		</div>
@@ -61,6 +82,14 @@
 			$('#change_pass').attr('disabled','disabled');
 		}else{
 			$('#change_pass').removeAttr('disabled');
+		}
+	}
+
+	function check_email(){
+		if($('#email').val() == ''){
+			$('#change_email').attr('disabled','disabled');
+		}else{
+			$('#change_email').removeAttr('disabled');
 		}
 	}
 </script>
