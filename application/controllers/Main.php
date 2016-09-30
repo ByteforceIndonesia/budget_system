@@ -133,6 +133,7 @@ class Main extends CI_Controller {
 
 	}
 
+
 	public function setting_timer(){
 
 		if($this->input->post()){
@@ -152,4 +153,5 @@ class Main extends CI_Controller {
 
 		
 	}
+
 }

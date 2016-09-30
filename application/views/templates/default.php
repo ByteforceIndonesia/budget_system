@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/sweetalert.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/datepicker.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/wickedpicker.css">
 
     
     <script src="<?php echo base_url() ?>js/footable.js"></script>
@@ -37,6 +38,14 @@
     <script src="<?php echo base_url() ?>js/script.js"></script>
   
     <style>
+    @media only screen and (max-device-width: 440px)
+    {
+      #openMenu{
+        margin-left: 2em !important;
+        margin-top: 6em !important;
+      }
+    }
+
       /* footable */
     .footable{
       background :white !important;
