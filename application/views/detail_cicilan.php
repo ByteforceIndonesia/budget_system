@@ -46,7 +46,12 @@
 									<td><?php echo date('d-m-Y',strtotime($one->created)) ?></td>
 									<td><?php echo $one->description ?></td>
 									<td><?php echo date('d-m-Y',strtotime($one->due)) ?></td>
-									<td><?php echo NZD($one->amount) ?></td>
+									<?php if ($one->type == 'diamond'): ?>
+										<td><?php echo NZD($one->amount) ?></td>
+									<?php else: ?>
+										<td><?php echo rupiah($one->amount) ?></td>
+									<?php endif; ?>
+									
 							 		
 								</tr>
 							<?php $i++; endforeach; ?>

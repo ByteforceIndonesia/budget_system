@@ -219,10 +219,13 @@ class Budget_model extends CI_Model {
 	}
 
 	public function getTotalTransCicilan ($type, $month)
-	{
-		$this->db->select_sum('amount');
+	{	
+		$this->db->select('transactions.type,installments.*,transactions.amount AS total');
+		$this->db->select_sum('installments.amount');
 		$this->db->from('installments');
-		$this->db->where("due LIKE '$month%'");
+		$this->db->join('transactions','transactions.id = installments.transaction_id');
+		$this->db->where("installments.due LIKE '$month%'");
+		$this->db->where('transactions.type',$type);
 		$total = $this->db->get()->row('amount');
 		
 		if($total){

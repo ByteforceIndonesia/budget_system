@@ -12,9 +12,8 @@
     <link href="<?php echo base_url() ?>css/footable.core.css" type="text/css" rel="stylesheet">
     <link href="<?php echo base_url() ?>css/footable.metro.min.css" type="text/css" rel="stylesheet">
     <link href="<?php echo base_url() ?>css/wickedpicker.css" type="text/css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="<?php echo base_url() ?>js/jquery-1.12.4.min.js"></script>
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
-
     <!-- CSS and Javascript -->
     <link rel="stylesheet" href="<?php echo base_url() ?>css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/sweetalert.css">
@@ -96,7 +95,7 @@
         <a href="<?php echo base_url('main/detail_cicilan/') ?>"><div class="icon-navbar"><i class="fa fa-dollar" aria-hidden="true"></i></div><span class="menu-text">Lihat Detail Cicilan Bulanan</span></a>
         <a href="<?php echo base_url('main/all_transactions/') ?>"><div class="icon-navbar"><i class="fa fa-dollar" aria-hidden="true"></i></div><span class="menu-text">Detail Transaksi Bulanan</span></a> 
         <a href="<?php echo base_url('main/year_overview') ?>"><div class="icon-navbar"><i class="fa fa-bar-chart" aria-hidden="true"></i></div><span class="menu-text">Laporan Limit Tahunan</span></a>
-        <a href="<?php echo base_url('accounts/change_password') ?>"><div class="icon-navbar"><i class="fa fa-cogs" aria-hidden="true"></i></div><span class="menu-text">Ubah Password</span></a>
+        <a href="<?php echo base_url('accounts/change_password') ?>"><div class="icon-navbar"><i class="fa fa-cogs" aria-hidden="true"></i></div><span class="menu-text">Pengaturan</span></a>
         <a href="<?php echo base_url('main/setting_timer') ?>"><div class="icon-navbar"><i class="fa fa-clock-o" aria-hidden="true"></i></div><span class="menu-text">Atur Jam</span></a>
         <a href="<?php echo base_url('accounts/logout') ?>"><div class="icon-navbar"><i class="fa fa-power-off" aria-hidden="true"></i></div><span class="menu-text">Logout</span></a>
         

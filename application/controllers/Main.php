@@ -26,6 +26,7 @@ class Main extends CI_Controller {
 		$data['trans_diamond']	= (!$this->budget_model->getTotalTrans('diamond', date('F'),date('Y')))? 0 : $this->budget_model->getTotalTrans('diamond', date('F'),date('Y'));
 
 		$data['trans_cicilan'] = (!$this->budget_model->getTotalTransCicilan('diamond', date('Y-m')))? 0 : $this->budget_model->getTotalTransCicilan('diamond', date('Y-m'));
+		$data['trans_emas'] = (!$this->budget_model->getTotalTransCicilan('gold', date('Y-m')))? 0 : $this->budget_model->getTotalTransCicilan('gold', date('Y-m'));
 
 		$data['ratio_gold'] 	= $data['trans_gold']/$data['gold'];
 		$data['ratio_diamond'] 	= $data['trans_diamond']/$data['diamond'];
@@ -123,7 +124,7 @@ class Main extends CI_Controller {
 
 		$data['title'] = "Detail Cicilan";
 
-		$this->db->select('installments.*,transactions.month,transactions.year,transactions.created,transactions.description');
+		$this->db->select('installments.*,transactions.month,transactions.year,transactions.created,transactions.description,transactions.type');
 		$this->db->from('transactions');
 		$this->db->join('installments','installments.transaction_id = transactions.id');
 		$this->db->where("installments.due LIKE '$month%'");
