@@ -50,7 +50,7 @@ class Main extends CI_Controller {
 		$data['trans_gold']		= (!$this->budget_model->getTotalTrans('gold', $month, $date[1]))? 0 : $this->budget_model->getTotalTrans('gold', $month,$date[1]);
 		$data['trans_diamond']	= (!$this->budget_model->getTotalTrans('diamond', $month, $date[1]))? 0 : $this->budget_model->getTotalTrans('diamond', $month,$date[1]);
 		$data['trans_cicilan'] = (!$this->budget_model->getTotalTransCicilan('diamond', date('Y-m',strtotime($date[1].'-'.$date[0]))))? 0 : $this->budget_model->getTotalTransCicilan('diamond', date('Y-m',strtotime($date[1].'-'.$date[0])));
-
+		$data['trans_emas'] = (!$this->budget_model->getTotalTransCicilan('gold', date('Y-m',strtotime($date[1].'-'.$date[0]))))? 0 : $this->budget_model->getTotalTransCicilan('gold', date('Y-m',strtotime($date[1].'-'.$date[0])));
 		$data['ratio_gold'] 	= $data['trans_gold']/$data['gold'];
 		$data['ratio_diamond'] 	= $data['trans_diamond']/$data['diamond'];
 
