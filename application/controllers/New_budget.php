@@ -109,7 +109,7 @@ class New_budget extends CI_Controller {
 				}
 			}else
 			{
-				$this->session->set_flashdata('failed', 'Edit ' . $type . ' Budget For ' . $month . ' ' . $year . ' Have Been Failed!');
+				$this->session->set_flashdata('failed', 'Edit Limit' . $type . ' untuk Bulan ' . $month . ' ' . $year . ' Gagal !');
 				redirect('new_budget/monthly');
 			}
 		}else
@@ -188,7 +188,7 @@ class New_budget extends CI_Controller {
 				{
 					if($gold_weight+$trans_gold > $gold)
 					{
-						$this->session->set_flashdata('failed', 'Failed Creating ' . $type . ' Transaction For ' . $month . ' ' . date('Y') . ', You Have Execced Your Monthly Limit!');
+						$this->session->set_flashdata('failed', 'Gagal Menambahkan Transaksi ' . $type . ' Untuk Bulan ' . date('F') . ' ' . date('Y') . ', Limit Tidak Cukup !');
 						redirect('main');
 					}
 				}break;
@@ -198,7 +198,7 @@ class New_budget extends CI_Controller {
 					
 					if($amount+$trans_diamond > $diamond)
 					{
-						$this->session->set_flashdata('failed', 'Limit anda tidak mencukupi untuk melakukan transaksi');
+						$this->session->set_flashdata('failed', 'Gagal Menambahkan Transaksi ' . $type . ' Untuk Bulan ' . date('F') . ' ' . date('Y') . ', Limit Tidak Cukup !');
 						redirect('main');
 					}
 				}break;
@@ -207,11 +207,11 @@ class New_budget extends CI_Controller {
 			if($this->budget_model->insert_transaction($type, $amount, $spanning, $start, $gold_price, $gold_weight, $description))
 			{
 
-				$this->session->set_flashdata('success', 'New ' . $type . ' Transaction For ' . $month . ' ' . date('Y') . ' Have Been Created!');
+				$this->session->set_flashdata('success', 'Transaksi ' . $type . ' Untuk Bulan ' . date('F') . ' ' . date('Y') . ' Berhasil dibuat !');
 				redirect('main');
 			}else
 			{
-				$this->session->set_flashdata('failed', 'Failed Creating ' . $type . ' Transaction For ' . $month . ' ' . date('Y') . '!');
+				$this->session->set_flashdata('failed', 'Gagal Membuat Transaksi !');
 				redirect('main');
 			}
 
