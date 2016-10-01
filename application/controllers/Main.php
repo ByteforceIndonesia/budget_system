@@ -113,7 +113,10 @@ class Main extends CI_Controller {
 		redirect('main/all_transactions');
 	}
 
-	public function detail_cicilan($month = ''){
+	public function detail_cicilan($month = '',$type = ''){
+		if($type == ''){
+			$type = 'gold';
+		}
 		if($month == ''){
 			$month = date('Y-m');
 			$data['month'] = date('F');
@@ -123,11 +126,12 @@ class Main extends CI_Controller {
 		}
 
 		$data['title'] = "Detail Cicilan";
-
+		$data['type'] = $type;
 		$this->db->select('installments.*,transactions.month,transactions.year,transactions.created,transactions.description,transactions.type');
 		$this->db->from('transactions');
 		$this->db->join('installments','installments.transaction_id = transactions.id');
 		$this->db->where("installments.due LIKE '$month%'");
+		$this->db->where("transactions.type", $type);
 		$data['installments'] = $this->db->get()->result();
 		
 		$this->template->load('default', 'detail_cicilan', $data);
@@ -155,6 +159,31 @@ class Main extends CI_Controller {
 		}
 
 		
+	}
+
+	public function cicilan_tahunan($type = '',$year = ''){
+		if($type == ''){
+			$type = 'gold';
+		}
+		if($year==''){
+			$year = date('Y');
+			$data['year'] = date('Y');
+		}else{
+			$data['year'] = $year;
+		}
+
+		$data['title'] = 'Overview Tahunan';
+
+		$cicilan = array();
+		$month = date('m',strtotime($year.'-01'));
+		for($i = $month; $i <= 12; $i++){
+			$amount = (!$this->budget_model->getTotalTransCicilan($type, date('Y-m',strtotime($year.'-'.$i))))? 0 : $this->budget_model->getTotalTransCicilan($type, date('Y-m',strtotime($year.'-'.$i)));
+			array_push($cicilan,$amount);
+		}	
+		$data['type'] = $type;
+		$data['cicilan'] = $cicilan;
+
+		$this->template->load('default','cicilan_tahunan',$data);
 	}
 
 }

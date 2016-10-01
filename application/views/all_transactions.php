@@ -1,21 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<!-- Data Tables -->
-<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jqc-1.12.3/dt-1.10.12/af-2.1.2/b-1.2.2/b-print-1.2.2/cr-1.3.2/kt-2.1.3/r-2.1.0/datatables.min.css"/>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs/jqc-1.12.3/dt-1.10.12/af-2.1.2/b-1.2.2/b-print-1.2.2/cr-1.3.2/kt-2.1.3/r-2.1.0/datatables.min.js"></script>
-<script>
-
-$(document).ready( function () {
-    $('#table_gold').DataTable();
-} );
-
-$(document).ready( function () {
-    $('#table_diamond').DataTable();
-} );
-
-</script>
- -->
-
 
 <section id="content">
 	<div class="container">

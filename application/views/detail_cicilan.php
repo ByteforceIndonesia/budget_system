@@ -79,7 +79,7 @@
 $(document).ready(function(){
 	$('#datepicker').on("changeDate", function(){
 		window.setTimeout(function(){
-			window.location.replace("<?php echo base_url('main/detail_cicilan') ?>/"+$('#datepick').val());
+			window.location.replace("<?php echo base_url('main/detail_cicilan') ?>/"+$('#datepick').val()+ "/" + "<?php echo $type ?>");
 		}, 50 );
 	});
 });
