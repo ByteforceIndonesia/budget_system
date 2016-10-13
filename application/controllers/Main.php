@@ -2,6 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Main extends CI_Controller {
+	private $emaslm;
+	private $emas24;
+	private $dollar;
 
 	function __construct ()
 	{
@@ -11,6 +14,7 @@ class Main extends CI_Controller {
 		{
 			redirect('accounts');
 		}
+
 	}
 
 	public function index()

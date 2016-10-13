@@ -2,7 +2,7 @@
 	$servername = "localhost";
 	  $username = "gethasse_saerah";
 	  $password = "Mhbl2016";
-	  $dbname = "gethasse_saerah";
+	  $dbname = "gethasse_grandsaerah";
 
 	  $connection = mysqli_connect(
 	                $servername,

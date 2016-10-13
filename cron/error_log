@@ -1,0 +1,13 @@
+[30-Sep-2016 09:08:02 UTC] PHP Warning:  mysqli_connect(): (42000/1044): Access denied for user 'gethasse_saerah'@'localhost' to database 'gethasse_saerah' in /home/gethasse/public_html/grandsaerah/application/libraries/config.php on line 12
+[30-Sep-2016 09:08:02 UTC] PHP Fatal error:  Call to undefined function mysqli_conect_error() in /home/gethasse/public_html/grandsaerah/application/libraries/config.php on line 15
+[30-Sep-2016 09:09:01 UTC] PHP Warning:  mysqli_connect(): (42000/1044): Access denied for user 'gethasse_saerah'@'localhost' to database 'gethasse_saerah' in /home/gethasse/public_html/grandsaerah/application/libraries/config.php on line 12
+[30-Sep-2016 09:09:01 UTC] PHP Fatal error:  Call to undefined function mysqli_conect_error() in /home/gethasse/public_html/grandsaerah/application/libraries/config.php on line 15
+[30-Sep-2016 09:10:02 UTC] PHP Warning:  mysqli_connect(): (42000/1044): Access denied for user 'gethasse_saerah'@'localhost' to database 'gethasse_saerah' in /home/gethasse/public_html/grandsaerah/application/libraries/config.php on line 12
+[30-Sep-2016 09:10:02 UTC] PHP Fatal error:  Call to undefined function mysqli_conect_error() in /home/gethasse/public_html/grandsaerah/application/libraries/config.php on line 15
+[30-Sep-2016 16:15:01 Asia/Jakarta] PHP Fatal error:  Call to undefined function base_url() in /home/gethasse/public_html/grandsaerah/cron/reminder.php on line 92
+[30-Sep-2016 16:30:01 Asia/Jakarta] PHP Fatal error:  Call to undefined function base_url() in /home/gethasse/public_html/grandsaerah/cron/reminder.php on line 92
+[30-Sep-2016 09:32:01 UTC] PHP Warning:  mysqli_connect(): (42000/1044): Access denied for user 'gethasse_saerah'@'localhost' to database 'gethasse_saerah' in /home/gethasse/public_html/grandsaerah/cron/config.php on line 12
+[30-Sep-2016 09:32:01 UTC] PHP Fatal error:  Call to undefined function mysqli_conect_error() in /home/gethasse/public_html/grandsaerah/cron/config.php on line 15
+[30-Sep-2016 16:34:01 Asia/Jakarta] PHP Fatal error:  Call to undefined function base_url() in /home/gethasse/public_html/grandsaerah/cron/reminder.php on line 92
+[06-Oct-2016 12:14:01 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2 &quot;No such file or directory&quot;) in /home/gethasse/public_html/grandsaerah/application/libraries/config.php on line 12
+[06-Oct-2016 12:14:02 UTC] PHP Fatal error:  Call to undefined function mysqli_conect_error() in /home/gethasse/public_html/grandsaerah/application/libraries/config.php on line 15

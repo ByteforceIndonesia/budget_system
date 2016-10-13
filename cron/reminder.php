@@ -89,7 +89,7 @@
 
 			$to = $user['email'];
 		
-			$linkcoy = base_url();
+			
 			
 			$message = <<<EOD
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -98,7 +98,7 @@
 			<table class="table" style="width:100%; height:100%;">
 				<tr>
 					<td colspan="5" style="background:#34495e;color:white; padding:2em 1em 1em 1em;">
-						<p align="center">Grand Saerah Reminder</p>
+						<p align="center"><img src ="http://grandsaerah.gethassee.com/img/logo.png" width="200"></p>
 					</td>
 				</tr>
 				
@@ -109,8 +109,8 @@
 EOD;
 
 			$headers = 'Content-type: text/html; charset=utf-8' . "\r\n";
-			$headers .= 'From: ordering@ezpzdelivery.co.nz' . "\r\n" .
-						'Reply-To: contact@ezpzdelivery.co.nz' . "\r\n" .
+			$headers .= 'From: Grand Saerah Reminder <reminder@gethassee.com> '. "\r\n" .
+						'Reply-To: office@gethassee.com' . "\r\n" .
 						'X-Mailer: PHP/' . phpversion();
 			// $total_transactions = mysql_query("SELECT SUM(weight)".
 			// 				"FROM transactions".
@@ -123,8 +123,8 @@ EOD;
 
 		if(count($data_prabayar) > 0){
 			$subject = "Reminder Pembayaran untuk Tanggal ".date('d-M-Y',strtotime("+ 1 day"));
-
-			$total = 0;
+			$total_diamond = 0;
+			$total_gold =0;
 			$content = '<tr><td colspan="5"><h4>Detail Pembayaran untuk tanggal '.date('d-M-Y',strtotime("+ 1 day")).'</h4></td></tr>';
 
 			foreach($data_prabayar as $row){
@@ -170,7 +170,6 @@ EOD;
 
 			$to = $user['email'];
 		
-			$linkcoy = base_url();
 			
 			$message = <<<EOD
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -179,7 +178,7 @@ EOD;
 			<table class="table" style="width:100%; height:100%;">
 				<tr>
 					<td colspan="5" style="background:#34495e;color:white; padding:2em 1em 1em 1em;">
-						<p align="center">Grand Saerah Reminder</p>
+						<p align="center"><img src ="http://grandsaerah.gethassee.com/img/logo.png" width="200"></p>
 					</td>
 				</tr>
 				
@@ -190,8 +189,8 @@ EOD;
 EOD;
 
 			$headers = 'Content-type: text/html; charset=utf-8' . "\r\n";
-			$headers .= 'From: ordering@ezpzdelivery.co.nz' . "\r\n" .
-						'Reply-To: contact@ezpzdelivery.co.nz' . "\r\n" .
+			$headers .= 'From: Grand Saerah Reminder <reminder@gethassee.com>' . "\r\n" .
+						'Reply-To: office@gethassee.com' . "\r\n" .
 						'X-Mailer: PHP/' . phpversion();
 			// $total_transactions = mysql_query("SELECT SUM(weight)".
 			// 				"FROM transactions".
