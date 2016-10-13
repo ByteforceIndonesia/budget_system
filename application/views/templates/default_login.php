@@ -58,8 +58,8 @@
         color: #000;
       }
       .btn-default.active, .btn-default.focus, .btn-default:active, .btn-default:focus, .btn-default:hover, .open>.dropdown-toggle.btn-default {
-          color: #000;
-          background: rgba(44, 62, 80,0.6);
+          color: #fff;
+          background: #948a6a;
           border-color: #ccc;
           -webkit-transition: all 0.3s ease-in;
           -moz-transition: all 0.3s ease-in;
