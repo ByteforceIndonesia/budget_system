@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2016 at 03:19 AM
+-- Generation Time: Oct 13, 2016 at 01:10 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -40,7 +40,21 @@ CREATE TABLE `configuration` (
 --
 
 INSERT INTO `configuration` (`id`, `day-1`, `day`, `emas_lm`, `emas_24`, `dollar`) VALUES
-(1, '14:46:00', '15:16:00', 550000, 0, 0);
+(1, '18:06:00', '18:06:00', 550000, 500000, 13908);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `history`
+--
+
+CREATE TABLE `history` (
+  `id` int(11) NOT NULL,
+  `emas_lm` double DEFAULT NULL,
+  `emas_24` double DEFAULT NULL,
+  `dollar` double DEFAULT NULL,
+  `created` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -54,49 +68,6 @@ CREATE TABLE `installments` (
   `due` date NOT NULL,
   `amount` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `installments`
---
-
-INSERT INTO `installments` (`id`, `transaction_id`, `due`, `amount`) VALUES
-(26, 66, '2016-11-22', 2000),
-(27, 66, '2016-12-22', 2000),
-(28, 66, '2017-01-22', 2000),
-(29, 66, '2017-02-22', 2000),
-(30, 66, '2017-03-22', 2000),
-(31, 67, '2016-09-22', 8580.75),
-(32, 67, '2016-10-22', 8580.75),
-(33, 67, '2016-11-22', 8580.75),
-(34, 67, '2016-12-22', 8580.75),
-(42, 74, '2016-09-30', 4000),
-(43, 75, '2016-09-30', 20000),
-(44, 75, '2016-10-30', 20000),
-(45, 75, '2016-11-30', 20000),
-(46, 75, '2016-12-30', 20000),
-(47, 75, '2017-01-30', 20000),
-(48, 76, '2016-10-01', 3833.3333333333),
-(49, 76, '2016-11-01', 3833.3333333333),
-(50, 76, '2016-12-01', 3833.3333333333),
-(51, 76, '2017-01-01', 3833.3333333333),
-(52, 76, '2017-02-01', 3833.3333333333),
-(53, 76, '2017-03-01', 3833.3333333333),
-(54, 77, '2016-10-01', 50000),
-(55, 77, '2016-11-01', 50000),
-(56, 77, '2016-12-01', 50000),
-(57, 77, '2017-01-01', 50000),
-(58, 77, '2017-02-01', 50000),
-(59, 78, '2016-09-30', 40000000),
-(60, 79, '2016-11-20', 1000000000),
-(61, 80, '2017-04-24', 10000),
-(62, 80, '2017-05-24', 10000),
-(63, 80, '2017-06-24', 10000),
-(64, 80, '2017-07-24', 10000),
-(65, 81, '2017-01-01', 400),
-(66, 81, '2017-02-01', 400),
-(67, 81, '2017-03-01', 400),
-(68, 81, '2017-04-01', 400),
-(69, 81, '2017-05-01', 400);
 
 -- --------------------------------------------------------
 
@@ -114,29 +85,6 @@ CREATE TABLE `monthly_limit` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `monthly_limit`
---
-
-INSERT INTO `monthly_limit` (`id`, `month`, `year`, `limit_transaction`, `transaction_id`, `type`, `created`) VALUES
-(1, 'september', '2016', 10000, '#78#79', 'gold', '2016-09-13 13:55:57'),
-(2, 'september', '2016', 600000, '#66#67#74#75#76#77', 'diamond', '2016-09-13 13:58:08'),
-(4, 'october', '2016', 100000, '#80#81', 'diamond', '2016-09-14 03:57:14'),
-(5, 'october', '2016', 100000, NULL, 'gold', '2016-09-14 04:00:00'),
-(6, 'february', '2016', 1500, NULL, 'gold', '2016-09-14 14:48:54'),
-(7, 'november', '2016', 123000, NULL, 'gold', '2016-09-15 02:31:30'),
-(8, 'january', '2018', 10000, NULL, 'gold', '2016-09-16 01:05:23'),
-(9, 'may', '2016', 1000, NULL, 'gold', '2016-09-26 03:36:35'),
-(10, 'july', '2016', 1000, NULL, 'gold', '2016-09-26 03:37:08'),
-(11, 'january', '2016', 20000, NULL, 'gold', '2016-09-28 02:02:42'),
-(12, 'april', '2016', 12345, NULL, 'gold', '2016-09-28 07:53:00'),
-(13, 'april', '2016', 6786, NULL, 'diamond', '2016-09-28 07:53:44'),
-(14, 'january', '2025', 123, NULL, 'diamond', '2016-09-29 08:31:04'),
-(15, 'february', '2016', 12345, NULL, 'diamond', '2016-09-29 01:55:06'),
-(16, 'december', '2016', 9000, NULL, 'diamond', '2016-09-29 01:57:14'),
-(17, 'january', '2016', 123123, NULL, 'diamond', '2016-09-29 08:58:43'),
-(18, 'december', '2016', 80, NULL, 'gold', '2016-09-29 03:57:31');
-
 -- --------------------------------------------------------
 
 --
@@ -150,17 +98,31 @@ CREATE TABLE `monthly_limit_cicilan` (
   `amount` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `monthly_limit_cicilan`
+-- Table structure for table `notes`
 --
 
-INSERT INTO `monthly_limit_cicilan` (`id`, `month`, `year`, `amount`) VALUES
-(1, 'january', 2016, 1000),
-(2, 'september', 2016, 100000),
-(3, 'october', 2016, 999999),
-(4, 'january', 2017, 2000000),
-(5, 'april', 2016, 123),
-(6, 'november', 2016, 50000);
+CREATE TABLE `notes` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `created` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supplier`
+--
+
+CREATE TABLE `supplier` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `address` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -179,24 +141,10 @@ CREATE TABLE `transactions` (
   `weight` float DEFAULT NULL,
   `description` text,
   `type` enum('gold','diamond') NOT NULL,
+  `diamond_type` varchar(255) DEFAULT NULL,
+  `supplier_id` int(11) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `transactions`
---
-
-INSERT INTO `transactions` (`id`, `month`, `year`, `spanning_month`, `start_payment`, `amount`, `gold_price`, `weight`, `description`, `type`, `created`) VALUES
-(66, 'september', '2016', 5, '2016-11-22', 10000, 0, NULL, 'beli diamond 1', 'diamond', '2016-09-29 01:55:35'),
-(67, 'september', '2016', 4, '2016-09-22', 34323, 0, NULL, 'beli diamond 2', 'diamond', '2016-09-29 02:11:19'),
-(74, 'september', '2016', 1, '2016-09-30', 4000, 0, NULL, 'beli berlian', 'diamond', '2016-09-30 07:09:48'),
-(75, 'september', '2016', 5, '2016-09-30', 100000, 0, NULL, 'beli lagi', 'diamond', '2016-09-30 07:11:40'),
-(76, 'september', '2016', 6, '2016-10-01', 23000, 0, NULL, 'men''s ring', 'diamond', '2016-09-30 07:22:32'),
-(77, 'september', '2016', 5, '2016-10-01', 250000, 0, NULL, 'beli sama reyner', 'diamond', '2016-09-30 07:23:56'),
-(78, 'september', '2016', 1, '2016-09-30', 40000000, 500000, 80, 'beli emas 80g', 'gold', '2016-09-30 07:40:38'),
-(79, 'september', '2016', 1, '2016-11-20', 1000000000, 500000, 2000, 'EMAS 2KG', 'gold', '2016-09-30 11:22:40'),
-(80, 'october', '2016', 4, '2017-04-24', 40000, 0, NULL, 'earrings', 'diamond', '2016-10-01 02:59:17'),
-(81, 'october', '2016', 5, '2017-01-01', 2000, 0, NULL, 'akjshfljka lksa;dfj aksf l;djsaf ;lkasdjf ;lsd f;lkaksdj f;alsdk jf', 'diamond', '2016-10-05 02:06:29');
 
 -- --------------------------------------------------------
 
@@ -217,7 +165,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `fullname`, `email`) VALUES
-(1, 'admin', '6af345b65cb88d569108839b58ecf02f1934825ba5e9b12cd19e21deeaba81ebc1129e3a9c37fb75a0f20c649cd07ea65f63a49968d84971cb3492fa27485705', 'Ferry', 'irvan@gethassee.com');
+(1, 'admin', '6af345b65cb88d569108839b58ecf02f1934825ba5e9b12cd19e21deeaba81ebc1129e3a9c37fb75a0f20c649cd07ea65f63a49968d84971cb3492fa27485705', 'Ferry', 'irpanwinata@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -227,6 +175,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `fullname`, `email`) VALUES
 -- Indexes for table `configuration`
 --
 ALTER TABLE `configuration`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `history`
+--
+ALTER TABLE `history`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -245,6 +199,18 @@ ALTER TABLE `monthly_limit`
 -- Indexes for table `monthly_limit_cicilan`
 --
 ALTER TABLE `monthly_limit_cicilan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notes`
+--
+ALTER TABLE `notes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `supplier`
+--
+ALTER TABLE `supplier`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -269,10 +235,15 @@ ALTER TABLE `users`
 ALTER TABLE `configuration`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `history`
+--
+ALTER TABLE `history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `installments`
 --
 ALTER TABLE `installments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 --
 -- AUTO_INCREMENT for table `monthly_limit`
 --
@@ -284,10 +255,20 @@ ALTER TABLE `monthly_limit`
 ALTER TABLE `monthly_limit_cicilan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
+-- AUTO_INCREMENT for table `notes`
+--
+ALTER TABLE `notes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `supplier`
+--
+ALTER TABLE `supplier`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 --
 -- AUTO_INCREMENT for table `users`
 --

@@ -14,8 +14,8 @@
 		$user = mysqli_query($connection, "SELECT * FROM users");
 		$user = mysqli_fetch_array($user,MYSQLI_ASSOC);
 
-		$transactions = mysqli_query($connection, "SELECT installments.*,transactions.description,transactions.weight,transactions.created,transactions.spanning_month,transactions.gold_price,transactions.type, transactions.amount AS total_amount FROM installments INNER JOIN transactions
-			ON installments.transaction_id=transactions.id");
+		$transactions = mysqli_query($connection, "SELECT installments.*,supplier.name,transactions.description,transactions.weight,transactions.created,transactions.spanning_month,transactions.gold_price,transactions.type,transactions.diamond_type, transactions.amount AS total_amount FROM installments INNER JOIN transactions
+			ON installments.transaction_id=transactions.id LEFT JOIN supplier ON supplier.id = transactions.supplier_id");
 	
 
 		$data = array();
@@ -47,17 +47,26 @@
 			$content = '<tr><td colspan="5"><h4>Detail Pembayaran untuk tanggal '.date('d-M-Y').'</h4></td></tr>';
 
 			foreach($data as $row){
-				$content .= '<tr style="border: 1px solid black;">';
+				$content .= '<tr>';
 				$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Pembelian Tanggal '.'</th>';
-				$content .= '<td colspan="2">'.date('d-m-Y',strtotime($row['created'])).'</td>';
-				$content .= '</tr><tr style="border-bottom: 1px solid black">';
+				$content .= '<td colspan="2">'.date('d-M-Y',strtotime($row['created'])).'</td>';
+				$content .= '</tr><tr>';
+				$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Supplier '.'</th>';
+				$content .= '<td colspan="2">'.$row['name'].'</td>';
+				$content .= '</tr><tr>';
+				
 				$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Keterangan '.'</th>';
 				$content .= '<td  colspan="2">'.$row['description'].'</td>';
 				$content .= '</tr><tr>';
 				if($row['type'] == 'diamond'){
 
-					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah yang harus dibayar bulan ini '.'</th>';
+				$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jenis '.'</th>';
+				$content .= '<td colspan="2">'.$row['diamond_type'].'</td>';
+				$content .= '</tr><tr>';
+
+					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah yang harus dibayar hari ini '.'</th>';
 					$content .= '<td  colspan="2">$ '.number_format($row['amount'],2).'</td>';
+					$content .= '</tr><tr>';
 					$total_diamond +=$row['amount'];
 				}else{
 
@@ -66,12 +75,12 @@
 
 					$content .= '</tr><tr>';
 					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Harga Emas / gr '.'</th>';
-					$content .= '<td  colspan="2">Rp. '.number_format($row['gold_price'],2,',','.').' / gr</td>';
+					$content .= '<td  colspan="2">Rp. '.number_format($config['emas_24'],2,',','.').' / gr</td>';
 					$content .= '</tr><tr>';
-					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah yang harus dibayar bulan ini '.'</th>';
-					$content .= '<td  colspan="2">Rp. '.number_format($row['amount'],2,',','.').'</td>';
+					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah yang harus dibayar hari ini '.'</th>';
+					$content .= '<td  colspan="2">Rp. '.number_format($config['emas_24'] * $row['weight'],2,',','.').'</td>';
 					
-					$total_gold +=$row['amount'];
+					$total_gold +=$config['emas_24'] * $row['weight'];
 				}
 				$content .= '</tr><tr><td colspan="5"><hr></td></tr>';
 			
@@ -128,17 +137,26 @@ EOD;
 			$content = '<tr><td colspan="5"><h4>Detail Pembayaran untuk tanggal '.date('d-M-Y',strtotime("+ 1 day")).'</h4></td></tr>';
 
 			foreach($data_prabayar as $row){
-				$content .= '<tr style="border: 1px solid black;">';
+				$content .= '<tr>';
 				$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Pembelian Tanggal '.'</th>';
-				$content .= '<td colspan="2">'.date('d-m-Y',strtotime($row['created'])).'</td>';
-				$content .= '</tr><tr style="border-bottom: 1px solid black">';
+				$content .= '<td colspan="2">'.date('d-M-Y',strtotime($row['created'])).'</td>';
+				$content .= '</tr><tr>';
+				$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Supplier '.'</th>';
+				$content .= '<td colspan="2">'.$row['name'].'</td>';
+				$content .= '</tr><tr>';
+				
 				$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Keterangan '.'</th>';
 				$content .= '<td  colspan="2">'.$row['description'].'</td>';
 				$content .= '</tr><tr>';
 				if($row['type'] == 'diamond'){
 
-					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah yang harus dibayar bulan ini '.'</th>';
+				$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jenis '.'</th>';
+				$content .= '<td colspan="2">'.$row['diamond_type'].'</td>';
+				$content .= '</tr><tr>';
+
+					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah yang harus dibayar besok '.'</th>';
 					$content .= '<td  colspan="2">$ '.number_format($row['amount'],2).'</td>';
+					$content .= '</tr><tr>';
 					$total_diamond +=$row['amount'];
 				}else{
 
@@ -147,12 +165,12 @@ EOD;
 
 					$content .= '</tr><tr>';
 					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Harga Emas / gr '.'</th>';
-					$content .= '<td  colspan="2">Rp. '.number_format($row['gold_price'],2,',','.').' / gr</td>';
+					$content .= '<td  colspan="2">Rp. '.number_format($config['emas_24'],2,',','.').' / gr</td>';
 					$content .= '</tr><tr>';
-					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah yang harus dibayar bulan ini '.'</th>';
-					$content .= '<td  colspan="2">Rp. '.number_format($row['amount'],2,',','.').'</td>';
+					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Perkiraan jumlah yang harus dibayar Besok '.'</th>';
+					$content .= '<td  colspan="2">Rp. '.number_format($config['emas_24'] * $row['weight'],2,',','.').'</td>';
 					
-					$total_gold +=$row['amount'];
+					$total_gold +=$config['emas_24'] * $row['weight'];
 				}
 				$content .= '</tr><tr><td colspan="5"><hr></td></tr>';
 			
@@ -198,5 +216,6 @@ EOD;
 
 			mail($to, $subject, $message, $headers);
 		}
+
 
  ?>
