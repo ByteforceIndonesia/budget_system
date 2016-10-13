@@ -43,7 +43,7 @@
 									
 									<td><?php echo $note->content ?></td>
 									<td><?php echo date('d-M-Y H:i',strtotime($note->created)) ?></td>
-									<td><a href="<?php echo base_url('notes/edit/'.$note->id) ?>" style="margin-right: 5px"><i class="fa fa-pencil fa-2x" aria-hidden="true"></i></a> <a  onclick="return test_swal(<?php echo $note->id ?>)"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></td>
+									<td><a href="<?php echo base_url('notes/edit/'.$note->id) ?>" style="margin-right: 5px"><i class="fa fa-pencil fa-2x" aria-hidden="true"></i></a> <a style="cursor: pointer;" onclick="return test_swal(<?php echo $note->id ?>)"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></td>
 								</tr>
 							<?php $i++; endforeach; ?>
 						<?php else: ?>

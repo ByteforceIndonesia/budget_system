@@ -48,7 +48,7 @@
 									<td><?php echo date('d-M-Y',strtotime($one->created)) ?></td>
 									<td><?php echo date('d-M-Y',strtotime($one->start_payment)) ?></td>
 							 		<td>
-							 			<a href="<?php echo base_url('main/delete/' . $one->id) ?>">Delete</a>
+							 			<a style="cursor: pointer;" onclick="return test_swal(<?php echo $one->id ?>)">Delete</a>
 							 		</td>
 								</tr>
 							<?php $i++; endforeach; ?>
@@ -97,7 +97,7 @@
 								<td><?php echo date('d-M-Y',strtotime($one->created)) ?></td>
 								<td><?php echo NZD($one->amount) ?></td>
 						 		<td>
-						 			<a href="<?php echo base_url('main/delete/' . $one->id) ?>">Delete</a>
+						 			<a style="cursor: pointer;" onclick="return test_swal(<?php echo $one->id ?>)">Delete</a>
 						 		</td>
 							</tr>
 						<?php $i++; endforeach; ?>
@@ -144,4 +144,20 @@ $(document).ready(function(){
    	 $('#table_diamond').footable();
    	 $('#table_gold').footable();
 	} );
+</script>
+
+<script>
+	function test_swal(id){
+		swal({
+			title: "Are you sure?",   
+			text: "You will not be able to recover this imaginary file!",   
+			type: "warning",   
+			showCancelButton: true,   
+			confirmButtonColor: "#DD6B55",  
+			confirmButtonText: "Yes, delete it!",   
+			closeOnConfirm: false }, 
+			function(){   
+				location.replace("<?php echo base_url('main/delete/') ?>" + id);
+			});
+	}
 </script>
