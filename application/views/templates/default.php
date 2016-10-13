@@ -104,9 +104,9 @@
         <a href="javascript:void(0)" class="closebtn" onclick="triggerMenu()" style="border-bottom: none;font-size:25px!important; display: none;">&times;</a>
         <a onclick="triggerMenu()" id="menu-button"><div class="icon-navbar"><i class="fa fa-bars" style="color: #fff!important;" aria-hidden="true" ></i></div></a>
         <a href="<?php echo base_url() ?>"><div class="icon-navbar"><i class="fa fa-home" aria-hidden="true"></i></div><span class="menu-text">Halaman Utama</span></a>
-        <a href="<?php echo base_url('new_budget/monthly') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">Buat Limit Budget Bulanan Baru</span></a>
+        <a href="<?php echo base_url('new_budget/monthly') ?>"><div class="icon-navbar"><i class="fa fa-calendar" aria-hidden="true"></i></div><span class="menu-text">Buat Limit Budget Bulanan Baru</span></a>
         <a href="<?php echo base_url('new_budget/transaction') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">Buat Transaksi Baru</span></a>
-        <a href="<?php echo base_url('main/cicilan_tahunan/') ?>"><div class="icon-navbar"><i class="fa fa-dollar" aria-hidden="true"></i></div><span class="menu-text">Lihat Detail Cicilan</span></a>
+        <a href="<?php echo base_url('main/cicilan_tahunan/') ?>"><div class="icon-navbar"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></div><span class="menu-text">Lihat Detail Cicilan</span></a>
         <a href="<?php echo base_url('main/all_transactions/') ?>"><div class="icon-navbar"><i class="fa fa-dollar" aria-hidden="true"></i></div><span class="menu-text">Detail Transaksi Bulanan</span></a> 
         <a href="<?php echo base_url('supplier') ?>"><div class="icon-navbar"><i class="fa fa-user" aria-hidden="true"></i></div><span class="menu-text">Supplier</span></a>
         <a href="<?php echo base_url('notes') ?>"><div class="icon-navbar"><i class="fa fa-book" aria-hidden="true"></i></div><span class="menu-text">Notes</span></a>
@@ -131,27 +131,29 @@
       <section id="content">
         <div class="container">
           <div class="row">
+            <div class="col-md-1"></div>
             <div class="col-md-10">
               <div class="row kurs">
-                <div class="col-xs-4 text-center detail-kurs">
+                <div class="col-xs-3 text-center detail-kurs">
                   <p class="text-harga">Harga LM</p>
                   <p class="text-harga"><strong><?php echo 'Rp. '. number_format($emaslm,2,',','.') ?></strong></p>
                 </div>
-                <div class="col-xs-4 text-center detail-kurs">
+                <div class="col-xs-3 text-center detail-kurs">
                   <p class="text-harga">Harga Emas 24</p>
                   <p class="text-harga"><strong><?php echo 'Rp. '. number_format($emas24,2,',','.') ?></strong></p>
                 </div>
-                <div class="col-xs-4 text-center detail-kurs">
+                <div class="col-xs-3 text-center detail-kurs">
                   <p class="text-harga">Harga USD</p>
                   <p class="text-harga"><strong><?php echo '$ '. number_format($dollar,2,'.',',') ?></strong></p>
+                </div>
+                <div class="col-xs-3">
+                  <a href="<?php echo base_url('rate') ?>" class="btn btn-default">Edit</a>
+                  <a href="<?php echo base_url('rate/history') ?>" class="btn btn-default">History</a>  
                 </div>
               </div>
             </div>
             
-            <div class="col-md-2">
-                <a href="<?php echo base_url('rate') ?>" class="btn btn-default">Edit</a>
-                <a href="<?php echo base_url('rate/history') ?>" class="btn btn-default">History</a>
-            </div>
+            <div class="col-md-1"></div>
           </div>
         </div>
       </section>
