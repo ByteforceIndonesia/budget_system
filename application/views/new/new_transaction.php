@@ -104,7 +104,7 @@
 			$('#total').hide();
 			$('#exampleInputAmount').removeAttr('required');
 			$('#jenis').empty();
-			$('#weight').append('<td><span class="form-label">Jumlah Emas (gr)</span></td><td><div class="form-group"><div class="input-group"><input type="text" class="form-control" name="weight" placeholder="" required><div class="input-group-addon">g</div></div></div></td>');
+			$('#weight').append('<td><span class="form-label">Jumlah Emas (gr)</span></td><td><div class="form-group"><div class="input-group"><input type="text"  pattern="\\d+(\\.\\d{1,2})?" required="1" class="form-control" name="weight" placeholder="" ><div class="input-group-addon">g</div></div></div></td>');
 		}else
 		{
 			$('#weight').empty();

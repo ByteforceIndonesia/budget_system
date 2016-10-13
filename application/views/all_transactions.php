@@ -28,10 +28,11 @@
 	        		<table  class="table table-condensed" data-filter="#filter_gold" data-page-size="10" id="table_gold">
 						<thead>
 							 <tr>
-							 	<th data-type="numeric" data-sort-initial="true">No</th>
-							 	<th data-toggle="true">Keterangan</th>
-							 	<th data-hide="phone">Jumlah Emas (gr)</th>
+							 	<th data-toggle="true" data-type="numeric" data-sort-initial="true">No</th>
+							 	<th >Keterangan</th>
+							 	<th >Jumlah Emas (gr)</th>
 							 	<th data-hide="phone">Supplier</th>
+							 	<th data-hide="phone">Tanggal Pembelian</th>
 							 	<th data-hide="phone">Tanggal Pembayaran</th>
 							 	<th data-hide="phone">Action</th>
 							 </tr>
@@ -42,9 +43,9 @@
 								<tr>
 									<td><?php echo $i ?></td>
 									<td><?php echo $one->description ?></td>
-									<td><?php echo $one->weight ?></td>
+									<td><?php echo $one->weight ?> g</td>
 									<td><?php echo $one->name?></td>
-									
+									<td><?php echo date('d-M-Y',strtotime($one->created)) ?></td>
 									<td><?php echo date('d-M-Y',strtotime($one->start_payment)) ?></td>
 							 		<td>
 							 			<a href="<?php echo base_url('main/delete/' . $one->id) ?>">Delete</a>
@@ -70,12 +71,13 @@
 	        		<table class="table table-condensed" data-filter="#filter" data-page-size="10" id="table_diamond">
 					<thead>
 						 <tr>
-						 	<th data-type="numeric" data-sort-initial="true">No</th>
-						 	<th data-toggle="true">Keterangan</th>
+						 	<th data-toggle="true" data-type="numeric" data-sort-initial="true">No</th>
+						 	<th >Keterangan</th>
 						 	<th data-hide="phone">Supplier</th>
-						 	<th data-hide="phone">Panjang Cicilan</th>
-						 	<th data-hide="phone">Cicilan Perbulan</th>
-						 	<th data-hide="phone">Mulai Pembayaran Cicilan</th>
+						 	<th data-hide="all">Panjang Cicilan</th>
+						 	<th data-hide="all">Cicilan Perbulan</th>
+						 	<th data-hide="all">Mulai Pembayaran Cicilan</th>
+						 	<th data-hide="phone">Tanggal Pembelian</th>
 						 	<th data-type="numeric">Total</th>
 						 	<th data-hide="phone">Action</th>
 						 </tr>
@@ -90,6 +92,7 @@
 								<td><?php echo $one->spanning_month.' bulan' ?></td>
 								<td><?php echo NZD($one->amount/$one->spanning_month )?></td>
 								<td><?php echo date('d-M-Y',strtotime($one->start_payment)) ?></td>
+								<td><?php echo date('d-M-Y',strtotime($one->created)) ?></td>
 								<td><?php echo NZD($one->amount) ?></td>
 						 		<td>
 						 			<a href="<?php echo base_url('main/delete/' . $one->id) ?>">Delete</a>
