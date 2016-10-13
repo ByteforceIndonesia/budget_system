@@ -1,13 +1,13 @@
 <div class="row" style="margin-top:10%;" >
-	<div class="col-md-6" id="logo-login">
+	<div class="col-md-4" id="logo-login">
 		
 	</div>
-	<div class="col-md-6 col-xs-12" style="padding:20px;padding-top: 3%;">
+	<div class="col-md-4 col-xs-12" style="padding:20px;">
 		<div class="row">
 			<img src="<?php echo base_url().'img/logo.png' ?>" class="img img-responsive" id="logo" width="400" style="margin:auto" alt="Saerah Logo">
 		</div>
 		<div class="row">
-			<div style="background: padding: 6% 2%; border-radius: 4px">
+			<div>
 				<form action="<?php echo base_url('accounts/login') ?>" method="post">
 					<div class="form-group">
 						<div class="input-group">
@@ -36,4 +36,5 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-md-4"></div>
 </div>

@@ -20,20 +20,19 @@
       body{
         background-image: url("<?php echo base_url().'img/background.jpg' ?>");
         background-position: center;
-        background-attachment: fixed;
-        background-size: cover;
+        background-repeat: repeat;
       }
       .form-control{
-        background:rgba(200,200,200,0.5);
-        color: white;
+        background:rgba(255,255,255,0.7);
+        color: #000;
         font-size: 16px;
       }
       .input-group-addon{
-        background: rgba(200,200,200,0.5);
+        background: rgba(255,255,255,0.5);
         min-width: 40px;
       }
       i{
-        color:white;
+        color:#000;
       }
       a{
         color: #95740c ;
@@ -55,11 +54,11 @@
       }
 
       .btn-default{
-        background: rgba(200,200,200,0.5);
-        color: white;
+        background: rgba(255,255,255,0.5);
+        color: #000;
       }
       .btn-default.active, .btn-default.focus, .btn-default:active, .btn-default:focus, .btn-default:hover, .open>.dropdown-toggle.btn-default {
-          color: #fff;
+          color: #000;
           background: rgba(44, 62, 80,0.6);
           border-color: #ccc;
           -webkit-transition: all 0.3s ease-in;
@@ -69,18 +68,18 @@
           transition: all 0.3s ease-in;
       }
       input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-          color:    #fff !important;
+          color:    #000 !important;
       }
       input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-         color:    #fff !important;
+         color:    #000 !important;
          opacity:  1 !important;
       }
       input::-moz-placeholder { /* Mozilla Firefox 19+ */
-         color:    #fff !important;
+         color:    #000 !important;
          opacity:  1 !important;
       }
       input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-         color:    #fff !important;
+         color:    #000 !important;
       }
 
 
