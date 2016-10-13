@@ -32,6 +32,8 @@ class Rate extends CI_Controller {
 				);
 
 			$this->db->update('configuration',$data_update,array('id' => 1));
+			$data_update['created'] = date('Y-m-d H:i:s');
+			$this->db->insert('history',$data_update);
 
 			redirect('main');
 		}else{
@@ -42,6 +44,11 @@ class Rate extends CI_Controller {
 			$this->template->load('default', 'harga', $data);
 		}
 		
+	}
+
+	public function history(){
+		$data['history'] = $this->db->get('history')->result();
+		$this->template->load('default', 'history', $data);
 	}
 
 

@@ -133,9 +133,6 @@
       <section id="content">
         <div class="container">
           <div class="row">
-            <div class="col-md-1">
-              
-            </div>
             <div class="col-md-10">
               <div class="row kurs">
                 <div class="col-xs-4 text-center detail-kurs">
@@ -153,8 +150,9 @@
               </div>
             </div>
             
-            <div class="col-md-1">
-              
+            <div class="col-md-2">
+                <a href="<?php echo base_url('rate') ?>" class="btn btn-default">Edit</a>
+                <a href="<?php echo base_url('rate/history') ?>" class="btn btn-default">History</a>
             </div>
           </div>
         </div>
