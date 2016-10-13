@@ -12,9 +12,9 @@
 							 <tr>
 							 	<th data-toggle="true" data-type="numeric" data-sort-initial="true">No</th>
 							 	<th >Tanggal</th>
-							 	<th >Harga Emas LM</th>
-							 	<th >Harga Emas 24</th>
-							 	<th >Harga USD</th>
+							 	<th data-hide="phone">Harga Emas LM</th>
+							 	<th data-hide="phone">Harga Emas 24</th>
+							 	<th data-hide="phone">Harga USD</th>
 							 </tr>
 						</thead>
 						<tbody>
@@ -22,7 +22,7 @@
 							<?php $i = 1; foreach($history as $one): ?>
 								<tr>
 									<td><?php echo $i ?></td>
-									<td><?php echo date('d-M-Y',strtotime($one->created)) ?></td>
+									<td><?php echo date('d-M-Y H:i',strtotime($one->created)) ?></td>
 									<td><?php echo $one->emas_lm ?></td>
 									<td><?php echo $one->emas_24 ?></td>
 									<td><?php echo $one->dollar?></td>
@@ -42,3 +42,9 @@
 		</div>
 	</div>
 </section>
+
+<script>
+	$(document).ready(function() {
+   	 $('#table_gold').footable();
+	} );
+</script>
