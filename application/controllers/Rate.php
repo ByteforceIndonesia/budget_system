@@ -47,6 +47,7 @@ class Rate extends CI_Controller {
 	}
 
 	public function history(){
+		$data['title'] = 'History';
 		$data['history'] = $this->db->get('history')->result();
 		$this->template->load('default', 'history', $data);
 	}
