@@ -28,7 +28,7 @@
 							 <tr>
 							 	<th data-toggle="true" data-type="numeric" data-sort-initial="true">No</th>
 							 	<th >Judul</th>
-							 	<th data-hide="all">Isi Notes:</th>
+							 	<th data-hide="all">Isi Notes</th>
 							 	<th data-hide="phone">Tanggal</th>
 							 	<th data-hide="phone">Tindakan</th>
 							 	

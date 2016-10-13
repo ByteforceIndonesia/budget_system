@@ -15,6 +15,8 @@ class Notes extends CI_Controller {
 			redirect('accounts');
 		}
 
+		date_default_timezone_set('Asia/Jakarta');
+
 		$conf = $this->db->get('configuration')->row();
 		$this->emaslm = $conf->emas_lm;
 		$this->emas24 = $conf->emas_24;
@@ -49,6 +51,25 @@ class Notes extends CI_Controller {
 		
 
 			$this->template->load('default', 'notes/new', $data);
+		}
+	}
+
+	public function edit($id = ''){
+		if($this->input->post('update')){
+			$content = nl2br($this->input->post('content'));
+			$data_update = array(
+				'title' => $this->input->post('title'),
+				'content' => $content,
+				'created' => date('Y-m-d H:i:s')
+				);
+
+			$this->db->update('notes',$data_update,array('id' => $id));
+
+			redirect('notes');
+		}else{
+			$data['title'] = 'Edit Notes';
+			$data['note'] = $this->db->get_where('notes', array('id' => $id))->row();
+			$this->template->load('default', 'notes/edit', $data);
 		}
 	}
 

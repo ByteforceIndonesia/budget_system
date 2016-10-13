@@ -37,6 +37,9 @@
     <script src="<?php echo base_url() ?>js/script.js"></script>
   
     <style>
+    body a{
+      color: black;
+    }
     @media only screen and (max-device-width: 440px)
     {
       #openMenu{
@@ -57,7 +60,7 @@
         width: 100% !important;
       }
     }
-
+    
       /* footable */
     .footable{
       background :white !important;
