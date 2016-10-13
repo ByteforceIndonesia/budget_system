@@ -43,7 +43,7 @@
 									
 									<td><?php echo $note->content ?></td>
 									<td><?php echo date('d-M-Y H:i',strtotime($note->created)) ?></td>
-									<td><a href="<?php echo base_url('notes/edit/'.$note->id) ?>" style="margin-right: 5px"><i class="fa fa-pencil fa-2x" aria-hidden="true"></i></a> <a  onclick="return confirm('Anda yakin ingin menghapus <?php echo "\'".$note->title."\'" ?>?')" href="<?php echo base_url('notes/delete/'.$note->id) ?>"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></td>
+									<td><a href="<?php echo base_url('notes/edit/'.$note->id) ?>" style="margin-right: 5px"><i class="fa fa-pencil fa-2x" aria-hidden="true"></i></a> <a  onclick="return test_swal(<?php echo $note->id ?>)"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></td>
 								</tr>
 							<?php $i++; endforeach; ?>
 						<?php else: ?>
@@ -70,4 +70,21 @@
 	$(document).ready(function() {
    	 $('#table_note').footable();
 	} );
+</script>
+
+<script>
+	function test_swal(id){
+		swal({
+			title: "Are you sure?",   
+			text: "You will not be able to recover this imaginary file!",   
+			type: "warning",   
+			showCancelButton: true,   
+			confirmButtonColor: "#DD6B55",  
+			confirmButtonText: "Yes, delete it!",   
+			closeOnConfirm: false }, 
+			function(){   
+				swal("Deleted!", "Your imaginary file has been deleted.", "success"); 
+				location.replace("<?php echo base_url('notes/delete/') ?>" + id);
+			});
+	}
 </script>

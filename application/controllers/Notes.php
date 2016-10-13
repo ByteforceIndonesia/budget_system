@@ -52,5 +52,14 @@ class Notes extends CI_Controller {
 		}
 	}
 
+	public function delete($id = ''){
+		
+		
+		
+		$this->db->delete('notes',array('id' => $id));
+		redirect('notes');
+		
+	}
+
 	
 }
