@@ -118,9 +118,7 @@ body
     width: 280px; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 30; /* Stay on top */
-    top: 0;
-    opacity:0;
-    left: -300px;
+    left: -8px;
     background-color: #948a6a; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
@@ -137,7 +135,7 @@ body
 
 .sidenav .icon-navbar{
     display: inline-block;
-    width: 30px;
+    width: 27px;
 
 }
 
