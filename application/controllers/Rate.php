@@ -24,7 +24,16 @@ class Rate extends CI_Controller {
 
 	public function index(){
 		if($this->input->post('update')){
-			
+			$data_update = array(
+				'emas_lm' => $this->input->post('emaslm'),
+				'emas_24' => $this->input->post('emas24'),
+				'dollar' => $this->input->post('dollar'),
+
+				);
+
+			$this->db->update('configuration',$data_update,array('id' => 1));
+
+			redirect('main');
 		}else{
 			$data['title'] = 'Harga Hari Ini';
 			$data['emaslm'] = $this->emaslm;

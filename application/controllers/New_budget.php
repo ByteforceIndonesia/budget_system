@@ -94,7 +94,8 @@ class New_budget extends CI_Controller {
 			$year 		= $this->input->post('year');
 			$type 		= $this->input->post('type');
 			$budget 	= $this->input->post('amount');
-			$trans_gold	= $this->budget_model->getTotalTrans($type, $month);
+			$trans_gold	= $this->budget_model->getTotalTrans($type, $month,$year);
+			
 
 			if($budget >= $trans_gold)
 			{	
@@ -119,8 +120,8 @@ class New_budget extends CI_Controller {
 				}
 			}else
 			{
-				$this->session->set_flashdata('failed', 'Edit Limit' . $type . ' untuk Bulan ' . $month . ' ' . $year . ' Gagal !');
-				redirect('new_budget/monthly');
+				$this->session->set_flashdata('failed', 'Edit Limit ' . $type . ' untuk Bulan ' . $month . ' ' . $year . ' Gagal !');
+				redirect('main');
 			}
 		}else
 		{
@@ -190,7 +191,8 @@ class New_budget extends CI_Controller {
 
 			$trans_gold = $this->budget_model->getTotalTrans('gold',date('F'),date('Y'));
 			$trans_diamond = $this->budget_model->getTotalTrans('diamond' , date('F'),date('Y'));
-			
+			$supplier = $this->input->post('supplier');
+			$jenis = $this->input->post('jenis');
 
 			switch($type)
 			{
@@ -214,7 +216,7 @@ class New_budget extends CI_Controller {
 				}break;
 			}
 
-			if($this->budget_model->insert_transaction($type, $amount, $spanning, $start, $gold_price, $gold_weight, $description))
+			if($this->budget_model->insert_transaction($type, $amount, $spanning, $start, $gold_price, $gold_weight, $description,$jenis,$supplier))
 			{
 
 				$this->session->set_flashdata('success', 'Transaksi ' . $type . ' Untuk Bulan ' . date('F') . ' ' . date('Y') . ' Berhasil dibuat !');
@@ -228,6 +230,7 @@ class New_budget extends CI_Controller {
 		}else
 		{
 			$data['title'] = "New Transaction";
+			$data['suppliers'] = $this->db->get('supplier')->result();
 			$this->template->load('default', 'new/new_transaction', $data);
 		}
 	}

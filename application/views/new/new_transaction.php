@@ -17,17 +17,51 @@
 								</select>
 							</td>
 						</tr>
+						<tr id="total">
+							<td><span class="form-label">Total Yang Dibayarkan</span></td>
+							<td>
+								<div class="form-group">
+								  <div class="input-group">
+								      <div class="input-group-addon" id="amount">$</div>
+								      <input type="text" class="form-control" id="exampleInputAmount" name="amount" placeholder="Nominal" pattern="\d+(\.\d{1,2})?" required="1">
+								      <div class="input-group-addon">.00</div>
+								  </div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><span class="form-label">Supplier</span></td>
+							<td>
+								<select name="supplier" class="form-control" required="1">
+									<option value="">--Pilih Supplier--</option>
+									<?php foreach($suppliers as $supplier): ?>
+										<option value="<?php echo $supplier->id ?>"><?php echo $supplier->name ?></option>
+									<?php endforeach; ?>
+								</select>
+							</td>
+						</tr>
+						<tr id="jenis">
+							<td><span class="form-label">Jenis Diamond</span></td>
+							<td>
+								<select name="jenis" class="form-control" required="1">
+									<option value="">--Pilih Jenis--</option>
+									<option value="Loose Diamond">Loose Diamond</option>
+									<option value="Jewellery">Jewellery</option>	
+									
+								</select>
+							</td>
+						</tr>
 						<tr class="form-group">
 							<td ><span class="form-label" id="mulaiCicilan">Mulai Cicilan</span></td>
 							<td>
-								<input type="date" name="start_payment" id="start_payment" placeholder="Start Payment" class="form-control" required>
+								<input type="date" name="start_payment" id="start_payment" placeholder="Start Payment" class="form-control" required="1">
 							</td>
 						</tr>
 						<tr class="form-group" id="durasiCicilan">
 							<td><span class="form-label">Durasi Cicilan (dalam bulan)</span></td>
 							<td>
 								<select name="spanning" class="form-control">
-									<?php for($i=1; $i<12; $i++): ?>
+									<?php for($i=1; $i<=12; $i++): ?>
 										<option value="<?php echo $i ?>"><?php echo $i ?></option>
 									<?php endfor; ?>
 								</select>
@@ -36,21 +70,7 @@
 						<tr id="weight">
 							
 						</tr>
-						<tr id="gold">
-							
-						</tr>
-						<tr id="total">
-							<td><span class="form-label">Total Yang Dibayarkan</span></td>
-							<td>
-								<div class="form-group">
-								  <div class="input-group">
-								      <div class="input-group-addon" id="amount">$</div>
-								      <input type="text" class="form-control" id="exampleInputAmount" name="amount" placeholder="Nominal" required>
-								      <div class="input-group-addon">.00</div>
-								  </div>
-								</div>
-							</td>
-						</tr>
+						
 						<tr>
 							<td>
 								<span class="form-label">Keterangan</span>
@@ -83,7 +103,7 @@
 			$('#durasiCicilan').hide();
 			$('#total').hide();
 			$('#exampleInputAmount').removeAttr('required');
-			$('#gold').append('<td><span class="form-label">Gold Price as of Today per Gram</span></td><td><div class="form-group"><div class="input-group"><div class="input-group-addon" id="amount">Rp.</div><input type="text" class="form-control" name="gold" placeholder="Harga Emas" required><div class="input-group-addon">.00</div></div></div></td>');
+			$('#jenis').empty();
 			$('#weight').append('<td><span class="form-label">Jumlah Emas (gr)</span></td><td><div class="form-group"><div class="input-group"><input type="text" class="form-control" name="weight" placeholder="" required><div class="input-group-addon">g</div></div></div></td>');
 		}else
 		{
@@ -92,7 +112,7 @@
 			$('#mulaiCicilan').append('Mulai Cicilan');
 			$('#durasiCicilan').show();
 			$('#total').show();
-			$('#gold').empty();
+			$('#jenis').append('<td><span class="form-label">Jenis Diamond</span></td><td><select name="jenis" class="form-control" required="1"><option value="">--Pilih Jenis--</option><option value="Loose Diamond">Loose Diamond</option><option value="Jewellery">Jewellery</option></select></td>');
 			$('#start_payment').attr('required','required');
 		}
 	}

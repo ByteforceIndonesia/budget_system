@@ -35,21 +35,33 @@
 					</div>
 					<div class="col-md-8">
 					<?php echo form_open('rate') ?>
-						<table style="width: 100%">
-							<tr>
-								<td><label for="">Harga LM :</label></td>
-								<td><div class="input-group"><span class="input-group-addon">Rp.</span><input type="text" pattern="\d*" name="emaslm" value="<?php echo $emaslm ?>" class="form-control"></div></td>
-							</tr>
-							<tr>
-								<td><label for="">Harga Emas 24 :</label></td>
-								<td><div class="input-group"><span class="input-group-addon">Rp.</span><input type="text" pattern="\d*" name="emas24" value="<?php echo $emas24 ?>" class="form-control"></div></td>
-							</tr>
-							<tr>
-								<td><label for="">Harga USD :</label></td>
-								<td><div class="input-group"><span class="input-group-addon">$  </span><input type="text" pattern="\d*" name="dollar" value="<?php echo $dollar ?>" class="form-control"></div></td>
-							</tr>
+						<table style="width: 100%" class="table">
+							<thead>
+								<tr>
+									<th colspan="2">Update Harga</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><label for="">Harga LM :</label></td>
+									<td><div class="input-group"><span class="input-group-addon">Rp.</span><input type="text" pattern="\d*" name="emaslm" title="input hanya boleh angka" value="<?php echo $emaslm ?>" class="form-control"></div></td>
+								</tr>
+								<tr>
+									<td><label for="">Harga Emas 24 :</label></td>
+									<td><div class="input-group"><span class="input-group-addon">Rp.</span><input type="text" pattern="\d*" name="emas24" title="input hanya boleh angka" value="<?php echo $emas24 ?>" class="form-control"></div></td>
+								</tr>
+								<tr>
+									<td><label for="">Harga USD :</label></td>
+									<td><div class="input-group"><span class="input-group-addon">$  </span><input type="text" pattern="\d*" name="dollar" title="input hanya boleh angka" value="<?php echo $dollar ?>" class="form-control"></div></td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<input type="submit" name="update" value="UPDATE HARGA" class="btn btn-primary pull-right">
+									</td>
+								</tr>
+							</tbody>
 						</table>
-						<?php echo form_close() ?>
+						<?php echo form_close(); ?>
 					</div>
 					<div class="col-md-2">
 						

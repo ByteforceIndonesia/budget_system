@@ -128,7 +128,7 @@ class Budget_model extends CI_Model {
 		}
 	}
 
-	public function insert_transaction ($type, $amount, $spanning, $start, $gold_price, $gold_weight,$description)
+	public function insert_transaction ($type, $amount, $spanning, $start, $gold_price, $gold_weight,$description,$jenis,$supplier)
 	{
 		$data = array(
 
@@ -140,7 +140,9 @@ class Budget_model extends CI_Model {
 			'start_payment'			=> $start,
 			'gold_price' 			=> $gold_price,
 			'weight'				=> $gold_weight,
-			'description'			=> $description
+			'description'			=> $description,
+			'supplier_id'				=> $supplier,
+			'diamond_type'			=> $jenis
 
 			);
 
@@ -199,7 +201,13 @@ class Budget_model extends CI_Model {
 
 	public function getTransMonth ($month,$year, $type)
 	{
-		return $this->db->get_where('transactions',array('month' => $month,'year' => $year,'type' => $type))->result();
+		$this->db->select('transactions.*,supplier.name');
+		$this->db->from('transactions');
+		$this->db->join('supplier','supplier.id = transactions.supplier_id','left');
+		$this->db->where('month' , $month);
+		$this->db->where('year', $year);
+		$this->db->where('type', $type);
+		return $this->db->get()->result();
 	}
 
 	public function getTotalTrans ($type, $month,$year)

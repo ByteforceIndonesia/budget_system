@@ -31,8 +31,7 @@
 							 	<th data-type="numeric" data-sort-initial="true">No</th>
 							 	<th data-toggle="true">Keterangan</th>
 							 	<th data-hide="phone">Jumlah Emas (gr)</th>
-							 	<th data-hide="phone">Harga Emas / gr</th>
-							 	<th data-type="numeric">Total Yang Dibayarkan</th>
+							 	<th data-hide="phone">Supplier</th>
 							 	<th data-hide="phone">Tanggal Pembayaran</th>
 							 	<th data-hide="phone">Action</th>
 							 </tr>
@@ -44,8 +43,8 @@
 									<td><?php echo $i ?></td>
 									<td><?php echo $one->description ?></td>
 									<td><?php echo $one->weight ?></td>
-									<td><?php echo rupiah($one->gold_price)?></td>
-									<td><?php echo rupiah($one->amount) ?></td>
+									<td><?php echo $one->name?></td>
+									
 									<td><?php echo date('d-M-Y',strtotime($one->start_payment)) ?></td>
 							 		<td>
 							 			<a href="<?php echo base_url('main/delete/' . $one->id) ?>">Delete</a>
@@ -73,6 +72,7 @@
 						 <tr>
 						 	<th data-type="numeric" data-sort-initial="true">No</th>
 						 	<th data-toggle="true">Keterangan</th>
+						 	<th data-hide="phone">Supplier</th>
 						 	<th data-hide="phone">Panjang Cicilan</th>
 						 	<th data-hide="phone">Cicilan Perbulan</th>
 						 	<th data-hide="phone">Mulai Pembayaran Cicilan</th>
@@ -86,6 +86,7 @@
 							<tr>
 								<td><?php echo $i ?></td>
 								<td><?php echo $one->description ?></td>
+								<td><?php echo $one->name ?></td>
 								<td><?php echo $one->spanning_month.' bulan' ?></td>
 								<td><?php echo NZD($one->amount/$one->spanning_month )?></td>
 								<td><?php echo date('d-M-Y',strtotime($one->start_payment)) ?></td>
