@@ -41,7 +41,7 @@
 						<div id="gold">
 							<!-- Gold -->
 							<h2>Gold</h2>
-							Pembelian:&nbsp;<?php echo $trans_gold; ?>&nbsp;gr&nbsp;/&nbsp;<?php echo $gold; ?>&nbsp;gr 
+							Pembelian:&nbsp;<?php echo number_format($trans_gold,2); ?>&nbsp;gr&nbsp;/&nbsp;<?php echo $gold; ?>&nbsp;gr 
 						</div>
 						<a href="<?php echo base_url('new_budget/edit/'.$month.'/'.$year.'/gold/') ?>" class="btn btn-default">Edit Budget Gold</a>
 					</div>

@@ -106,6 +106,7 @@
         <a href="<?php echo base_url('main/cicilan_tahunan/') ?>"><div class="icon-navbar"><i class="fa fa-dollar" aria-hidden="true"></i></div><span class="menu-text">Lihat Detail Cicilan</span></a>
         <a href="<?php echo base_url('main/all_transactions/') ?>"><div class="icon-navbar"><i class="fa fa-dollar" aria-hidden="true"></i></div><span class="menu-text">Detail Transaksi Bulanan</span></a> 
         <a href="<?php echo base_url('supplier') ?>"><div class="icon-navbar"><i class="fa fa-user" aria-hidden="true"></i></div><span class="menu-text">Supplier</span></a>
+        <a href="<?php echo base_url('notes') ?>"><div class="icon-navbar"><i class="fa fa-book" aria-hidden="true"></i></div><span class="menu-text">Notes</span></a>
         <a href="<?php echo base_url('accounts/change_password') ?>"><div class="icon-navbar"><i class="fa fa-cogs" aria-hidden="true"></i></div><span class="menu-text">Pengaturan</span></a>
         <a href="<?php echo base_url('main/setting_timer') ?>"><div class="icon-navbar"><i class="fa fa-clock-o" aria-hidden="true"></i></div><span class="menu-text">Atur Jam</span></a>
         <a href="<?php echo base_url('accounts/logout') ?>"><div class="icon-navbar"><i class="fa fa-power-off" aria-hidden="true"></i></div><span class="menu-text">Logout</span></a>

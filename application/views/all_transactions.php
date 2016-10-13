@@ -74,6 +74,7 @@
 						 	<th data-toggle="true" data-type="numeric" data-sort-initial="true">No</th>
 						 	<th >Keterangan</th>
 						 	<th data-hide="phone">Supplier</th>
+						 	<th data-hide="all">Jenis Diamond</th>
 						 	<th data-hide="all">Panjang Cicilan</th>
 						 	<th data-hide="all">Cicilan Perbulan</th>
 						 	<th data-hide="all">Mulai Pembayaran Cicilan</th>
@@ -89,6 +90,7 @@
 								<td><?php echo $i ?></td>
 								<td><?php echo $one->description ?></td>
 								<td><?php echo $one->name ?></td>
+								<td><?php echo $one->diamond_type ?></td>
 								<td><?php echo $one->spanning_month.' bulan' ?></td>
 								<td><?php echo NZD($one->amount/$one->spanning_month )?></td>
 								<td><?php echo date('d-M-Y',strtotime($one->start_payment)) ?></td>

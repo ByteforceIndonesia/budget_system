@@ -16,6 +16,9 @@
     }
 }
 
+.fa-2x{
+    font-size: 20px !important;
+}
 
 /* Globals */	
 .alert-warning{
