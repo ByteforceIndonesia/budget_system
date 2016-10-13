@@ -101,8 +101,8 @@
     <section id="header">
       <div id="mySidenav" class="sidenav">
 
-        <a href="javascript:void(0)" class="closebtn" onclick="triggerMenu()" style="border-bottom: none;font-size:25px!important;">&times;</a>
-        
+        <a href="javascript:void(0)" class="closebtn" onclick="triggerMenu()" style="border-bottom: none;font-size:25px!important; display: none;">&times;</a>
+        <a onclick="triggerMenu()" id="menu-button"><div class="icon-navbar"><i class="fa fa-bars" style="color: #fff!important;" aria-hidden="true" ></i></div></a>
         <a href="<?php echo base_url() ?>"><div class="icon-navbar"><i class="fa fa-home" aria-hidden="true"></i></div><span class="menu-text">Halaman Utama</span></a>
         <a href="<?php echo base_url('new_budget/monthly') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">Buat Limit Budget Bulanan Baru</span></a>
         <a href="<?php echo base_url('new_budget/transaction') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">Buat Transaksi Baru</span></a>
@@ -119,9 +119,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div id="openMenu">
-          <a onclick="triggerMenu()"><i class="fa fa-bars fa-3x" aria-hidden="true" id="menu-button"></i></a>
-        </div>
+        
         <div style="padding-top:10px;padding-bottom:10px;">
           <img src="<?php echo base_url().'img/logo.png' ?>" alt="Saerah Logo" class="img img-responsive" style="display: block;margin:auto">
         </div>        

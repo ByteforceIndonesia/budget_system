@@ -18,7 +18,7 @@
 				<!-- Content -->
 				<div class="month-picker row">
 					<div class="col-md-8">
-						<h1>Budget Bulan <?php echo $month ?></h1>
+						<h2>Budget Bulan <?php echo $month ?></h2>
 
 					</div>
 					<div class="col-md-4 month-pick">
@@ -28,9 +28,9 @@
 					    </div>
 					</div>
 				</div>
-				<div class="alert alert-warning" style="margin-bottom: 2px!important;"><h4><i class="fa fa-exclamation-circle"></i>&nbsp;Jumlah Cicilan Pembayaran Diamond Bulan <?php echo $month ?>&nbsp;:&nbsp;<?php echo NZD($trans_cicilan,2,'.',''); ?></h4></div>
+				<div class="alert alert-warning" style="margin-bottom: 2px!important;"><i class="fa fa-exclamation-circle"></i>&nbsp;Jumlah Cicilan Pembayaran Diamond Bulan <?php echo $month ?>&nbsp;:&nbsp;<?php echo NZD($trans_cicilan,2,'.',''); ?></div>
 
-				<div class="alert alert-warning" style="margin-top: 0px!important;"><h4><i class="fa fa-exclamation-circle"></i>&nbsp;Jumlah Pembayaran Emas Bulan <?php echo $month ?>&nbsp;:&nbsp;<?php echo rupiah($trans_emas,2,',','.'); ?></h4></div>
+				<div class="alert alert-warning" style="margin-top: 0px!important;margin-bottom: 2px;"><i class="fa fa-exclamation-circle"></i>&nbsp;Jumlah Pembayaran Emas Bulan <?php echo $month ?>&nbsp;:&nbsp;<?php echo rupiah($trans_emas,2,',','.'); ?></div>
 						
 
 					
