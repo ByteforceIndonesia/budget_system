@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2016 at 08:48 AM
+-- Generation Time: Oct 13, 2016 at 03:19 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -29,15 +29,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `configuration` (
   `id` int(11) NOT NULL,
   `day-1` time NOT NULL,
-  `day` time NOT NULL
+  `day` time NOT NULL,
+  `emas_lm` double NOT NULL,
+  `emas_24` double NOT NULL,
+  `dollar` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `configuration`
 --
 
-INSERT INTO `configuration` (`id`, `day-1`, `day`) VALUES
-(1, '14:46:00', '15:16:00');
+INSERT INTO `configuration` (`id`, `day-1`, `day`, `emas_lm`, `emas_24`, `dollar`) VALUES
+(1, '14:46:00', '15:16:00', 550000, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -66,7 +69,6 @@ INSERT INTO `installments` (`id`, `transaction_id`, `due`, `amount`) VALUES
 (32, 67, '2016-10-22', 8580.75),
 (33, 67, '2016-11-22', 8580.75),
 (34, 67, '2016-12-22', 8580.75),
-(41, 73, '1970-01-01', 1000000000),
 (42, 74, '2016-09-30', 4000),
 (43, 75, '2016-09-30', 20000),
 (44, 75, '2016-10-30', 20000),
@@ -84,7 +86,17 @@ INSERT INTO `installments` (`id`, `transaction_id`, `due`, `amount`) VALUES
 (56, 77, '2016-12-01', 50000),
 (57, 77, '2017-01-01', 50000),
 (58, 77, '2017-02-01', 50000),
-(59, 78, '2016-09-30', 40000000);
+(59, 78, '2016-09-30', 40000000),
+(60, 79, '2016-11-20', 1000000000),
+(61, 80, '2017-04-24', 10000),
+(62, 80, '2017-05-24', 10000),
+(63, 80, '2017-06-24', 10000),
+(64, 80, '2017-07-24', 10000),
+(65, 81, '2017-01-01', 400),
+(66, 81, '2017-02-01', 400),
+(67, 81, '2017-03-01', 400),
+(68, 81, '2017-04-01', 400),
+(69, 81, '2017-05-01', 400);
 
 -- --------------------------------------------------------
 
@@ -107,9 +119,9 @@ CREATE TABLE `monthly_limit` (
 --
 
 INSERT INTO `monthly_limit` (`id`, `month`, `year`, `limit_transaction`, `transaction_id`, `type`, `created`) VALUES
-(1, 'september', '2016', 10000, '#73#78', 'gold', '2016-09-13 13:55:57'),
+(1, 'september', '2016', 10000, '#78#79', 'gold', '2016-09-13 13:55:57'),
 (2, 'september', '2016', 600000, '#66#67#74#75#76#77', 'diamond', '2016-09-13 13:58:08'),
-(4, 'october', '2016', 100000, NULL, 'diamond', '2016-09-14 03:57:14'),
+(4, 'october', '2016', 100000, '#80#81', 'diamond', '2016-09-14 03:57:14'),
 (5, 'october', '2016', 100000, NULL, 'gold', '2016-09-14 04:00:00'),
 (6, 'february', '2016', 1500, NULL, 'gold', '2016-09-14 14:48:54'),
 (7, 'november', '2016', 123000, NULL, 'gold', '2016-09-15 02:31:30'),
@@ -177,12 +189,14 @@ CREATE TABLE `transactions` (
 INSERT INTO `transactions` (`id`, `month`, `year`, `spanning_month`, `start_payment`, `amount`, `gold_price`, `weight`, `description`, `type`, `created`) VALUES
 (66, 'september', '2016', 5, '2016-11-22', 10000, 0, NULL, 'beli diamond 1', 'diamond', '2016-09-29 01:55:35'),
 (67, 'september', '2016', 4, '2016-09-22', 34323, 0, NULL, 'beli diamond 2', 'diamond', '2016-09-29 02:11:19'),
-(73, 'september', '2016', 1, '2016-10-14', 1000000000, 500000, 2000, 'beli 2kg emas', 'gold', '2016-09-29 10:10:46'),
 (74, 'september', '2016', 1, '2016-09-30', 4000, 0, NULL, 'beli berlian', 'diamond', '2016-09-30 07:09:48'),
 (75, 'september', '2016', 5, '2016-09-30', 100000, 0, NULL, 'beli lagi', 'diamond', '2016-09-30 07:11:40'),
 (76, 'september', '2016', 6, '2016-10-01', 23000, 0, NULL, 'men''s ring', 'diamond', '2016-09-30 07:22:32'),
 (77, 'september', '2016', 5, '2016-10-01', 250000, 0, NULL, 'beli sama reyner', 'diamond', '2016-09-30 07:23:56'),
-(78, 'september', '2016', 1, '2016-09-30', 40000000, 500000, 80, 'beli emas 80g', 'gold', '2016-09-30 07:40:38');
+(78, 'september', '2016', 1, '2016-09-30', 40000000, 500000, 80, 'beli emas 80g', 'gold', '2016-09-30 07:40:38'),
+(79, 'september', '2016', 1, '2016-11-20', 1000000000, 500000, 2000, 'EMAS 2KG', 'gold', '2016-09-30 11:22:40'),
+(80, 'october', '2016', 4, '2017-04-24', 40000, 0, NULL, 'earrings', 'diamond', '2016-10-01 02:59:17'),
+(81, 'october', '2016', 5, '2017-01-01', 2000, 0, NULL, 'akjshfljka lksa;dfj aksf l;djsaf ;lkasdjf ;lsd f;lkaksdj f;alsdk jf', 'diamond', '2016-10-05 02:06:29');
 
 -- --------------------------------------------------------
 
@@ -258,7 +272,7 @@ ALTER TABLE `configuration`
 -- AUTO_INCREMENT for table `installments`
 --
 ALTER TABLE `installments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 --
 -- AUTO_INCREMENT for table `monthly_limit`
 --
@@ -273,7 +287,7 @@ ALTER TABLE `monthly_limit_cicilan`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 --
 -- AUTO_INCREMENT for table `users`
 --

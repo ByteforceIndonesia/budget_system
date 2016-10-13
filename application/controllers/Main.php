@@ -15,6 +15,13 @@ class Main extends CI_Controller {
 			redirect('accounts');
 		}
 
+		$conf = $this->db->get('configuration')->row();
+		$this->emaslm = $conf->emas_lm;
+		$this->emas24 = $conf->emas_24;
+		$this->dollar = $conf->dollar;
+		if($this->emaslm == 0 || $this->emas24 == 0 || $this->dollar == 0){
+			redirect('rate');
+		}
 	}
 
 	public function index()
