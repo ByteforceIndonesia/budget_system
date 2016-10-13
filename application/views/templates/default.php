@@ -134,26 +134,28 @@
             <div class="col-md-1"></div>
             <div class="col-md-10">
               <div class="row kurs">
-                <div class="col-xs-3 text-center detail-kurs">
+                <div class="col-xs-4 text-center detail-kurs">
                   <p class="text-harga">Harga LM</p>
                   <p class="text-harga"><strong><?php echo 'Rp. '. number_format($emaslm,2,',','.') ?></strong></p>
                 </div>
-                <div class="col-xs-3 text-center detail-kurs">
+                <div class="col-xs-4 text-center detail-kurs">
                   <p class="text-harga">Harga Emas 24</p>
                   <p class="text-harga"><strong><?php echo 'Rp. '. number_format($emas24,2,',','.') ?></strong></p>
                 </div>
-                <div class="col-xs-3 text-center detail-kurs">
+                <div class="col-xs-4 text-center detail-kurs">
                   <p class="text-harga">Harga USD</p>
                   <p class="text-harga"><strong><?php echo '$ '. number_format($dollar,2,'.',',') ?></strong></p>
                 </div>
-                <div class="col-xs-3">
-                  <a href="<?php echo base_url('rate') ?>" class="btn btn-default">Edit</a>
-                  <a href="<?php echo base_url('rate/history') ?>" class="btn btn-default">History</a>  
-                </div>
+                
               </div>
             </div>
             
             <div class="col-md-1"></div>
+          </div>
+          <div class="row text-center" style="padding-top: 11px;">
+
+            <a href="<?php echo base_url('rate') ?>" class="btn btn-default" style="height: 20px;padding-top: 0px;">Edit</a>
+                  <a href="<?php echo base_url('rate/history') ?>" class="btn btn-default" style="height: 20px;padding-top: 0px;">History</a>
           </div>
         </div>
       </section>
