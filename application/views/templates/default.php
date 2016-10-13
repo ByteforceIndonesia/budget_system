@@ -133,16 +133,16 @@
               
             </div>
             <div class="col-md-10">
-              <div class="row">
-                <div class="col-xs-4 text-center">
+              <div class="row kurs">
+                <div class="col-xs-4 text-center detail-kurs">
                   <p class="text-harga">Harga LM</p>
                   <p class="text-harga"><strong><?php echo 'Rp. '. number_format($emaslm,2,',','.') ?></strong></p>
                 </div>
-                <div class="col-xs-4 text-center">
+                <div class="col-xs-4 text-center detail-kurs">
                   <p class="text-harga">Harga Emas 24</p>
                   <p class="text-harga"><strong><?php echo 'Rp. '. number_format($emas24,2,',','.') ?></strong></p>
                 </div>
-                <div class="col-xs-4 text-center">
+                <div class="col-xs-4 text-center detail-kurs">
                   <p class="text-harga">Harga USD</p>
                   <p class="text-harga"><strong><?php echo '$ '. number_format($dollar,2,'.',',') ?></strong></p>
                 </div>

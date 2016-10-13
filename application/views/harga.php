@@ -15,13 +15,13 @@
 			<div class="col-md-10">
 				<!-- Content -->
 				<div class="month-picker row">
-					<div class="col-md-8">
-						<h1>Masukkan Harga Emas dan Dollar Hari Ini.</h1>
+					<div class="col-md-1"></div>
+					<div class="col-md-10 text-center" style="padding-top: 15px;">
+						<h3>Masukkan harga emas dan dollar hari ini</h3>
 
 					</div>
-					<div class="col-md-4 month-pick">
-						
-					</div>
+					<div class="col-md-1"></div>
+					
 				</div>
 				
 						
@@ -30,10 +30,8 @@
 				<div class="row">
 				<!-- Loading Bars -->
 				<section class="bar">
-					<div class="col-md-2">
-						
-					</div>
-					<div class="col-md-8">
+					<div class="col-md-1"></div>
+					<div class="col-md-10" style="padding-top: 15px;">
 					<?php echo form_open('rate') ?>
 						<table style="width: 100%" class="table">
 							<thead>
@@ -56,16 +54,15 @@
 								</tr>
 								<tr>
 									<td colspan="2">
-										<input type="submit" name="update" value="UPDATE HARGA" class="btn btn-primary pull-right">
+										<div class="text-center"><input type="submit" name="update" value="UPDATE HARGA" class="btn btn-default"></div>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 						<?php echo form_close(); ?>
 					</div>
-					<div class="col-md-2">
-						
-					</div>
+					<div class="col-md-1"></div>
+					
 				</section>
 				</div>
 				
