@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title> <?php echo $title ?> | Budget System</title>
-
+    <link rel="icon" href="<?php echo base_url() ?>img/icon.png">
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>css/footable.core.css" type="text/css" rel="stylesheet">
@@ -64,7 +64,7 @@
       /* footable */
     .footable{
       background :white !important;
-      border : 2px solid #948A6A !important;
+      border : none !important;
       width: 100% !important;
     }
 
@@ -73,6 +73,13 @@
       background-color : #948A6A !important;
       border : 1px solid #948A6A !important;
       color: white !important;
+
+    }
+
+    .footable>tbody>tr>th, .footable>tbody>tr>td { 
+      
+      border : 1px solid #948A6A !important;
+      color: black !important;
 
     }
 
@@ -104,7 +111,7 @@
         <a href="javascript:void(0)" class="closebtn" onclick="triggerMenu()" style="border-bottom: none;font-size:25px!important; display: none;">&times;</a>
         <a onclick="triggerMenu()" id="menu-button"><div class="icon-navbar"><i class="fa fa-bars" style="color: #fff!important;" aria-hidden="true" ></i></div></a>
         <a href="<?php echo base_url() ?>"><div class="icon-navbar"><i class="fa fa-home" aria-hidden="true"></i></div><span class="menu-text">Halaman Utama</span></a>
-        <a href="<?php echo base_url('new_budget/monthly') ?>"><div class="icon-navbar"><i class="fa fa-calendar" aria-hidden="true"></i></div><span class="menu-text">Buat Limit Budget Bulanan Baru</span></a>
+        <a href="<?php echo base_url('new_budget/monthly') ?>"><div class="icon-navbar"><i class="fa fa-calendar" aria-hidden="true"></i></div><span class="menu-text">Limit Budget Bulanan</span></a>
         <a href="<?php echo base_url('new_budget/transaction') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">Buat Transaksi Baru</span></a>
         <a href="<?php echo base_url('main/cicilan_tahunan/') ?>"><div class="icon-navbar"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></div><span class="menu-text">Lihat Detail Cicilan</span></a>
         <a href="<?php echo base_url('main/all_transactions/') ?>"><div class="icon-navbar"><i class="fa fa-dollar" aria-hidden="true"></i></div><span class="menu-text">Detail Transaksi Bulanan</span></a> 
@@ -173,8 +180,21 @@
       </section>
   
   </div>
-  </body>
+  <script>
+  var forms = document.getElementsByTagName('form');
+  for (var i = 0; i < forms.length; i++) {
+      forms[i].noValidate = true;
 
+      forms[i].addEventListener('submit', function(event) {
+          //Prevent submission if checkValidity on the form returns false.
+          if (!event.target.checkValidity()) {
+              event.preventDefault();
+              //Implement you own means of displaying error messages to the user here.
+              alert('Terdapat kesalahan pengisian form');
+          }
+      }, false);
+  }
+</script>
   <!-- Swals -->
   <?php if($this->session->flashdata('failed')): ?>
     <script>
@@ -197,5 +217,8 @@
       });
     </script>
   <?php endif; ?>
+  
+  </body>
+
   
 </html>

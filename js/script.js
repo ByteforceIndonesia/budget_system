@@ -7,6 +7,7 @@ function triggerMenu() {
         $('.menu-text').hide();
         document.getElementById("mySidenav").style.width = "40px";
     	document.getElementById("mySidenav").style.opacity = "1";
+        document.getElementById("mySidenav").style.paddingTop = "10px";
 	    
         document.getElementById("body").style.opacity = "1";
         $('.closebtn').hide();
@@ -19,9 +20,9 @@ function triggerMenu() {
         $('.menu-text').show();
         $('#menu-button').hide();
      
-    	document.getElementById("mySidenav").style.width = "300px";
+    	document.getElementById("mySidenav").style.width = "240px";
     	document.getElementById("mySidenav").style.opacity = "1";
-
+        document.getElementById("mySidenav").style.paddingTop = "50px";
     	$('.closebtn').show();
         
         document.getElementById("body").style.opacity = "0.5";

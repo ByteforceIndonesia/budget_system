@@ -25,7 +25,7 @@
 					<input type="text" class="form-control" id="filter_gold" style="width: 25%">
 				</div>
 				<div class="table-responsive toggle-circle-filled">
-	        		<table  class="table table-condensed" data-filter="#filter_gold" data-page-size="10" id="table_gold">
+	        		<table  class="table " data-filter="#filter_gold" data-page-size="10" id="table_gold">
 						<thead>
 							 <tr>
 							 	<th data-toggle="true" data-type="numeric" data-sort-initial="true">No</th>
@@ -33,7 +33,9 @@
 							 	<th >Jumlah Emas (gr)</th>
 							 	<th data-hide="phone">Supplier</th>
 							 	<th data-hide="phone">Tanggal Pembelian</th>
-							 	<th data-hide="phone">Tanggal Pembayaran</th>
+							 	<th data-hide="all">Jenis Emas</th>
+							 	<th data-hide="all">Tanggal Pembayaran</th>
+							 	<th data-hide="all">Perkiraan Total</th>
 							 	<th data-hide="phone">Action</th>
 							 </tr>
 						</thead>
@@ -46,7 +48,13 @@
 									<td><?php echo $one->weight ?> g</td>
 									<td><?php echo $one->name?></td>
 									<td><?php echo date('d-M-Y',strtotime($one->created)) ?></td>
+									<td><?php echo $one->diamond_type ?></td>
 									<td><?php echo date('d-M-Y',strtotime($one->start_payment)) ?></td>
+									<?php if ($one->diamond_type == 'Logam Mulia'): ?>
+										<td><?php echo rupiah($one->weight * $configuration->emas_lm) ?></td>
+									<?php else: ?>
+										<td><?php echo rupiah($one->weight * $configuration->emas_24) ?></td>
+									<?php endif ?>
 							 		<td>
 							 			<a style="cursor: pointer;" onclick="return test_swal(<?php echo $one->id ?>)">Delete</a>
 							 		</td>
@@ -149,12 +157,12 @@ $(document).ready(function(){
 <script>
 	function test_swal(id){
 		swal({
-			title: "Are you sure?",   
-			text: "You will not be able to recover this imaginary file!",   
+			title: "Apakah anda yakin?",   
+			text: "Transaksi yang sudah dihapus tidak bisa dikembalikan.",   
 			type: "warning",   
 			showCancelButton: true,   
 			confirmButtonColor: "#DD6B55",  
-			confirmButtonText: "Yes, delete it!",   
+			confirmButtonText: "Ya, Hapus!",   
 			closeOnConfirm: false }, 
 			function(){   
 				location.replace("<?php echo base_url('main/delete/') ?>" + id);

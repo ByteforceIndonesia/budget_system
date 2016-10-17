@@ -11,7 +11,7 @@
 						<tr class="form-group">
 							<td><span class="form-label">Judul Notes</span></td>
 							<td>
-								<input type="text" name="title" class="form-control" placeholder="Judul">
+								<input type="text" name="title" required="required" class="form-control" placeholder="Judul">
 							</td>
 						</tr>
 						
@@ -20,7 +20,7 @@
 								<span class="form-label">Isi Notes</span>
 							</td>
 							<td>
-								<textarea name="content" rows="10" placeholder="Isi Notes" class="form-control"></textarea>
+								<textarea name="content" rows="10" required="required" placeholder="Isi Notes" class="form-control"></textarea>
 							</td>
 						</tr>
 						<tr>
@@ -35,4 +35,6 @@
 		</div>
 	</div>
 </section>
+
+
 

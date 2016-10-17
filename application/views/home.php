@@ -30,7 +30,7 @@
 				</div>
 				<div class="alert alert-warning" style="margin-bottom: 2px!important;"><i class="fa fa-exclamation-circle"></i>&nbsp;Jumlah Cicilan Pembayaran Diamond Bulan <?php echo $month ?>&nbsp;:&nbsp;<?php echo NZD($trans_cicilan,2,'.',''); ?></div>
 
-				<div class="alert alert-warning" style="margin-top: 0px!important;margin-bottom: 2px;"><i class="fa fa-exclamation-circle"></i>&nbsp;Jumlah Pembayaran Emas Bulan <?php echo $month ?>&nbsp;:&nbsp;<?php echo rupiah($trans_emas,2,',','.'); ?></div>
+				<div class="alert alert-warning" style="margin-top: 0px!important;margin-bottom: 2px;"><i class="fa fa-exclamation-circle"></i>&nbsp;Jumlah Pembayaran Emas Bulan <?php echo $month ?>&nbsp;:&nbsp;<?php echo number_format($trans_emas).' gr'; ?></div>
 						
 
 					

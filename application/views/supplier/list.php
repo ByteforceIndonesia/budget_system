@@ -42,7 +42,7 @@
 									<td><?php echo $supplier->name ?></td>
 									<td><a href="tel:<?php echo $supplier->phone ?>"><?php echo $supplier->phone ?></a></td>
 									<td><?php echo $supplier->address ?></td>
-									<td><a href="<?php echo base_url('supplier/edit/'.$supplier->id) ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a> <a  onclick="return confirm('Anda yakin ingin menghapus <?php echo $supplier->name ?>?')" href="<?php echo base_url('supplier/delete/'.$supplier->id) ?>"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+									<td><a href="<?php echo base_url('supplier/edit/'.$supplier->id) ?>"><i class="fa fa-pencil fa-2x" aria-hidden="true"></i></a> <a  onclick="return confirm('Anda yakin ingin menghapus <?php echo $supplier->name ?>?')" href="<?php echo base_url('supplier/delete/'.$supplier->id) ?>"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></td>
 								</tr>
 							<?php $i++; endforeach; ?>
 						<?php else: ?>

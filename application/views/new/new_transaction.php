@@ -17,6 +17,9 @@
 								</select>
 							</td>
 						</tr>
+						<tr id="weight">
+							
+						</tr>
 						<tr id="total">
 							<td><span class="form-label">Total Yang Dibayarkan</span></td>
 							<td>
@@ -67,9 +70,7 @@
 								</select>
 							</td>
 						</tr>
-						<tr id="weight">
-							
-						</tr>
+						
 						
 						<tr>
 							<td>
@@ -104,7 +105,8 @@
 			$('#total').hide();
 			$('#exampleInputAmount').removeAttr('required');
 			$('#jenis').empty();
-			$('#weight').append('<td><span class="form-label">Jumlah Emas (gr)</span></td><td><div class="form-group"><div class="input-group"><input type="text"  pattern="\\d+(\\.\\d{1,2})?" required="1" class="form-control" name="weight" placeholder="" ><div class="input-group-addon">g</div></div></div></td>');
+			$('#jenis').append('<td><span class="form-label">Jenis Emas</span></td><td><select name="jenis" class="form-control" required="1"><option value="">--Pilih Jenis--</option><option value="Logam Mulia">Logam Mulia</option><option value="Emas 24K">Emas 24K</option></select></td>');
+			$('#weight').append('<td><span class="form-label">Jumlah Emas (gr)</span></td><td><div class="form-group"><div class="input-group"><input type="text"  pattern="\\d+(\\.\\d{1,2})?" required="1" class="form-control" name="weight" placeholder="Jumlah Emas (gr)" ><div class="input-group-addon">gr</div></div></div></td>');
 		}else
 		{
 			$('#weight').empty();
@@ -112,6 +114,7 @@
 			$('#mulaiCicilan').append('Mulai Cicilan');
 			$('#durasiCicilan').show();
 			$('#total').show();
+			$('#jenis').empty();
 			$('#jenis').append('<td><span class="form-label">Jenis Diamond</span></td><td><select name="jenis" class="form-control" required="1"><option value="">--Pilih Jenis--</option><option value="Loose Diamond">Loose Diamond</option><option value="Jewellery">Jewellery</option></select></td>');
 			$('#start_payment').attr('required','required');
 		}

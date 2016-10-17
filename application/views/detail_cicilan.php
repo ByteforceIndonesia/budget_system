@@ -24,17 +24,29 @@
 					    </div>
 					</div>
 				</div>
-				<h1 style="margin-top: 10px;">Diamond</h1>
+				<h1 style="margin-top: 10px;"><?php echo ucfirst($type) ?></h1>
 				<div class="table-responsive toggle-circle-filled">
 	        		<table class="table table-condensed" data-filter="#filter" data-page-size="10" id="table_diamond">
 						<thead>
 							 <tr>
 							 	<th data-type="numeric" data-sort-initial="true">No</th>
-							 	<th data-toggle="true">Pembelian Bulan</th>
+							 	<th data-toggle="true">Pembelian</th>
+							 	<th data-hide="phone">Supplier</th>
+							 	<?php if ($type == 'diamond'): ?>
+							 		<th data-hide="all">Jenis Diamond</th>
+							 	<?php else: ?>
+							 		<th data-hide="phone">Jumlah Emas(Gr)</th>
+							 		<th data-hide="all">Jenis Emas</th>
+							 	<?php endif ?>
 							 	<th data-hide="phone">Tanggal Pembelian</th>
-							 	<th data-hide="phone">Keterangan</th>
+							 	<th data-hide="all">Keterangan</th>
 							 	<th data-hide="phone">Jatuh Tempo Pembayaran</th>
-							 	<th data-type="numeric">Jumlah Pembayaran</th>
+							 	
+							 	<?php if ($type == 'diamond'): ?>
+							 		<th data-type="numeric">Total</th>
+							 	<?php else: ?>
+							 		<th data-type="numeric">Perkiraan Total</th>
+							 	<?php endif ?>
 							 </tr>
 						</thead>
 						<tbody>
@@ -42,14 +54,25 @@
 							<?php $i = 1; foreach($installments as $one): ?>
 								<tr>
 									<td><?php echo $i ?></td>
-									<td><?php echo $one->month.' '.$one->year ?></td>
-									<td><?php echo date('d-m-Y',strtotime($one->created)) ?></td>
+									<td><?php echo ucfirst($one->month).' '.$one->year ?></td>
+									<td><?php echo $one->name ?></td>
+									<?php if ($type == 'diamond'): ?>
+								 		<td><?php echo $one->diamond_type ?></td>
+								 	<?php else: ?>
+								 		<td><?php echo $one->weight.' gr' ?></td>
+								 		<td><?php echo $one->diamond_type ?></td>
+								 	<?php endif ?>
+									<td><?php echo date('d-m-Y',strtotime($one->created)) ?></td>									
 									<td><?php echo $one->description ?></td>
 									<td><?php echo date('d-m-Y',strtotime($one->due)) ?></td>
 									<?php if ($one->type == 'diamond'): ?>
 										<td><?php echo NZD($one->amount) ?></td>
 									<?php else: ?>
-										<td><?php echo rupiah($one->amount) ?></td>
+										<?php if($one->diamond_type == 'Logam Mulia'): ?>
+											<td><?php echo rupiah($one->weight * $configuration->emas_lm) ?></td>
+										<?php else: ?>
+											<td><?php echo rupiah($one->weight * $configuration->emas_24) ?></td>
+										<?php endif; ?>
 									<?php endif; ?>
 									
 							 		

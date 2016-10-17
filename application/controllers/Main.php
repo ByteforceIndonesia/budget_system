@@ -91,7 +91,7 @@ class Main extends CI_Controller {
 			$year = $date[1];
 			$data['month'] = date('F',strtotime($date['1'].'-'.$date[0]));
 		}
-		
+		$data['configuration'] = $this->db->get('configuration')->row();
 		$data['title'] = "Transactions";
 
 		$data['gold'] 	 = $this->budget_model->getTransMonth($month,$year, 'gold');
@@ -135,11 +135,12 @@ class Main extends CI_Controller {
 			
 			$data['month'] = date('F',strtotime($month));
 		}
-
+		$data['configuration'] = $this->db->get('configuration')->row();
 		$data['title'] = "Detail Cicilan";
 		$data['type'] = $type;
-		$this->db->select('installments.*,transactions.month,transactions.year,transactions.created,transactions.description,transactions.type');
+		$this->db->select('installments.*,transactions.month,transactions.year,transactions.created,transactions.description,transactions.type,transactions.diamond_type,transactions.weight,supplier.name');
 		$this->db->from('transactions');
+		$this->db->join('supplier','supplier.id = transactions.supplier_id','left');
 		$this->db->join('installments','installments.transaction_id = transactions.id');
 		$this->db->where("installments.due LIKE '$month%'");
 		$this->db->where("transactions.type", $type);
