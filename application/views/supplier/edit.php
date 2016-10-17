@@ -26,7 +26,7 @@
 								<span class="form-label">Alamat</span>
 							</td>
 							<td>
-								<textarea name="address"  placeholder="Alamat" required="required" class="form-control"><?php echo str_replace($breaks, "", $supplier->address) ?></textarea>
+								<textarea name="address"  placeholder="Alamat" class="form-control"><?php echo str_replace($breaks, "", $supplier->address) ?></textarea>
 							</td>
 						</tr>
 						<tr>

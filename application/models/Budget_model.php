@@ -210,6 +210,29 @@ class Budget_model extends CI_Model {
 		return $this->db->get()->result();
 	}
 
+	public function getTransaction(){
+		$this->db->select('transactions.*,supplier.name');
+		$this->db->from('transactions');
+		$this->db->join('supplier','supplier.id = transactions.supplier_id','left');
+		$this->db->where('giro' , 0);
+		return $this->db->get()->result();
+	}
+	public function getTransactionById($id){
+		$this->db->select('transactions.*,supplier.name');
+		$this->db->from('transactions');
+		$this->db->join('supplier','supplier.id = transactions.supplier_id','left');
+		$this->db->where('transactions.id' , $id);
+		return $this->db->get()->row();
+	}
+	public function getTransaction1(){
+		$this->db->select('transactions.*,supplier.name');
+		$this->db->from('transactions');
+		$this->db->join('supplier','supplier.id = transactions.supplier_id','left');
+		
+		return $this->db->get()->result();
+	}
+
+
 	public function getTotalTrans ($type, $month,$year)
 	{
 		if($type == 'gold'){

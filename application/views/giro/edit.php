@@ -4,8 +4,8 @@
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<h1 class="title" align="center">Buat Giro</h1>
-				<?php echo form_open('giro/new') ?>
+				<h1 class="title" align="center">Ubah Giro</h1>
+				<?php echo form_open('giro/edit/'.$transaction1->id) ?>
 					<select name="transaction" id="transaction" onchange="get_amount(this)" class="form-control">
 						<option value="">--pilih transaksi--</option>
 						<?php foreach ($transactions as $transaction): ?>
@@ -36,12 +36,26 @@
 					<a style="cursor: pointer; margin: 10px 0" onclick="giro()" class="btn btn-primary pull-right">+ Giro</a>
 					<table class="table">
 					<tbody>
+						<input type="hidden" name="transaction" value="<?php echo $transaction1->id ?>">
+						<?php foreach ($giros as $giro):?>
+							<tr class="form-group">
+								<td>
+									<input type="text" name="nomor[]" class="form-control" value="<?php echo $giro->giro ?>" placeholder="Nomor Giro">
+								</td>
+								<td>
+									<input type="date" name="tanggal[]" max='+"<?php echo $latest_payment ?>"+' min='+"<?php echo $transaction1->start_payment ?>"+' value="<?php echo $giro->due ?>" class="form-control"  placeholder="Tanggal">
+								</td>
+								<td>
+									<input type="text" name="jumlah[]" class="form-control jumlah" value="<?php echo $giro->amount ?>"  placeholder="Jumlah" onblur="calc()">
+								</td>
+							</tr>
+						<?php endforeach; ?>
 						
 					</tbody>
 					<tfoot>
 						<tr>
 							<td colspan="3">
-								<input type="submit" name="submit" id="buat_giro" class="btn btn-default pull-right" value="Buat Giro" disabled>
+								<input type="submit" name="ubah" id="buat_giro" class="btn btn-default pull-right" value="Buat Giro" disabled>
 							</td>
 						</tr>
 					</tfoot>
@@ -66,7 +80,7 @@
 	}
 
 	function calc(){
-		var id = document.getElementById('transaction').value;
+		var id = <?php echo $transaction1->id ?>;
 
 		var harga = 0;
 
@@ -145,6 +159,72 @@
 
 <script>
 	function giro(){
-		$('tbody').append('<tr class="form-group"><td><input type="text" name="nomor[]" class="form-control"  placeholder="Nomor Giro"></td><td><input type="date" name="tanggal[]" max='+"<?php echo $latest_payment ?>"+' min='+"<?php echo $transaction1->start_payment ?>"+' class="form-control"  placeholder="Tanggal"></td><td><input type="text" name="jumlah[]" class="form-control jumlah" placeholder="Jumlah" onblur="calc()"></td></tr>');
+		$('tbody').append('<tr class="form-group"><td><input type="text" name="nomor[]" class="form-control" required="required" placeholder="Nomor Giro"></td><td><input type="date" name="tanggal[]" max='+"<?php echo $latest_payment ?>"+' min='+"<?php echo $transaction1->start_payment ?>"+' class="form-control" required="required" placeholder="Tanggal"></td><td><input type="text" name="jumlah[]" class="form-control jumlah" required="required" placeholder="Jumlah" onblur="calc()"></td></tr>');
 	}
+</script>
+
+<script>
+	$(document).ready(function(){
+		var id = <?php echo $transaction1->id ?>;
+
+		var harga = 0;
+
+		$.ajax({
+        	url:"<?php echo base_url('giro/get_transaction') ?>" + '/' + id,
+        	type: 'GET',
+        	success: function(result){
+        		harga = result;
+        	}
+        });
+
+       
+		setTimeout(function(){
+			
+			harga = harga.substr(0, harga.length - 2);
+			harga = harga.replace(/[^0-9]/g, "");
+
+			var inputs = document.getElementsByClassName( 'jumlah' ),
+		    total  = [].map.call(inputs, function( input ) {
+		        return input.value;
+		    }).join( ' ' );
+
+		    //tt itu total
+
+		    total = total.split(" ");
+		    var tt = 0;
+		    for(var i = 0; i < total.length ; i++){
+		    	tt += +total[i];
+		    }
+		    harga = +harga - +tt;
+		    var type;
+		    $.ajax({
+        	url:"<?php echo base_url('giro/get_type') ?>" + '/' + id,
+        	type: 'GET',
+        	success: function(result){
+	        		type = result
+	        	}
+	        });
+
+		    if(harga < 0){
+		    	alert('Jumlah giro harus sesuai jumlah pembayaran');
+		    	$('#buat_giro').attr('disabled','disabled');
+		    }else if(harga == 0){
+		    	$('#buat_giro').removeAttr('disabled')
+		    }else{
+		    	$('#buat_giro').attr('disabled','disabled');
+		    }	
+
+	        setTimeout(function(){
+		        if(type == 'diamond'){
+		        	$('#harga').empty();
+		    		$('#harga').append('$ '+ (harga).formatMoney(2));
+		        }else{
+		        	$('#harga').empty();
+		    		$('#harga').append('Rp. '+ (harga).formatMoney(2,',','.'));
+		        }
+	    	},100);
+		    
+		}, 100);
+
+	});
 </script>

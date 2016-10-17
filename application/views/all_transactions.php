@@ -56,7 +56,8 @@
 										<td><?php echo rupiah($one->weight * $configuration->emas_24) ?></td>
 									<?php endif ?>
 							 		<td>
-							 			<a style="cursor: pointer;" onclick="return test_swal(<?php echo $one->id ?>)">Delete</a>
+							 			<a style="cursor: pointer; margin-right: 20px" onclick="return test_swal(<?php echo $one->id ?>)"><span class="fa fa-trash"></span></a>
+						 			<a href="<?php echo base_url('giro/edit/'.$one->id) ?>"><span class="fa fa-money"></span> Giro</a>
 							 		</td>
 								</tr>
 							<?php $i++; endforeach; ?>
@@ -105,7 +106,8 @@
 								<td><?php echo date('d-M-Y',strtotime($one->created)) ?></td>
 								<td><?php echo NZD($one->amount) ?></td>
 						 		<td>
-						 			<a style="cursor: pointer;" onclick="return test_swal(<?php echo $one->id ?>)">Delete</a>
+						 			<a style="cursor: pointer; margin-right: 20px" onclick="return test_swal(<?php echo $one->id ?>)"><span class="fa fa-trash"></span></a>
+						 			<a href="<?php echo base_url('giro/edit/'.$one->id) ?>"><span class="fa fa-money"></span> Giro</a>
 						 		</td>
 							</tr>
 						<?php $i++; endforeach; ?>

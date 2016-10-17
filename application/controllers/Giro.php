@@ -24,10 +24,69 @@ class Giro extends CI_Controller {
 		}
 	}
 
-	public function index(){
-		$data['title'] = "Giro";
-		$data['transactions'] = $this->db->get('transactions')->result();
-		$this->template->load('default', 'giro/new', $data);
+	public function index($id = ''){
+		if($id != ''){
+			$data['configuration'] = $this->db->get('configuration')->row();
+			$data['transaction1'] = $this->budget_model->getTransactionById($id);
+			$data['latest_payment'] = date('Y-m-d',strtotime("last day of ".$data['transaction1']->start_payment."+".$data['transaction1']->spanning_month." month"));
+			$data['title'] = "Giro";
+			$data['transactions'] = $this->budget_model->getTransaction();
+			$this->template->load('default', 'giro/new', $data);
+			
+		}else{
+			
+			$data['title'] = "Giro";
+			$data['transactions'] = $this->budget_model->getTransaction();
+			$this->template->load('default', 'giro/index', $data);
+			
+		}
+			
+		
+		
+	}
+
+	public function edit($id = ''){
+		if ($this->input->post('ubah')) {
+			$this->db->delete('installments',array('transaction_id' => $id));
+
+			for($i = 0; $i <  count($this->input->post('nomor')); $i++){
+				if ( $this->input->post('nomor')[$i] != '') {
+					$data_insert = array(
+						'giro' => $this->input->post('nomor')[$i],
+						'due' => $this->input->post('tanggal')[$i],
+						'amount' => $this->input->post('jumlah')[$i],
+						'transaction_id' => $this->input->post('transaction'),
+
+					);
+					$this->db->insert('installments',$data_insert);
+				}
+				
+			}
+			$this->db->update('transactions',array('giro' => 1),array('id' => $id));
+			$this->session->set_flashdata('success', 'Giro Berhasil Dibuat!');
+			redirect('main');
+		}else{
+			if($id != ''){
+				$data['configuration'] = $this->db->get('configuration')->row();
+				$data['transaction1'] = $this->budget_model->getTransactionById($id);
+				$data['latest_payment'] = date('Y-m-d',strtotime("last day of ".$data['transaction1']->start_payment."+".$data['transaction1']->spanning_month." month"));
+				$data['title'] = "Giro";
+				$data['transactions'] = $this->budget_model->getTransaction1();
+				$data['giros'] = $this->db->get_where('installments',array('transaction_id' => $id))->result();
+				$this->template->load('default', 'giro/edit', $data);
+					
+			}else{
+				
+				$data['title'] = "Giro";
+				$data['transactions'] = $this->budget_model->getTransaction();
+				$this->template->load('default', 'giro/index', $data);
+				
+			}
+		}
+
+		
+			
+		
 	}
 
 
@@ -61,16 +120,21 @@ class Giro extends CI_Controller {
 	public function new(){
 		if($this->input->post('submit')){
 			for($i = 0; $i <  count($this->input->post('nomor')); $i++){
-				$data_insert = array(
+				$this->db->delete('installments',array('transaction_id' => $id));
+				if ( $this->input->post('nomor')[$i] != '') {
+					$data_insert = array(
 						'giro' => $this->input->post('nomor')[$i],
 						'due' => $this->input->post('tanggal')[$i],
 						'amount' => $this->input->post('jumlah')[$i],
 						'transaction_id' => $this->input->post('transaction'),
 
 					);
-				$this->db->insert('installments',$data_insert);
+					$this->db->insert('installments',$data_insert);
+				}
+				
 			}
-
+			$this->db->update('transactions',array('giro' => 1),array('id' => $this->input->post('transaction')));
+			$this->session->set_flashdata('success', 'Giro Berhasil Dibuat!');
 			redirect('main');
 		}
 	}

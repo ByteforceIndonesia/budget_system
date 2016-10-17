@@ -25,7 +25,7 @@
 								<span class="form-label">Alamat</span>
 							</td>
 							<td>
-								<textarea name="address" placeholder="Alamat" required="required" class="form-control"></textarea>
+								<textarea name="address" placeholder="Alamat" class="form-control"></textarea>
 							</td>
 						</tr>
 						<tr>
