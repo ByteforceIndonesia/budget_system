@@ -64,8 +64,13 @@
       /* footable */
     .footable{
       background :white !important;
-      border : none !important;
+      border: none;
       width: 100% !important;
+      border-collapse: collapse;
+    }
+
+    .footable>tbody{
+      border: 2px solid #948A6A !important;
     }
 
     .footable>thead>tr>th, .footable>thead>tr>td { 
@@ -76,12 +81,7 @@
 
     }
 
-    .footable>tbody>tr>th, .footable>tbody>tr>td { 
-      
-      border : 1px solid #948A6A !important;
-      color: black !important;
-
-    }
+   
 
     .footable>tfoot>tr>th, .footable>tfoot>tr>td { 
       
@@ -109,10 +109,11 @@
       <div id="mySidenav" class="sidenav">
 
         <a href="javascript:void(0)" class="closebtn" onclick="triggerMenu()" style="border-bottom: none;font-size:25px!important; display: none;">&times;</a>
-        <a onclick="triggerMenu()" id="menu-button"><div class="icon-navbar"><i class="fa fa-bars" style="color: #fff!important;" aria-hidden="true" ></i></div></a>
+        <a onclick="triggerMenu()" id="menu-button"><div class="icon-navbar"><i class="fa fa-bars" style="color: #fff!important; cursor: pointer" aria-hidden="true" ></i></div></a>
         <a href="<?php echo base_url() ?>"><div class="icon-navbar"><i class="fa fa-home" aria-hidden="true"></i></div><span class="menu-text">Halaman Utama</span></a>
         <a href="<?php echo base_url('new_budget/monthly') ?>"><div class="icon-navbar"><i class="fa fa-calendar" aria-hidden="true"></i></div><span class="menu-text">Limit Budget Bulanan</span></a>
         <a href="<?php echo base_url('new_budget/transaction') ?>"><div class="icon-navbar"><i class="fa fa-plus" aria-hidden="true"></i></div><span class="menu-text">Buat Transaksi Baru</span></a>
+        <a href="<?php echo base_url('giro') ?>"><div class="icon-navbar"><i class="fa fa-money" aria-hidden="true"></i></div><span class="menu-text">Buat Giro</span></a>
         <a href="<?php echo base_url('main/cicilan_tahunan/') ?>"><div class="icon-navbar"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></div><span class="menu-text">Lihat Detail Cicilan</span></a>
         <a href="<?php echo base_url('main/all_transactions/') ?>"><div class="icon-navbar"><i class="fa fa-dollar" aria-hidden="true"></i></div><span class="menu-text">Detail Transaksi Bulanan</span></a> 
         <a href="<?php echo base_url('supplier') ?>"><div class="icon-navbar"><i class="fa fa-user" aria-hidden="true"></i></div><span class="menu-text">Supplier</span></a>

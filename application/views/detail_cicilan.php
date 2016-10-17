@@ -30,7 +30,7 @@
 						<thead>
 							 <tr>
 							 	<th data-type="numeric" data-sort-initial="true">No</th>
-							 	<th data-toggle="true">Pembelian</th>
+							 	<th data-toggle="true">Giro</th>
 							 	<th data-hide="phone">Supplier</th>
 							 	<?php if ($type == 'diamond'): ?>
 							 		<th data-hide="all">Jenis Diamond</th>
@@ -54,7 +54,7 @@
 							<?php $i = 1; foreach($installments as $one): ?>
 								<tr>
 									<td><?php echo $i ?></td>
-									<td><?php echo ucfirst($one->month).' '.$one->year ?></td>
+									<td><?php echo $one->giro ?></td>
 									<td><?php echo $one->name ?></td>
 									<?php if ($type == 'diamond'): ?>
 								 		<td><?php echo $one->diamond_type ?></td>
@@ -62,9 +62,9 @@
 								 		<td><?php echo $one->weight.' gr' ?></td>
 								 		<td><?php echo $one->diamond_type ?></td>
 								 	<?php endif ?>
-									<td><?php echo date('d-m-Y',strtotime($one->created)) ?></td>									
+									<td><?php echo date('d-M-Y',strtotime($one->created)) ?></td>									
 									<td><?php echo $one->description ?></td>
-									<td><?php echo date('d-m-Y',strtotime($one->due)) ?></td>
+									<td><?php echo date('d-M-Y',strtotime($one->due)) ?></td>
 									<?php if ($one->type == 'diamond'): ?>
 										<td><?php echo NZD($one->amount) ?></td>
 									<?php else: ?>
