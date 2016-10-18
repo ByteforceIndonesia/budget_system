@@ -253,7 +253,7 @@ class Budget_model extends CI_Model {
 	{	
 		$this->db->select('transactions.type,installments.*,transactions.amount AS total');
 		if ($type == 'gold') {
-			$this->db->select_sum('transactions.weight');
+			$this->db->select_sum('installments.amount');
 		}else{
 			$this->db->select_sum('installments.amount');
 		}
@@ -263,7 +263,7 @@ class Budget_model extends CI_Model {
 		$this->db->where("installments.due LIKE '$month%'");
 		$this->db->where('transactions.type',$type);
 		if ($type == 'gold') {
-			$total = $this->db->get()->row('weight');
+			$total = $this->db->get()->row('amount');
 		}else{
 			$total = $this->db->get()->row('amount');
 		}

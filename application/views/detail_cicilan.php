@@ -69,9 +69,9 @@
 										<td><?php echo NZD($one->amount) ?></td>
 									<?php else: ?>
 										<?php if($one->diamond_type == 'Logam Mulia'): ?>
-											<td><?php echo rupiah($one->weight * $configuration->emas_lm) ?></td>
+											<td><?php echo rupiah($one->amount) ?></td>
 										<?php else: ?>
-											<td><?php echo rupiah($one->weight * $configuration->emas_24) ?></td>
+											<td><?php echo rupiah($one->amount) ?></td>
 										<?php endif; ?>
 									<?php endif; ?>
 									
