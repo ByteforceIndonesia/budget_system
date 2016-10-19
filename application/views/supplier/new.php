@@ -17,7 +17,7 @@
 						<tr class="form-group">
 							<td><span class="form-label">Telp. Supplier</span></td>
 							<td>
-								<input type="text" name="phone" class="form-control" required="required" placeholder="No. Telp">
+								<input type="text" name="phone" class="form-control" placeholder="No. Telp">
 							</td>
 						</tr>
 						<tr>

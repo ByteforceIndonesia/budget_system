@@ -18,7 +18,7 @@
 						<tr class="form-group">
 							<td><span class="form-label">Telp. Supplier</span></td>
 							<td>
-								<input type="text" name="phone" class="form-control" required="required" value="<?php echo $supplier->phone ?>" placeholder="No. Telp">
+								<input type="text" name="phone" class="form-control" value="<?php echo $supplier->phone ?>" placeholder="No. Telp">
 							</td>
 						</tr>
 						<tr>
