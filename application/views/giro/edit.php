@@ -70,6 +70,7 @@
 <script>
 	var min;
 	var max;
+	var row = 0;
 </script>
 <script>
 
@@ -159,7 +160,15 @@
 
 <script>
 	function giro(){
-		$('tbody').append('<tr class="form-group"><td><input type="text" name="nomor[]" class="form-control" required="required" placeholder="Nomor Giro"></td><td><input type="date" name="tanggal[]" max='+"<?php echo $latest_payment ?>"+' min='+"<?php echo $transaction1->start_payment ?>"+' class="form-control" required="required" placeholder="Tanggal"></td><td><input type="text" name="jumlah[]" class="form-control jumlah" required="required" placeholder="Jumlah" onblur="calc()"></td></tr>');
+		$('tbody').append('<tr id="row_'+row+'" class="form-group"><td style="padding:2px"><input type="text" name="nomor[]" class="form-control"  placeholder="Nomor Giro"></td><td style="padding:2px"><input type="date" class="form-control" name="tanggal[]" max='+"<?php echo $latest_payment ?>"+' min='+"<?php echo $transaction1->start_payment ?>"+'   placeholder="Tanggal"></td><td style="width:25%;padding:2px"><input type="text" name="jumlah[]" class="form-control jumlah" placeholder="Jumlah" onblur="calc()"></td><td style="padding:2px"><a onclick="remove_row('+row+')" style="cursor:pointer">&times;</a></td></tr>');
+
+		row = row + 1;
+	}
+</script>
+
+<script>
+	function remove_row(row){
+		$('#row_'+row).remove();
 	}
 </script>
 
