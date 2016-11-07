@@ -117,7 +117,7 @@ class Giro extends CI_Controller {
 
 	}
 
-	public function new(){
+	public function new_giro(){
 		if($this->input->post('submit')){
 			for($i = 0; $i <  count($this->input->post('nomor')); $i++){
 				

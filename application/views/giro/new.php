@@ -5,7 +5,7 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<h1 class="title" align="center">Buat Giro</h1>
-				<?php echo form_open('giro/new') ?>
+				<?php echo form_open('giro/new_giro') ?>
 					<select name="transaction" id="transaction" onchange="get_amount(this)" class="form-control">
 						<option value="">--pilih transaksi--</option>
 						<?php foreach ($transactions as $transaction): ?>
