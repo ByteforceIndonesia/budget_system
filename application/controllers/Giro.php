@@ -109,9 +109,9 @@ class Giro extends CI_Controller {
 			echo NZD($transaction->amount);
 		}else{
 			if($transaction->diamond_type == 'Logam Mulia'){
-				echo rupiah($configuration->emas_lm * $transaction->weight);
+				echo number_format($configuration->emas_lm * $transaction->weight,2);
 			}else{
-				echo rupiah($configuration->emas_24 * $transaction->weight);
+				echo number_format($configuration->emas_24 * $transaction->weight,2);
 			}
 		}
 
@@ -120,7 +120,7 @@ class Giro extends CI_Controller {
 	public function new(){
 		if($this->input->post('submit')){
 			for($i = 0; $i <  count($this->input->post('nomor')); $i++){
-				$this->db->delete('installments',array('transaction_id' => $id));
+				
 				if ( $this->input->post('nomor')[$i] != '') {
 					$data_insert = array(
 						'giro' => $this->input->post('nomor')[$i],

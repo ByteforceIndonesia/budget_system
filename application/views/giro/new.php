@@ -26,9 +26,9 @@
 								echo NZD($transaction1->amount);
 							}else{
 								if($transaction1->diamond_type == 'Logam Mulia'){
-									echo rupiah($configuration->emas_lm * $transaction->weight);
+									echo 'Rp '. number_format($configuration->emas_lm * $transaction->weight,2,',','.');
 								}else{
-									echo rupiah($configuration->emas_24 * $transaction->weight);
+									echo 'Rp '. number_format($configuration->emas_24 * $transaction->weight,2,',','.');
 								}
 							}
 						 ?>
@@ -81,8 +81,7 @@
        
 		setTimeout(function(){
 			
-			harga = harga.substr(0, harga.length - 2);
-			harga = harga.replace(/[^0-9]/g, "");
+			harga = harga.replace(/[^0-9.]/g, "");
 
 			var inputs = document.getElementsByClassName( 'jumlah' ),
 		    total  = [].map.call(inputs, function( input ) {
@@ -96,6 +95,8 @@
 		    for(var i = 0; i < total.length ; i++){
 		    	tt += +total[i];
 		    }
+		    alert(harga);
+		    alert(tt);
 		    harga = +harga - +tt;
 		    var type;
 		    $.ajax({
@@ -121,7 +122,7 @@
 		    		$('#harga').append('$ '+ (harga).formatMoney(2));
 		        }else{
 		        	$('#harga').empty();
-		    		$('#harga').append('Rp. '+ (harga).formatMoney(2,',','.'));
+		    		$('#harga').append('Rp '+ (harga).formatMoney(2,',','.'));
 		        }
 	    	},100);
 		    
