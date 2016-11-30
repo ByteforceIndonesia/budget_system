@@ -190,7 +190,7 @@ class New_budget extends CI_Controller {
 			}else{
 				if($payment_type=='rupiah'){
 					$amount = $this->input->post('amount');	
-					$amount = $amount / $dollar; 
+					$check = $amount / $dollar; 
 				}else{
 					$amount = $this->input->post('amount');	
 				}
@@ -201,7 +201,10 @@ class New_budget extends CI_Controller {
 			$diamond	= $this->budget_model->getMonthlyLimit('diamond', date('F'))->limit_transaction;
 
 			$trans_gold = $this->budget_model->getTotalTrans('gold',date('F'),date('Y'));
-			$trans_diamond = $this->budget_model->getTotalTrans('diamond' , date('F'),date('Y'));
+			$trans_diamond_rupiah = $this->budget_model->getTotalTransDiamond(date('F'), date('Y'), 'rupiah');
+			$trans_diamond_rupiah = $trans_diamond_rupiah / $dollar;
+			$trans_diamond_dollar = $this->budget_model->getTotalTransDiamond(date('F'), date('Y'), 'dollar');
+			$trans_diamond = $trans_diamond_dollar + $trans_diamond_rupiah;
 			$supplier = $this->input->post('supplier');
 			$jenis = $this->input->post('jenis');
 
@@ -220,7 +223,7 @@ class New_budget extends CI_Controller {
 				case 'diamond':
 				{
 					
-					if($amount+$trans_diamond > $diamond)
+					if($check+$trans_diamond > $diamond)
 					{
 						$this->session->set_flashdata('failed', 'Gagal Menambahkan Transaksi ' . $type . ' Untuk Bulan ' . date('F') . ' ' . date('Y') . ', Limit Tidak Cukup !');
 						redirect('main');
@@ -228,7 +231,7 @@ class New_budget extends CI_Controller {
 				}break;
 			}
 
-			if($this->budget_model->insert_transaction($type, $amount, $spanning, $start, $gold_price, $gold_weight, $description,$jenis,$supplier))
+			if($this->budget_model->insert_transaction($type, $amount, $spanning, $start, $gold_price, $gold_weight, $description,$jenis,$supplier, $payment_type))
 			{
 
 				$this->session->set_flashdata('success', 'Transaksi ' . $type . ' Untuk Bulan ' . date('F') . ' ' . date('Y') . ' Berhasil dibuat !');

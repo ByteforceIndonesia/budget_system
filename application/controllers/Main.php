@@ -29,12 +29,18 @@ class Main extends CI_Controller {
 		$data['title'] = "Home";
 		$data['month'] = date('F');
 
+		$conf = $this->db->get('configuration')->row();
+		$this->dollar = $conf->dollar;
+
 		//Get Data
 		$data['gold']		= (!$this->budget_model->getMonthlyLimit('gold', date('F')))? 1 : $this->budget_model->getMonthlyLimit('gold', date('F'))->limit_transaction;
 		$data['diamond']	= (!$this->budget_model->getMonthlyLimit('diamond', date('F')))? 1 : $this->budget_model->getMonthlyLimit('diamond', date('F'))->limit_transaction;
 
 		$data['trans_gold']		= (!$this->budget_model->getTotalTrans('gold', date('F'),date('Y')))? 0 : $this->budget_model->getTotalTrans('gold', date('F'),date('Y'));
-		$data['trans_diamond']	= (!$this->budget_model->getTotalTrans('diamond', date('F'),date('Y')))? 0 : $this->budget_model->getTotalTrans('diamond', date('F'),date('Y'));
+		$data['trans_diamond_rupiah'] =  (!$this->budget_model->getTotalTransDiamond(date('F'),date('Y'),'rupiah'))? 0 : $this->budget_model->getTotalTransDiamond(date('F'),date('Y'), 'rupiah');
+		$data['trans_diamond_rupiah'] = $data['trans_diamond_rupiah'] / $this->dollar; 
+		$data['trans_diamond_dollar'] =  (!$this->budget_model->getTotalTransDiamond(date('F'),date('Y'),'dollar'))? 0 : $this->budget_model->getTotalTransDiamond(date('F'),date('Y'), 'dollar');
+		$data['trans_diamond']	= $data['trans_diamond_rupiah'] + $data['trans_diamond_dollar'];
 
 		$data['trans_cicilan'] = (!$this->budget_model->getTotalTransCicilan('diamond', date('Y-m')))? 0 : $this->budget_model->getTotalTransCicilan('diamond', date('Y-m'));
 		$data['trans_emas'] = (!$this->budget_model->getTotalTransCicilan('gold', date('Y-m')))? 0 : $this->budget_model->getTotalTransCicilan('gold', date('Y-m'));

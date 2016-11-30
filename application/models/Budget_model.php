@@ -128,7 +128,7 @@ class Budget_model extends CI_Model {
 		}
 	}
 
-	public function insert_transaction ($type, $amount, $spanning, $start, $gold_price, $gold_weight,$description,$jenis,$supplier)
+	public function insert_transaction ($type, $amount, $spanning, $start, $gold_price, $gold_weight,$description,$jenis,$supplier,$payment_type)
 	{
 		$data = array(
 
@@ -138,6 +138,7 @@ class Budget_model extends CI_Model {
 			'type'					=> $type,
 			'amount'				=> $amount,
 			'start_payment'			=> $start,
+			'payment_type'			=> $payment_type,
 			'gold_price' 			=> $gold_price,
 			'weight'				=> $gold_weight,
 			'description'			=> $description,
@@ -230,6 +231,14 @@ class Budget_model extends CI_Model {
 		$this->db->join('supplier','supplier.id = transactions.supplier_id','left');
 		
 		return $this->db->get()->result();
+	}
+
+	public function getTotalTransDiamond($month, $year, $payment_type){
+		$this->db->select_sum('amount');
+		$this->db->from('transactions');
+		$this->db->where(array('type'=> 'diamond', 'month'=>$month, 'year'=>$year, 'payment_type'=>$payment_type));
+		$result = $this->db->get()->row('amount');
+		return $result;
 	}
 
 

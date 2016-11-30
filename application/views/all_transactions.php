@@ -103,8 +103,12 @@
 								<td><?php echo $one->spanning_month.' bulan' ?></td>
 								<td><?php echo NZD($one->amount/$one->spanning_month )?></td>
 								<td><?php echo date('d-M-Y',strtotime($one->start_payment)) ?></td>
-								<td><?php echo date('d-M-Y',strtotime($one->created)) ?></td>
-								<td><?php echo NZD($one->amount) ?></td>
+								<td><?php echo date('d-M-Y',strtotime($one->created)) ?></td>	
+								<?php if($one->payment_type=='dollar'): ?>
+									<td><?php echo NZD($one->amount) ?></td>	
+								<?php else : ?>
+									<td><?php echo rupiah($one->amount) ?></td>
+								<?php endif; ?>	
 						 		<td>
 						 			<a style="cursor: pointer; margin-right: 20px" onclick="return test_swal(<?php echo $one->id ?>)"><span class="fa fa-trash"></span></a>
 						 			<a href="<?php echo base_url('giro/edit/'.$one->id) ?>"><span class="fa fa-money"></span> Giro</a>

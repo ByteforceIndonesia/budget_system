@@ -10,7 +10,11 @@
 						<option value="">--pilih transaksi--</option>
 						<?php foreach ($transactions as $transaction): ?>
 							<?php if ($transaction->type == 'diamond') {
-								$amount = NZD($transaction->amount);
+								if($transaction->payment_type=='rupiah')
+									$amount = rupiah($transaction->amount);
+								else{
+									$amount = NZD($transaction->amount);
+								}
 								
 
 							}else{
@@ -23,7 +27,12 @@
 					<p style="display: inline-block; font-weight: bold; padding-top: 15px">Total :&nbsp;</p><p style="display: inline-block; padding-top: 15px;font-weight: bold" id="harga">
 						<?php 
 							if($transaction1->type == 'diamond'){
-								echo NZD($transaction1->amount);
+								if($transaction1->payment_type=='rupiah'){
+									echo rupiah($transaction1->amount);
+								}
+								else{
+									echo NZD($transaction1->amount);
+								}	
 							}else{
 								if($transaction1->diamond_type == 'Logam Mulia'){
 									echo rupiah($configuration->emas_lm * $transaction->weight);
