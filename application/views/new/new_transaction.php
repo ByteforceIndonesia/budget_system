@@ -21,14 +21,15 @@
 							
 						</tr>
 						<tr id="total">
-							<td><span class="form-label">Total Yang Dibayarkan</span></td>
+							<td><span class="form-label">Tipe Pembayaran</span></td>
 							<td>
-								<div class="form-group">
-								  <div class="input-group">
-								      <div class="input-group-addon" id="amount">$</div>
-								      <input type="text" class="form-control" id="exampleInputAmount" name="amount" placeholder="Nominal" pattern="\d+(\.\d{1,2})?" required="1">
-								      <div class="input-group-addon">.00</div>
-								  </div>
+								<select name="payment_type" class="form-control" onchange="tipe_pembayaran()" id="payment_type">
+									<option value="">--Pilih Tipe--</option>
+									<option value="rupiah">Rupiah</option>
+									<option value="dollar">Dollar</option>
+								</select>
+								<div id="payment">
+									
 								</div>
 							</td>
 						</tr>
@@ -117,6 +118,19 @@
 			$('#jenis').empty();
 			$('#jenis').append('<td><span class="form-label">Jenis Diamond</span></td><td><select name="jenis" class="form-control" required="1"><option value="">--Pilih Jenis--</option><option value="Loose Diamond">Loose Diamond</option><option value="Jewellery">Jewellery</option></select></td>');
 			$('#start_payment').attr('required','required');
+		}
+	}
+
+	function tipe_pembayaran(){
+		var type = $('#payment_type').val();
+		if(type=="rupiah"){
+			$('#payment').empty();
+			$('#payment').append('<div class="form-group"><div class="input-group"><div class="input-group-addon" id="amount"></div><input type="text" class="form-control" id="exampleInputAmount" name="amount" placeholder="nominal" required="1"><div class="input-group-addon">.00</div></div></div>');
+			$('#amount').append('Rp.');
+		}else{
+			$('#payment').empty();
+			$('#payment').append('<div class="form-group"><div class="input-group"><div class="input-group-addon" id="amount"></div><input type="text" class="form-control" id="exampleInputAmount" name="amount" placeholder="nominal" required="1"><div class="input-group-addon">.00</div></div></div>');
+			$('#amount').append('$');
 		}
 	}
 </script>
