@@ -173,17 +173,28 @@ class New_budget extends CI_Controller {
 			//Put Post Variables
 			$type 		= $this->input->post('type');
 
-			
+			$payment_type = $this->input->post('payment_type');
 			$spanning 	= $this->input->post('spanning');
 			$start	 	= $this->input->post('start_payment');
 			$gold_price = (!$this->input->post('gold'))? 0 : $this->input->post('gold');
 			// $totalGold	= $gold_price * $amount;
 			$gold_weight = $this->input->post('weight');
 
+
+			$conf = $this->db->get('configuration')->row();
+			$dollar = $conf->dollar; 
+
+
 			if($type == 'gold'){
 				$amount = $gold_price * $gold_weight;
 			}else{
-				$amount = $this->input->post('amount');
+				if($payment_type=='rupiah'){
+					$amount = $this->input->post('amount');	
+					$amount = $amount / $dollar; 
+				}else{
+					$amount = $this->input->post('amount');	
+				}
+				
 			}
 			$description = $this->input->post('description');
 			$gold		= $this->budget_model->getMonthlyLimit('gold', date('F'))->limit_transaction;
@@ -193,6 +204,7 @@ class New_budget extends CI_Controller {
 			$trans_diamond = $this->budget_model->getTotalTrans('diamond' , date('F'),date('Y'));
 			$supplier = $this->input->post('supplier');
 			$jenis = $this->input->post('jenis');
+
 
 			switch($type)
 			{
