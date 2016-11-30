@@ -33,33 +33,33 @@
 				
 				<div class="table-responsive toggle-circle-filled">
 	        		<table class="table table-condensed" data-filter="#filter" data-page-size="12" id="cicilan">
-					<thead>
-						 <tr>
-						 	<th data-sort-ignore="true">Bulan</th>
-						 	<th data-type="numeric">Jumlah Cicilan</th>
-						 	<th data-hide="phone">Action</th>
-						 </tr>
-					</thead>
-					<tbody>
-					
-					<?php if($cicilan != NULL): ?>
-						<?php $i = 1; foreach($cicilan as $one): ?>
-							<tr>
-								<td><?php echo date('F',strtotime($year.'-'.$i)) ?></td>
-								<?php if ($this->uri->segment(3)=='diamond'): ?>
-									<td><?php echo NZD($one) ?></td>
-								<?php else: ?>
-									<td><?php echo rupiah($one) ?></td>
-								<?php endif ?>
-								<td><a href="<?php echo base_url().'main/detail_cicilan/'.date('Y-m',strtotime($year.'-'.$i)).'/'.$type ?>">Lihat Detail &raquo;</a></td>
-							</tr>
-						<?php $i++; endforeach; ?>
-					
-					<?php endif; ?>
-					</tbody>
-					
-        		</table>
-        	</div>
+						<thead>
+							 <tr>
+							 	<th data-sort-ignore="true">Bulan</th>
+							 	<th data-type="numeric">Jumlah Cicilan</th>
+							 	<th data-hide="phone">Action</th>
+							 </tr>
+						</thead>
+						<tbody>
+						
+						<?php if($cicilan != NULL): ?>
+							<?php $i = 1; foreach($cicilan as $one): ?>
+								<tr>
+									<td><?php echo date('F',strtotime($year.'-'.$i)) ?></td>
+									<?php if ($this->uri->segment(3)=='diamond'): ?>
+										<td><?php echo NZD($one) ?></td>
+									<?php else: ?>
+										<td><?php echo rupiah($one) ?></td>
+									<?php endif ?>
+									<td><a href="<?php echo base_url().'main/detail_cicilan/'.date('Y-m',strtotime($year.'-'.$i)).'/'.$type ?>">Lihat Detail &raquo;</a></td>
+								</tr>
+							<?php $i++; endforeach; ?>
+						
+						<?php endif; ?>
+						</tbody>
+						
+	        		</table>
+	        	</div>
 			<div class="col-md-2"></div>
 		</div>
 	</div>
