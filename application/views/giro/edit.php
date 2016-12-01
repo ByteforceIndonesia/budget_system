@@ -76,6 +76,7 @@
 		</div>
 	</div>
 </section>
+
 <script>
 	var min;
 	var max;
@@ -126,7 +127,15 @@
         	url:"<?php echo base_url('giro/get_type') ?>" + '/' + id,
         	type: 'GET',
         	success: function(result){
-	        		type = result
+	        		type = result;
+	        	}
+	        });
+	        var payment_type;
+	        $.ajax({
+        	url:"<?php echo base_url('giro/get_payment_type') ?>" + '/' + id,
+        	type: 'GET',
+        	success: function(result){
+	        		payment_type = result;
 	        	}
 	        });
 
@@ -141,8 +150,14 @@
 
 	        setTimeout(function(){
 		        if(type == 'diamond'){
-		        	$('#harga').empty();
-		    		$('#harga').append('$ '+ (harga).formatMoney(2));
+		        	if(payment_type=='rupiah'){
+		        		$('#harga').empty();
+		    			$('#harga').append('Rp. '+ (harga).formatMoney(2));
+		        	}else{
+		        		$('#harga').empty();
+		    			$('#harga').append('$ '+ (harga).formatMoney(2));
+		        	}
+		        	
 		        }else{
 		        	$('#harga').empty();
 		    		$('#harga').append('Rp. '+ (harga).formatMoney(2,',','.'));
@@ -222,6 +237,15 @@
 	        		type = result
 	        	}
 	        });
+	        var payment_type;
+	        $.ajax({
+        	url:"<?php echo base_url('giro/get_payment_type') ?>" + '/' + id,
+        	type: 'GET',
+        	success: function(result){
+	        		payment_type = result;
+	        		
+	        	}
+	        });
 
 		    if(harga < 0){
 		    	alert('Jumlah giro harus sesuai jumlah pembayaran');
@@ -234,8 +258,14 @@
 
 	        setTimeout(function(){
 		        if(type == 'diamond'){
-		        	$('#harga').empty();
-		    		$('#harga').append('$ '+ (harga).formatMoney(2));
+		        	if(payment_type=='rupiah'){
+		        		$('#harga').empty();
+		    			$('#harga').append('Rp. '+ (harga).formatMoney(2));
+		        	}else{
+		        		$('#harga').empty();
+		    			$('#harga').append('$ '+ (harga).formatMoney(2));
+		        	}
+		        	
 		        }else{
 		        	$('#harga').empty();
 		    		$('#harga').append('Rp. '+ (harga).formatMoney(2,',','.'));

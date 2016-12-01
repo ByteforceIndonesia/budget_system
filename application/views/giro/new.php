@@ -10,8 +10,12 @@
 						<option value="">--pilih transaksi--</option>
 						<?php foreach ($transactions as $transaction): ?>
 							<?php if ($transaction->type == 'diamond') {
-								$amount = NZD($transaction->amount);
 								
+								if($transaction->payment_type == 'dollar'){
+									$amount = NZD($transaction->amount);
+								}else{
+									$amount = rupiah($transaction->amount);
+								}
 
 							}else{
 								$amount = number_format($transaction->weight,2).' g';
@@ -23,7 +27,12 @@
 					<p style="display: inline-block; font-weight: bold; padding-top: 15px">Total :&nbsp;</p><p style="display: inline-block; padding-top: 15px;font-weight: bold" id="harga">
 						<?php 
 							if($transaction1->type == 'diamond'){
-								echo NZD($transaction1->amount);
+								if($transaction1->payment_type == 'dollar'){
+									echo NZD($transaction1->amount);	
+								}else{
+									echo 'Rp '. number_format($transaction1->amount,2);
+								}
+								
 							}else{
 								if($transaction1->diamond_type == 'Logam Mulia'){
 									echo 'Rp '. number_format($configuration->emas_lm * $transaction->weight,2,',','.');
@@ -96,8 +105,7 @@
 		    for(var i = 0; i < total.length ; i++){
 		    	tt += +total[i];
 		    }
-		    alert(harga);
-		    alert(tt);
+
 		    harga = +harga - +tt;
 		    var type;
 		    $.ajax({
@@ -105,6 +113,16 @@
         	type: 'GET',
         	success: function(result){
 	        		type = result
+	        	}
+	        });
+
+	        var payment_type;
+	        $.ajax({
+        	url:"<?php echo base_url('giro/get_payment_type') ?>" + '/' + id,
+        	type: 'GET',
+        	success: function(result){
+	        		payment_type = result;
+	        		
 	        	}
 	        });
 
@@ -119,8 +137,13 @@
 
 	        setTimeout(function(){
 		        if(type == 'diamond'){
-		        	$('#harga').empty();
-		    		$('#harga').append('$ '+ (harga).formatMoney(2));
+		        	if(payment_type=='rupiah'){
+		        		$('#harga').empty();
+		    			$('#harga').append('Rp. '+ (harga).formatMoney(2));
+		        	}else{
+		        		$('#harga').empty();
+		    			$('#harga').append('$ '+ (harga).formatMoney(2));
+		        	}
 		        }else{
 		        	$('#harga').empty();
 		    		$('#harga').append('Rp '+ (harga).formatMoney(2,',','.'));

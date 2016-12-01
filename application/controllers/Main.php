@@ -144,7 +144,7 @@ class Main extends CI_Controller {
 		$data['configuration'] = $this->db->get('configuration')->row();
 		$data['title'] = "Detail Cicilan";
 		$data['type'] = $type;
-		$this->db->select('installments.*,transactions.month,transactions.year,transactions.created,transactions.description,transactions.type,transactions.diamond_type,transactions.weight,supplier.name');
+		$this->db->select('installments.*,transactions.month,transactions.year,transactions.created,transactions.description,transactions.type, transactions.payment_type, transactions.diamond_type,transactions.weight,supplier.name');
 		$this->db->from('transactions');
 		$this->db->join('supplier','supplier.id = transactions.supplier_id','left');
 		$this->db->join('installments','installments.transaction_id = transactions.id');
@@ -191,15 +191,39 @@ class Main extends CI_Controller {
 		}
 
 		$data['title'] = 'Overview Tahunan';
-
+		$cicilan_dollar=array();
+		$cicilan_rupiah=array();
 		$cicilan = array();
 		$month = date('m',strtotime($year.'-01'));
-		for($i = $month; $i <= 12; $i++){
-			$amount = (!$this->budget_model->getTotalTransCicilan($type, date('Y-m',strtotime($year.'-'.$i))))? 0 : $this->budget_model->getTotalTransCicilan($type, date('Y-m',strtotime($year.'-'.$i)));
-			array_push($cicilan,$amount);
-		}	
+		
+		if($type == 'gold'){
+			for($i = $month; $i <= 12; $i++){
+				$amount = (!$this->budget_model->getTotalTransCicilan($type, date('Y-m',strtotime($year.'-'.$i))))? 0 : $this->budget_model->getTotalTransCicilan($type, date('Y-m',strtotime($year.'-'.$i)));
+				array_push($cicilan,$amount);
+			}		
+			$data['cicilan'] = $cicilan;
+		}else{
+			for($i = $month; $i <= 12; $i++){
+				$rupiah = (!$this->budget_model->getTotalTransCicilanDiamond('rupiah', date('Y-m',strtotime($year.'-'.$i))))? 0 : $this->budget_model->getTotalTransCicilanDiamond('rupiah', date('Y-m',strtotime($year.'-'.$i)));
+				array_push($cicilan_rupiah,$rupiah);
+				$dollar = (!$this->budget_model->getTotalTransCicilanDiamond('dollar', date('Y-m',strtotime($year.'-'.$i))))? 0 : $this->budget_model->getTotalTransCicilanDiamond('dollar', date('Y-m',strtotime($year.'-'.$i)));
+				array_push($cicilan_dollar,$dollar);
+			}
+			for($i = 0; $i < count($cicilan_rupiah); $i++){
+					$data['cicilan'][$i] = rupiah($cicilan_rupiah[$i]).' | '.NZD($cicilan_dollar[$i]);
+				}
+		}
+
+		
+
+		
 		$data['type'] = $type;
-		$data['cicilan'] = $cicilan;
+		// for($i = $month; $i <= 12; $i++){
+		// 	$amount = (!$this->budget_model->getTotalTransCicilan($type, date('Y-m',strtotime($year.'-'.$i))))? 0 : $this->budget_model->getTotalTransCicilan($type, date('Y-m',strtotime($year.'-'.$i)));
+		// 	array_push($cicilan,$amount);
+		// }	
+		// $data['type'] = $type;
+		// $data['cicilan'] = $cicilan;
 
 		$this->template->load('default','cicilan_tahunan',$data);
 	}

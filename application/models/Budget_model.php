@@ -260,7 +260,7 @@ class Budget_model extends CI_Model {
 
 	public function getTotalTransCicilan ($type, $month)
 	{	
-		$this->db->select('transactions.type,installments.*,transactions.amount AS total');
+		$this->db->select('transactions.type, installments.*,transactions.amount AS total');
 		if ($type == 'gold') {
 			$this->db->select_sum('installments.amount');
 		}else{
@@ -272,6 +272,33 @@ class Budget_model extends CI_Model {
 		$this->db->where("installments.due LIKE '$month%'");
 		$this->db->where('transactions.type',$type);
 		if ($type == 'gold') {
+			$total = $this->db->get()->row('amount');
+		}else{
+			$total = $this->db->get()->row('amount');
+		}
+		
+		
+		if($total){
+			return $total;
+		}else{
+			return false;
+		}
+	}
+
+	public function getTotalTransCicilanDiamond ($payment_type, $month)
+	{	
+		$this->db->select('transactions.payment_type, installments.*,transactions.amount AS total');
+		if ($payment_type == 'rupiah') {
+			$this->db->select_sum('installments.amount');
+		}else{
+			$this->db->select_sum('installments.amount');
+		}
+		
+		$this->db->from('installments');
+		$this->db->join('transactions','transactions.id = installments.transaction_id');
+		$this->db->where("installments.due LIKE '$month%'");
+		$this->db->where('transactions.payment_type',$payment_type);
+		if ($payment_type == 'rupiah') {
 			$total = $this->db->get()->row('amount');
 		}else{
 			$total = $this->db->get()->row('amount');

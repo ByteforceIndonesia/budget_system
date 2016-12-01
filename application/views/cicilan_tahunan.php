@@ -47,10 +47,11 @@
 								<tr>
 									<td><?php echo date('F',strtotime($year.'-'.$i)) ?></td>
 									<?php if ($this->uri->segment(3)=='diamond'): ?>
-										<td><?php echo NZD($one) ?></td>
+										<td><?php echo $one ?></td>
 									<?php else: ?>
 										<td><?php echo rupiah($one) ?></td>
 									<?php endif ?>
+									
 									<td><a href="<?php echo base_url().'main/detail_cicilan/'.date('Y-m',strtotime($year.'-'.$i)).'/'.$type ?>">Lihat Detail &raquo;</a></td>
 								</tr>
 							<?php $i++; endforeach; ?>

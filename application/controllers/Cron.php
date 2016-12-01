@@ -35,7 +35,7 @@ class Cron extends CI_Controller {
 		$user = mysqli_query($connection, "SELECT * FROM users");
 		$user = mysqli_fetch_array($user,MYSQLI_ASSOC);
 
-		$transactions = mysqli_query($connection, "SELECT installments.*,supplier.name,transactions.description,transactions.weight,transactions.created,transactions.spanning_month,transactions.gold_price,transactions.type,transactions.diamond_type, transactions.amount AS total_amount FROM installments INNER JOIN transactions
+		$transactions = mysqli_query($connection, "SELECT installments.*,supplier.name,transactions.description, transactions.payment_type, transactions.weight,transactions.created,transactions.spanning_month,transactions.gold_price,transactions.type,transactions.diamond_type, transactions.amount AS total_amount FROM installments INNER JOIN transactions
 			ON installments.transaction_id=transactions.id LEFT JOIN supplier ON supplier.id = transactions.supplier_id");
 	
 
@@ -86,9 +86,16 @@ class Cron extends CI_Controller {
 				if($row['type'] == 'diamond'){
 
 					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah yang harus dibayar hari ini '.'</th>';
-					$content .= '<td  colspan="2">$ '.number_format($row['amount'],2).'</td>';
+					if($row['payment_type']=='dollar'){
+						$content .= '<td  colspan="2">$ '.number_format($row['amount'],2).'</td>';	
+						$total_diamond +=$row['amount'];
+					}else{
+						$content .= '<td  colspan="2">Rp. '.number_format($row['amount'],2).'</td>';
+						$total_gold +=$row['amount'];
+					}
+					
 					$content .= '</tr><tr>';
-					$total_diamond +=$row['amount'];
+					
 				}else{
 					if($row['diamond_type'] == 'Logam Mulia') {
 						$harga_emas = $config['emas_lm'];
@@ -114,10 +121,10 @@ class Cron extends CI_Controller {
 			$content .= '<tr>';
 			$content .= '<th colspan="5"><h3>Total Pembayaran Hari ini </h3></th>';
 			$content .= '</tr><tr>';
-			$content .= '<th colspan="3" style="text-align:left">Diamond</th>';
+			$content .= '<th colspan="3" style="text-align:left">Dollar</th>';
 			$content .= '<td  colspan="2">$ '.number_format($total_diamond,2).'</td>';
 			$content .= '</tr><tr>';
-			$content .= '<th colspan="3" style="text-align:left">Emas</th>';
+			$content .= '<th colspan="3" style="text-align:left">Rupiah</th>';
 			$content .= '<td  colspan="2">Rp. '.number_format($total_gold,2,',','.').'</td>';
 			$content .= '</tr>';
 
@@ -181,9 +188,15 @@ EOD;
 				
 
 					$content .= '<th colspan="3" style="width: 60%; text-align:left">'.'Jumlah yang harus dibayar besok '.'</th>';
-					$content .= '<td  colspan="2">$ '.number_format($row['amount'],2).'</td>';
+					if($row['payment_type']=='dollar'){
+						$content .= '<td  colspan="2">$ '.number_format($row['amount'],2).'</td>';	
+						$total_diamond +=$row['amount'];
+					}else{
+						$content .= '<td  colspan="2">Rp. '.number_format($row['amount'],2).'</td>';
+						$total_gold +=$row['amount'];
+					}
 					$content .= '</tr><tr>';
-					$total_diamond +=$row['amount'];
+					
 				}else{
 					if($row['diamond_type'] == 'Logam Mulia') {
 						$harga_emas = $config['emas_lm'];
@@ -208,10 +221,10 @@ EOD;
 			$content .= '<tr>';
 			$content .= '<th colspan="5"><h3>Total Pembayaran Tanggal '.date('d-M-Y',strtotime("+ 1 day")).' </h3></th>';
 			$content .= '</tr><tr>';
-			$content .= '<th colspan="3" style="text-align:left">Diamond</th>';
+			$content .= '<th colspan="3" style="text-align:left">Dollar</th>';
 			$content .= '<td  colspan="2">$ '.number_format($total_diamond,2).'</td>';
 			$content .= '</tr><tr>';
-			$content .= '<th colspan="3" style="text-align:left">Emas</th>';
+			$content .= '<th colspan="3" style="text-align:left">Rupiah</th>';
 			$content .= '<td  colspan="2">Rp. '.number_format($total_gold,2,',','.').'</td>';
 			$content .= '</tr>';
 

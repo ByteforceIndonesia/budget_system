@@ -66,7 +66,11 @@
 									<td><?php echo $one->description ?></td>
 									<td><?php echo date('d-M-Y',strtotime($one->due)) ?></td>
 									<?php if ($one->type == 'diamond'): ?>
-										<td><?php echo NZD($one->amount) ?></td>
+										<?php if($one->payment_type=='rupiah'): ?>
+												<td><?php echo rupiah($one->amount) ?></td>
+										<?php 	else: ?>
+												<td><?php echo NZD($one->amount) ?></td>		
+										<?php 	endif; ?>	
 									<?php else: ?>
 										<?php if($one->diamond_type == 'Logam Mulia'): ?>
 											<td><?php echo rupiah($one->amount) ?></td>

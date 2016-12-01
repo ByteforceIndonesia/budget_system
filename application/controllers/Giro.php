@@ -147,5 +147,10 @@ class Giro extends CI_Controller {
 
 	}
 
+	public function get_payment_type($id){
+		$transaction = $this->db->get_where('transactions', array('id' => $id))->row();
+		echo $transaction->payment_type;
+	}
+
 
 }
