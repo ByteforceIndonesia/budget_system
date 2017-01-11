@@ -100,71 +100,60 @@
         	type: 'GET',
         	success: function(result){
         		harga = result;
+        		harga = harga.substr(0, harga.length - 2);
+				harga = harga.replace(/[^0-9]/g, "");
+
+				var inputs = document.getElementsByClassName( 'jumlah' ),
+			    total  = [].map.call(inputs, function( input ) {
+			        return input.value;
+			    }).join( ' ' );
+
+			    //tt itu total
+
+			    total = total.split(" ");
+			    var tt = 0;
+			    for(var i = 0; i < total.length ; i++){
+			    	tt += +total[i];
+			    }
+			    harga = +harga - +tt;
+			    var type;
+			    $.ajax({
+	        	url:"<?php echo base_url('giro/get_type') ?>" + '/' + id,
+	        	type: 'GET',
+	        	success: function(result){
+		        		trans = JSON.parse(result);
+						var payment_type;
+						type = trans.type;
+						payment_type = trans.payment_type;
+		        		if(harga < 0){
+					    	alert('Jumlah giro harus sesuai jumlah pembayaran');
+					    	$('#buat_giro').attr('disabled','disabled');
+					    }else if(harga == 0){
+					    	$('#buat_giro').removeAttr('disabled')
+					    }else{
+					    	$('#buat_giro').attr('disabled','disabled');
+					    }
+					    if(type == 'diamond'){
+				        	if(payment_type=='rupiah'){
+				        		$('#harga').empty();
+				    			$('#harga').append('Rp. '+ (harga).formatMoney(2));
+				        	}else{
+				        		$('#harga').empty();
+				    			$('#harga').append('$ '+ (harga).formatMoney(2));
+				        	}
+				        	
+				        }else{
+				        	$('#harga').empty();
+				    		$('#harga').append('Rp. '+ (harga).formatMoney(2,',','.'));
+				        }
+		        	}
+		        });
+		        
+		        
+
+			    	
         	}
         });
-
-       
-		setTimeout(function(){
-			
-			harga = harga.substr(0, harga.length - 2);
-			harga = harga.replace(/[^0-9]/g, "");
-
-			var inputs = document.getElementsByClassName( 'jumlah' ),
-		    total  = [].map.call(inputs, function( input ) {
-		        return input.value;
-		    }).join( ' ' );
-
-		    //tt itu total
-
-		    total = total.split(" ");
-		    var tt = 0;
-		    for(var i = 0; i < total.length ; i++){
-		    	tt += +total[i];
-		    }
-		    harga = +harga - +tt;
-		    var type;
-		    $.ajax({
-        	url:"<?php echo base_url('giro/get_type') ?>" + '/' + id,
-        	type: 'GET',
-        	success: function(result){
-	        		type = result;
-	        	}
-	        });
-	        var payment_type;
-	        $.ajax({
-        	url:"<?php echo base_url('giro/get_payment_type') ?>" + '/' + id,
-        	type: 'GET',
-        	success: function(result){
-	        		payment_type = result;
-	        	}
-	        });
-
-		    if(harga < 0){
-		    	alert('Jumlah giro harus sesuai jumlah pembayaran');
-		    	$('#buat_giro').attr('disabled','disabled');
-		    }else if(harga == 0){
-		    	$('#buat_giro').removeAttr('disabled')
-		    }else{
-		    	$('#buat_giro').attr('disabled','disabled');
-		    }	
-
-	        setTimeout(function(){
-		        if(type == 'diamond'){
-		        	if(payment_type=='rupiah'){
-		        		$('#harga').empty();
-		    			$('#harga').append('Rp. '+ (harga).formatMoney(2));
-		        	}else{
-		        		$('#harga').empty();
-		    			$('#harga').append('$ '+ (harga).formatMoney(2));
-		        	}
-		        	
-		        }else{
-		        	$('#harga').empty();
-		    		$('#harga').append('Rp. '+ (harga).formatMoney(2,',','.'));
-		        }
-	    	},100);
-		    
-		}, 100);
 
 	    
 
@@ -207,72 +196,62 @@
         	type: 'GET',
         	success: function(result){
         		harga = result;
+        		harga = harga.substr(0, harga.length - 2);
+				harga = harga.replace(/[^0-9]/g, "");
+
+				var inputs = document.getElementsByClassName( 'jumlah' ),
+			    total  = [].map.call(inputs, function( input ) {
+			        return input.value;
+			    }).join( ' ' );
+
+			    //tt itu total
+
+			    total = total.split(" ");
+			    var tt = 0;
+			    for(var i = 0; i < total.length ; i++){
+			    	tt += +total[i];
+			    }
+			    harga = +harga - +tt;
+			    var type;
+			    $.ajax({
+	        	url:"<?php echo base_url('giro/get_type') ?>" + '/' + id,
+	        	type: 'GET',
+	        	success: function(result){
+		        		trans = JSON.parse(result);
+						var payment_type;
+						type = trans.type;
+						payment_type = trans.payment_type;
+		        		if(harga < 0){
+					    	alert('Jumlah giro harus sesuai jumlah pembayaran');
+					    	$('#buat_giro').attr('disabled','disabled');
+					    }else if(harga == 0){
+					    	$('#buat_giro').removeAttr('disabled')
+					    }else{
+					    	$('#buat_giro').attr('disabled','disabled');
+					    }
+					    if(type == 'diamond'){
+				        	if(payment_type=='rupiah'){
+				        		$('#harga').empty();
+				    			$('#harga').append('Rp. '+ (harga).formatMoney(2));
+				        	}else{
+				        		$('#harga').empty();
+				    			$('#harga').append('$ '+ (harga).formatMoney(2));
+				        	}
+				        	
+				        }else{
+				        	$('#harga').empty();
+				    		$('#harga').append('Rp. '+ (harga).formatMoney(2,',','.'));
+				        }
+		        	}
+		        });
+		        
+		        
+
+			    	
         	}
         });
 
        
-		setTimeout(function(){
-			
-			harga = harga.substr(0, harga.length - 2);
-			harga = harga.replace(/[^0-9]/g, "");
-
-			var inputs = document.getElementsByClassName( 'jumlah' ),
-		    total  = [].map.call(inputs, function( input ) {
-		        return input.value;
-		    }).join( ' ' );
-
-		    //tt itu total
-
-		    total = total.split(" ");
-		    var tt = 0;
-		    for(var i = 0; i < total.length ; i++){
-		    	tt += +total[i];
-		    }
-		    harga = +harga - +tt;
-		    var type;
-		    $.ajax({
-        	url:"<?php echo base_url('giro/get_type') ?>" + '/' + id,
-        	type: 'GET',
-        	success: function(result){
-	        		type = result
-	        	}
-	        });
-	        var payment_type;
-	        $.ajax({
-        	url:"<?php echo base_url('giro/get_payment_type') ?>" + '/' + id,
-        	type: 'GET',
-        	success: function(result){
-	        		payment_type = result;
-	        		
-	        	}
-	        });
-
-		    if(harga < 0){
-		    	alert('Jumlah giro harus sesuai jumlah pembayaran');
-		    	$('#buat_giro').attr('disabled','disabled');
-		    }else if(harga == 0){
-		    	$('#buat_giro').removeAttr('disabled')
-		    }else{
-		    	$('#buat_giro').attr('disabled','disabled');
-		    }	
-
-	        setTimeout(function(){
-		        if(type == 'diamond'){
-		        	if(payment_type=='rupiah'){
-		        		$('#harga').empty();
-		    			$('#harga').append('Rp. '+ (harga).formatMoney(2));
-		        	}else{
-		        		$('#harga').empty();
-		    			$('#harga').append('$ '+ (harga).formatMoney(2));
-		        	}
-		        	
-		        }else{
-		        	$('#harga').empty();
-		    		$('#harga').append('Rp. '+ (harga).formatMoney(2,',','.'));
-		        }
-	    	},100);
-		    
-		}, 100);
 
 	});
 </script>

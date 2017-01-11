@@ -142,8 +142,12 @@ class Giro extends CI_Controller {
 	public function get_type($id){
 		
 		$transaction = $this->db->get_where('transactions',array('id' => $id))->row();
+		$trans = array(
+				'type' => $transaction->type,
+				'payment_type' => $transaction->payment_type
+			);
 
-		echo $transaction->type;
+		echo json_encode($trans);
 
 	}
 
